@@ -1,0 +1,9 @@
+{
+"description": "Service",
+"id":"service-uu",
+"links": [{
+"href" : "https://api.esalrugs.com",
+"rel" : "self"
+}],
+"title" : "UU Service"
+}
