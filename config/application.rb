@@ -17,7 +17,6 @@ module Ragpickers
 
     # Validates the supplied and returned schema.
     # docs: https://github.com/interagent/committee
-    config.middleware.use Committee::Middleware::RequestValidation, schema: JSON.parse(File.read("./schema/api.json")) if File.exist?("./schema/api.json")
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
