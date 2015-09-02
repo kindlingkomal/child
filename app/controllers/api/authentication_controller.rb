@@ -23,7 +23,7 @@ class Api::AuthenticationController < Api::ApiController
   end
 
 protected
-  def login_user(user, email=params[:email])
+  def login_user(user)
     user.last_sign_in_at = Time.now
     user.invalidate_authentication_token
     user.save
@@ -33,14 +33,14 @@ protected
 
   def authenticated_user
     user = User.find_for_database_authentication(
-      email: params[:email].try(:downcase)
+      phone_number: params[:phone_number].try(:downcase)
     )
     user if user && user.valid_password?(params[:password])
   end
 
   def cannot_log_in
     user = User.find_for_database_authentication(
-      email: params[:email].try(:downcase)
+      phone_number: params[:phone_number].try(:downcase)
     )
     if user.nil?
       render json: {error: {code: "10000", msg: "User not registered"}}, status: 403

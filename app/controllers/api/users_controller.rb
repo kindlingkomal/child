@@ -14,13 +14,14 @@ class Api::UsersController < Api::ApiController
 
 private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation,
+      :full_name, :phone_number, :avatar)
   end
 
   def handle_errors_create
     code, msg =
-      if User.find_by(email: user_params[:email])
-        [10101, 'Request submitted for this email address before']
+      if User.find_by(phone_number: user_params[:phone_number])
+        [10100, 'Request submitted for this phone number before']
       else
         ["U_405_2", @user.errors.full_messages]
       end
