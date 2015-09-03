@@ -27,6 +27,8 @@ private
       # sign in token, you can simply remove store: false.
       sign_in user, store: false
       @current_user = user if user.active?
+    else
+      render json: {error: {code: "20000", msg: "token invalid"}}, status: 403
     end
   end
 

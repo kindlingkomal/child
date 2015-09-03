@@ -17,8 +17,6 @@ class Api::AuthenticationController < Api::ApiController
     if @current_user
       @current_user.invalidate_authentication_token!
       render json: {success: true}
-    else
-      render json: {success: false, error: {code: "S_404_1", msg: "user not found"}}, status: 403
     end
   end
 

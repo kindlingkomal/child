@@ -35,5 +35,23 @@ curl "http://ragpickers.herokuapp.com/api/authentication/logout?token=login_toke
       {"success":true}
     </td>
   </tr>
+  <tr>
+    <td>
+      {"error":{"code":"20000","msg":"Token invalid"}}
+    </td>
+  </tr>
+</table>
 
+<h4>Error codes</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Status </th>
+    <th style='width: 200px'>Code</th>
+    <th>Message</th>
+  </tr>
+  <tr>
+    <td>403</td>
+    <td>20000</td>
+    <td>Token invalid</td>
+  </tr>
 </table>
