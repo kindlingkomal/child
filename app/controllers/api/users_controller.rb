@@ -23,7 +23,7 @@ private
       if User.find_by(phone_number: user_params[:phone_number])
         [10100, 'Request submitted for this phone number before']
       else
-        ["U_405_2", @user.errors.full_messages]
+        [90002, @user.errors.full_messages.join('. ')]
       end
     render json: {error: {code: code, msg: msg}}, status: 405
   end

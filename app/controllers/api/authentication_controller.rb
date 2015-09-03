@@ -1,4 +1,5 @@
 class Api::AuthenticationController < Api::ApiController
+  skip_before_action :authenticate_user_from_token!, only: :create
   skip_before_action :authenticate_user!, only: :create
 
   def create
@@ -41,15 +42,15 @@ protected
       phone_number: params[:phone_number].try(:downcase)
     )
     if user.nil?
-      render json: {error: {code: "10000", msg: "User not registered"}}, status: 403
+      render json: {error: {code: 10000, msg: "User not registered"}}, status: 403
     elsif not user.valid_password?(params[:password])
-      render json: {error: {code: "10001", msg: "Invalid password"}}, status: 403
+      render json: {error: {code: 10001, msg: "Invalid password"}}, status: 403
     else
-      render json: {error: {code: "S_401_1", msg: "Bad credentials"}}, status: 403
+      render json: {error: {code: 90000, msg: "Bad credentials"}}, status: 403
     end
   end
 
   def not_active
-    render json: {error: {msg: "Your account is not activated yet."}}, status: 403
+    render json: {error: {code: 90001, msg: "Your account is not activated yet."}}, status: 403
   end
 end
