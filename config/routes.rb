@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       put :update, on: :collection
     end
 
+    resources :categories, only: :index
+
     post 'authentication', to: 'authentication#create'
     get  'authentication/logout', to: 'authentication#logout'
   end

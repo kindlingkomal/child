@@ -5,12 +5,16 @@ gem 'rails', '4.2.4'
 gem 'puma'
 gem 'pg'
 gem 'devise'
+gem 'fog', require: 'fog/aws'
+gem 'mini_magick'
+gem 'carrierwave'
 
 group :staging, :production do
   gem 'rails_12factor'
 end
 
 group :development, :test do
+  gem 'figaro'
   gem 'spring'
   gem 'pry-rails'
   gem 'web-console', '~> 2.0'
