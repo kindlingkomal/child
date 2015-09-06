@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   enum role: [:user, :ragpicker]
+  enum gender: [:male, :female]
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

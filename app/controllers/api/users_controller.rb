@@ -5,17 +5,26 @@ class Api::UsersController < Api::ApiController
   def create
     @user = User.new user_params
     # @user.inactive = true
-    if @user.save && @user.errors.blank?
+    if @user.save
       render json: @user
     else
       handle_errors_create
     end
   end
 
+  def update
+    @user = @current_user
+    if @user.update(user_params)
+      render json: @user
+    else
+      handle_errors_update
+    end
+  end
+
 private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation,
-      :full_name, :phone_number, :avatar)
+    params.require(:user).permit(:email, :password, :password_confirmation, :avatar,
+      :full_name, :phone_number, :gender, :address, :city, :notified, :pincode)
   end
 
   def handle_errors_create
@@ -28,4 +37,13 @@ private
     render json: {error: {code: code, msg: msg}}, status: 405
   end
 
+  def handle_errors_update
+    code, msg =
+      if User.where.not(id: @user.id).where(phone_number: user_params[:phone_number]).count > 0
+        [10200, 'You are already registered']
+      else
+        [90002, @user.errors.full_messages.join('. ')]
+      end
+    render json: {error: {code: code, msg: msg}}, status: 405
+  end
 end

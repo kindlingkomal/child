@@ -1,5 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :full_name, :phone_number, :created_at, :authentication_token, :avatar
+  attributes :id, :full_name, :phone_number, :created_at, :authentication_token,
+    :avatar, :gender, :address, :city, :notified, :pincode
 
   def authentication_token
     show_token = meta.try(:[], :show_token)

@@ -1,0 +1,120 @@
+<h3>PUT /api/users</h3>
+<div>
+  Update an user
+</div>
+<b>Resource URL </b>
+<div>
+http://ragpickers.herokuapp.com/api/users
+</div>
+<b>Example request</b>
+<div>
+curl -XPUT --data "user[full_name]=Bao Vuong&user[phone_number]=01234567890&user[password]=123456 &user[address]=address&user[pincode]=pincode&user[notified]=true&token=login_token" "http://ragpickers.herokuapp.com/api/users"
+</div>
+<h4> Parameters</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Name </th>
+    <th style='width: 100px'>Required</th>
+    <th style='width: 100px'>Data type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>token</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>authentication token that api sign_in returned</td>
+  </tr>
+  <tr>
+    <td>user[full_name]</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>Full name</td>
+  </tr>
+  <tr>
+    <td>user[phone_number]</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>phone number</td>
+  </tr>
+  <tr>
+    <td>user[password]</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>Password must be at least 6 characters long</td>
+  </tr>
+  <tr>
+    <td>user[email]</td>
+    <td>N</td>
+    <td>string</td>
+    <td>Email</td>
+  </tr>
+  <tr>
+    <td>user[gender]</td>
+    <td>N</td>
+    <td>string</td>
+    <td>Gender in ['male', 'female']</td>
+  </tr>
+  <tr>
+    <td>user[address]</td>
+    <td>N</td>
+    <td>string</td>
+    <td>Address</td>
+  </tr>
+
+  <tr>
+    <td>user[city]</td>
+    <td>N</td>
+    <td>string</td>
+    <td>City</td>
+  </tr>
+  <tr>
+    <td>user[notified]</td>
+    <td>N</td>
+    <td>boolean</td>
+    <td>Request notifications or not</td>
+  </tr>
+  <tr>
+    <td>user[pincode]</td>
+    <td>N</td>
+    <td>string</td>
+    <td>Pin code</td>
+  </tr>
+  <tr>
+    <td>user[avatar]</td>
+    <td>N</td>
+    <td>string</td>
+    <td>A photo as string in json, e.g. "{\"image_url\":\"http://url_A\",\"thumb_url\":\"http://url_A_thumb\"}"</td>
+  </tr>
+</table>
+
+<h4>Response </h4>
+<div>
+ a json object
+</div>
+<h4>sample response</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <td>
+      {"user":{"id":18,"full_name":"Bao Vuong","phone_number":"01234567890","created_at":"2015-09-02T07:51:58.080Z","authentication_token":null,"avatar":{"image_url":"http://url_A","thumb_url":"http://url_A_thumb"},"gender":"male","address":"address","city":null,"notified":true,"pincode":"pincode"}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {"error":{"code":"20000","msg":"token invalid"}}
+    </td>
+  </tr>
+</table>
+
+<h4>Error codes</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Status </th>
+    <th style='width: 200px'>Code</th>
+    <th>Message</th>
+  </tr>
+  <tr>
+    <td>403</td>
+    <td>20000</td>
+    <td>token invalid</td>
+  </tr>
+</table>
