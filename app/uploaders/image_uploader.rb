@@ -26,6 +26,14 @@ class ImageUploader < CarrierWave::Uploader::Base
     resize_to_fill(width, height)
   end
 
+  version :medium do
+    process :scale => [1080, 386]
+  end
+
+  version :small do
+    process :scale => [720, 258]
+  end
+
   version :thumbnail do
     process :scale => [90, 90]
   end
