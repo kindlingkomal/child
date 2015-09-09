@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906102358) do
+ActiveRecord::Schema.define(version: 20150909023557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20150906102358) do
     t.string   "city"
     t.boolean  "notified",               default: false
     t.string   "pincode"
+    t.float    "lat"
+    t.float    "lon"
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true, using: :btree

@@ -24,7 +24,7 @@ class Api::UsersController < Api::ApiController
 private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :avatar,
-      :full_name, :phone_number, :gender, :address, :city, :notified, :pincode)
+      :full_name, :phone_number, :gender, :address, :city, :notified, :pincode, :lat, :lon)
   end
 
   def handle_errors_create
