@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :full_name, :phone_number, :created_at, :authentication_token,
+  attributes :id, :email, :full_name, :phone_number, :created_at, :authentication_token,
     :avatar, :gender, :address, :city, :notified, :pincode, :lat, :lon
 
   def authentication_token
