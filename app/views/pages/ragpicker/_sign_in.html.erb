@@ -1,0 +1,67 @@
+<h3>POST /api/ragpicker/authentication</h3>
+<div>
+  Sign in
+</div>
+<b>Resource URL </b>
+<div>
+http://ragpickers.herokuapp.com/api/ragpicker/authentication
+</div>
+<b>sample request</b>
+<div>
+  curl --data "phone_number=0123456789&password=123456" "http://ragpickers.herokuapp.com/api/ragpicker/authentication"
+</div>
+<h4> Parameters</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Name </th>
+    <th style='width: 100px'>Required</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>phone_number</td>
+    <td>Y</td>
+    <td>Phone number</td>
+  </tr>
+  <tr>
+    <td>password</td>
+    <td>Y</td>
+    <td>Password</td>
+  </tr>
+</table>
+<h4>Response </h4>
+<div>
+ a json object
+</div>
+<h4>sample response</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <td>
+      {"user":{"id":2,"email":"vuongbao0@gmail.com","created_at":"2015-09-02T06:14:03.436Z","authentication_token":"2LUF1xuXFRiKSjBwy3Ns"},"meta":{"show_token":true}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {"error":{"code":"10001","msg":"Invalid password"}}
+    </td>
+  </tr>
+
+</table>
+
+<h4>Error codes</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Status </th>
+    <th style='width: 200px'>Code</th>
+    <th>Message</th>
+  </tr>
+  <tr>
+    <td>403</td>
+    <td>10000</td>
+    <td>User not registered</td>
+  </tr>
+  <tr>
+    <td>403</td>
+    <td>10001</td>
+    <td>Invalid password</td>
+  </tr>
+</table>

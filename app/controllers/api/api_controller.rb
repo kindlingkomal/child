@@ -26,7 +26,20 @@ private
       # for every request. If you want the token to work as a
       # sign in token, you can simply remove store: false.
       sign_in user, store: false
-      @current_user = user if user.active?
+      if user.active?
+        @current_user = user
+        if request.url.include?('/api/ragpicker/')
+          unless @current_user.ragpicker?
+            @current_user = nil
+            render json: {error: {code: "20001", msg: "role invalid"}}, status: 403
+          end
+        else
+          unless @current_user.user?
+            @current_user = nil
+            render json: {error: {code: "20001", msg: "role invalid"}}, status: 403
+          end
+        end
+      end
     else
       render json: {error: {code: "20000", msg: "token invalid"}}, status: 403
     end
