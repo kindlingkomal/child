@@ -1,0 +1,84 @@
+<h3>POST /api/pick_ups</h3>
+<div>
+  Create a pick_up
+</div>
+<b>Resource URL </b>
+<div>
+http://ragpickers.herokuapp.com/api/pick_ups
+</div>
+<b>sample request</b>
+<div>
+  curl --data "pick_up[address]=address&pick_up[city]=city&pick_up[pincode]=pincode&pick_up[start_time]=2015-09-25 13:45&pick_up[end_time]=2015-09-25 17:30&pick_up[subscription]=weekly&pick_up[category_set][]=1&pick_up[category_set][]=2&token=login_token" "http://ragpickers.herokuapp.com/api/pick_ups"
+</div>
+<h4> Parameters</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Name </th>
+    <th style='width: 100px'>Required</th>
+    <th style='width: 100px'>Data type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>token</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>authentication token that api sign_in returned</td>
+  </tr>
+  <tr>
+    <td>pick_up[address]</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>Address</td>
+  </tr>
+
+  <tr>
+    <td>pick_up[city]</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>City</td>
+  </tr>
+
+  <tr>
+    <td>pick_up[pincode]</td>
+    <td>N</td>
+    <td>string</td>
+    <td>Pin code</td>
+  </tr>
+  <tr>
+    <td>pick_up[subscription]</td>
+    <td>N</td>
+    <td>string</td>
+    <td>subscription in [daily, weekly, monthly]</td>
+  </tr>
+  <tr>
+    <td>pick_up[start_time]</td>
+    <td>Y</td>
+    <td>DateTime</td>
+    <td>Start time, e.g. 2015-09-23 13:30 </td>
+  </tr>
+  <tr>
+    <td>pick_up[end_time]</td>
+    <td>Y</td>
+    <td>DateTime</td>
+    <td>End time, e.g. 2015-09-23 17:30 </td>
+  </tr>
+  <tr>
+    <td>pick_up[category_set][]</td>
+    <td>Y</td>
+    <td>integer</td>
+    <td>id of category</td>
+  </tr>
+</table>
+
+<h4>Response </h4>
+<div>
+ a json object
+</div>
+<h4>sample response</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <td>
+      {"pick_up":{"id":6,"address":"address","city":"city","pincode":"pincode","subscription":"weekly","start_time":"2015-09-25T13:45:00.000Z","end_time":"2015-09-25T17:30:00.000Z","category_set":[{"id":1,"name":"News Paper","price":"15.0"},{"id":2,"name":"Clothes","price":"25.0"}]}}
+    </td>
+  </tr>
+</table>

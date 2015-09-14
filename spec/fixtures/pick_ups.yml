@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pincode: MyString
+  city: MyString
+  address: MyString
+  parent: 
+  subscription: 1
+  start_time: 2015-09-14 19:41:04
+  end_time: 2015-09-14 19:41:04
+
+two:
+  pincode: MyString
+  city: MyString
+  address: MyString
+  parent: 
+  subscription: 1
+  start_time: 2015-09-14 19:41:04
+  end_time: 2015-09-14 19:41:04

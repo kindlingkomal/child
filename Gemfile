@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.2.2"
 
+gem 'schema_plus'
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 gem 'rails', '4.2.4'
 gem 'puma'

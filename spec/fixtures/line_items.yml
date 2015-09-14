@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: 
+  pick_up: 
+  quantity: 1
+  cost_price: 
+  cost_price: 
+
+two:
+  category: 
+  pick_up: 
+  quantity: 1
+  cost_price: 
+  cost_price: 
