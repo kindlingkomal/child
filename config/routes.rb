@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
 
     resources :categories, only: :index
+    resources :time_slots, only: :index
     resources :pick_ups, only: :create
 
     post 'authentication', to: 'authentication#create'

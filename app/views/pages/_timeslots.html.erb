@@ -1,0 +1,26 @@
+<h3>GET /api/time_slots</h3>
+<div>
+  collection of time-slots; time-slot with start_hour, end_hour in second from beginning of day
+</div>
+<b>Resource URL </b>
+<div>
+http://ragpickers.herokuapp.com/api/time_slots
+</div>
+<b>sample request</b>
+<div>
+  curl "http://ragpickers.herokuapp.com/api/time_slots"
+</div>
+
+<h4>Response </h4>
+<div>
+ a json object
+</div>
+<h4>sample response</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <td>
+      {"time_slots":[{"id":1,"start_hour":32400,"end_hour":36000},{"id":2,"start_hour":37800,"end_hour":41400},{"id":3,"start_hour":46800,"end_hour":50400},{"id":4,"start_hour":54000,"end_hour":57600},{"id":5,"start_hour":59400,"end_hour":63000}]}
+    </td>
+  </tr>
+
+</table>
