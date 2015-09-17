@@ -1,0 +1,51 @@
+<h3>GET /api/ragpicker/pick_ups</h3>
+<div>
+  Returns a collection of pickups
+</div>
+<b>Resource URL </b>
+<div>
+  http://ragpickers.herokuapp.com/api/ragpicker/pick_ups
+</div>
+<b>Example request</b>
+<div>curl 'http://ragpickers.herokuapp.com/api/ragpicker/pick_ups?filter=pending&token=login_token'</div>
+<h4> Parameters</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Name </th>
+    <th style='width: 100px'>Required</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>token </td>
+    <td>Y</td>
+    <td>login token</td>
+  </tr>
+  <tr>
+    <td>filter </td>
+    <td>N</td>
+    <td> filter value eq 'pending' for getting pending pickups, eq 'accepted' for accepted pickups</td>
+  </tr>
+  <tr>
+    <td>page</td>
+    <td>N</td>
+    <td>an integer, default: 1</td>
+  </tr>
+  <tr>
+    <td>per_page</td>
+    <td>N</td>
+    <td>an integer, default: 10</td>
+  </tr>
+</table>
+
+<h4>Response </h4>
+<div>
+ a json object
+</div>
+<h4>sample response</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <td>
+      {"pick_ups":[{"id":1,"address":"address","city":"city","pincode":"pincode","subscription":"weekly","start_time":1442320948,"end_time":1442321148,"category_set":[{"id":1,"name":"News Paper","price":"15.0"},{"id":2,"name":"Clothes","price":"25.0"}]}],"meta":{"current_user_id":2}}
+    </td>
+  </tr>
+</table>

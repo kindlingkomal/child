@@ -194,6 +194,9 @@ GEM
     ipaddress (0.8.0)
     its-it (1.1.1)
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     key_struct (0.4.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -404,6 +407,7 @@ DEPENDENCIES
   devise
   figaro
   fog
+  kaminari
   mini_magick
   mutant
   mutant-rspec
@@ -418,3 +422,6 @@ DEPENDENCIES
   simplecov-rcov
   spring
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6

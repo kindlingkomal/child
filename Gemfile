@@ -11,6 +11,7 @@ gem 'devise'
 gem 'fog', require: 'fog/aws'
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'kaminari'
 
 group :staging, :production do
   gem 'rails_12factor'

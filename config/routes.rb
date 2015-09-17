@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       end
 
       resources :categories, only: :index
+      resources :pick_ups, only: :index
 
       post 'authentication', to: 'authentication#create'
       get  'authentication/logout', to: 'authentication#logout'
