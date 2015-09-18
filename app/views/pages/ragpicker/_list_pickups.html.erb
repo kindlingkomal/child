@@ -7,7 +7,7 @@
   http://ragpickers.herokuapp.com/api/ragpicker/pick_ups
 </div>
 <b>Example request</b>
-<div>curl 'http://ragpickers.herokuapp.com/api/ragpicker/pick_ups?filter=pending&token=login_token'</div>
+<div>curl 'http://ragpickers.herokuapp.com/api/ragpicker/pick_ups?filter=pending&date=1442297307&token=login_token'</div>
 <h4> Parameters</h4>
 <table border="1" style="width:100%">
   <tr>
@@ -24,6 +24,12 @@
     <td>filter </td>
     <td>N</td>
     <td> filter value eq 'pending' for getting pending pickups, eq 'accepted' for accepted pickups</td>
+  </tr>
+  <tr>
+    <td>date</td>
+    <td>N</td>
+    <td>value of date is an epoch time, e.g. 1442320948 for 2015-09-15 19:42:28 +0700
+    </td>
   </tr>
   <tr>
     <td>page</td>
@@ -45,7 +51,7 @@
 <table border="1" style="width:100%">
   <tr>
     <td>
-      {"pick_ups":[{"id":1,"address":"address","city":"city","pincode":"pincode","subscription":"weekly","start_time":1442320948,"end_time":1442321148,"category_set":[{"id":1,"name":"News Paper","price":"15.0"},{"id":2,"name":"Clothes","price":"25.0"}]}],"meta":{"current_user_id":2}}
+      {"pick_ups":[{"id":20,"address":"address","city":"city","pincode":"pincode","subscription":"weekly","start_time":1442320948,"end_time":1442322665,"category_set":[{"id":1,"name":"News Paper","price":"15.0"},{"id":2,"name":"Clothes","price":"25.0"}]},{"id":17,"address":"address","city":"city","pincode":"pincode","subscription":"weekly","start_time":1442320948,"end_time":1442322665,"category_set":[{"id":1,"name":"News Paper","price":"15.0"},{"id":2,"name":"Clothes","price":"25.0"}]}],"meta":{"current_user_id":22,"total_pages":1,"total_pick_ups":2}}
     </td>
   </tr>
 </table>
