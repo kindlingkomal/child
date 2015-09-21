@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   namespace :api, :defaults => {:format => :json} do
     namespace :common, :defaults => {:format => :json} do
-      resources :pick_ups, only: :show
+      resources :pick_ups, only: [:show, :index]
     end
   end
 
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       end
 
       resources :categories, only: :index
-      resources :pick_ups, only: :index
+      # resources :pick_ups, only: :index
 
       post 'authentication', to: 'authentication#create'
       get  'authentication/logout', to: 'authentication#logout'
