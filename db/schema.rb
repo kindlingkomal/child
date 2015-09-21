@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921083308) do
+ActiveRecord::Schema.define(version: 20150921090716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,41 +20,6 @@ ActiveRecord::Schema.define(version: 20150921083308) do
     t.string   "name"
     t.decimal  "price",      precision: 10, scale: 2
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "pick_ups", force: :cascade do |t|
-    t.string   "pincode"
-    t.string   "city"
-    t.string   "address"
-    t.integer  "parent_id",    index: {name: "index_pick_ups_on_parent_id"}, foreign_key: {references: "pick_ups", name: "fk_pick_ups_parent_id", on_update: :no_action, on_delete: :no_action}
-    t.integer  "subscription"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "accepted_at"
-    t.datetime "started_at"
-    t.datetime "proceeded_at"
-    t.text     "category_set", default: [],              array: true
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.float    "lat",          index: {name: "index_pick_ups_on_lat_and_lon", with: ["lon"]}
-    t.float    "lon"
-  end
-
-  create_table "line_items", force: :cascade do |t|
-    t.integer  "category_id", index: {name: "index_line_items_on_category_id"}, foreign_key: {references: "categories", name: "fk_line_items_category_id", on_update: :no_action, on_delete: :no_action}
-    t.integer  "pick_up_id",  index: {name: "index_line_items_on_pick_up_id"}, foreign_key: {references: "pick_ups", name: "fk_line_items_pick_up_id", on_update: :no_action, on_delete: :no_action}
-    t.integer  "quantity"
-    t.decimal  "cost_price",  precision: 10, scale: 2
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "time_slots", force: :cascade do |t|
-    t.integer  "start_hour", null: false
-    t.integer  "end_hour",   null: false
-    t.boolean  "inactive",   default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -85,6 +50,42 @@ ActiveRecord::Schema.define(version: 20150921083308) do
     t.string   "pincode"
     t.float    "lat"
     t.float    "lon"
+  end
+
+  create_table "pick_ups", force: :cascade do |t|
+    t.string   "pincode"
+    t.string   "city"
+    t.string   "address"
+    t.integer  "parent_id",    index: {name: "index_pick_ups_on_parent_id"}, foreign_key: {references: "pick_ups", name: "fk_pick_ups_parent_id", on_update: :no_action, on_delete: :no_action}
+    t.integer  "subscription"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "accepted_at"
+    t.datetime "started_at"
+    t.datetime "proceeded_at"
+    t.text     "category_set", default: [],              array: true
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.float    "lat",          index: {name: "index_pick_ups_on_lat_and_lon", with: ["lon"]}
+    t.float    "lon"
+    t.integer  "user_id",      index: {name: "index_pick_ups_on_user_id"}, foreign_key: {references: "users", name: "fk_pick_ups_user_id", on_update: :no_action, on_delete: :no_action}
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "category_id", index: {name: "index_line_items_on_category_id"}, foreign_key: {references: "categories", name: "fk_line_items_category_id", on_update: :no_action, on_delete: :no_action}
+    t.integer  "pick_up_id",  index: {name: "index_line_items_on_pick_up_id"}, foreign_key: {references: "pick_ups", name: "fk_line_items_pick_up_id", on_update: :no_action, on_delete: :no_action}
+    t.integer  "quantity"
+    t.decimal  "cost_price",  precision: 10, scale: 2
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "time_slots", force: :cascade do |t|
+    t.integer  "start_hour", null: false
+    t.integer  "end_hour",   null: false
+    t.boolean  "inactive",   default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

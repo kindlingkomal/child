@@ -2,6 +2,7 @@ class Api::PickUpsController < Api::ApiController
 
   def create
     @pick_up = PickUp.new handle_params
+    @pick_up.user = @current_user
     if @pick_up.save
       render json: @pick_up
     else
@@ -11,8 +12,8 @@ class Api::PickUpsController < Api::ApiController
 
 private
   def pick_up_params
-    params.require(:pick_up).permit(:address, :city, :pincode, :subscription,
-      :start_time, :end_time, category_set: [])
+    params.require(:pick_up).permit(:address, :city, :pincode, :lat, :lon,
+      :subscription, :start_time, :end_time, category_set: [])
   end
 
   def handle_errors_create

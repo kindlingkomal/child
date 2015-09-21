@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   validates :authentication_token, uniqueness: true, allow_blank: true
   validates :phone_number, uniqueness: true, presence: true
 
+  has_many :pick_ups, dependent: :destroy
+
   before_validation :set_default_role, :if => :new_record?
 
   def active?
