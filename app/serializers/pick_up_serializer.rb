@@ -1,6 +1,6 @@
 class PickUpSerializer < ActiveModel::Serializer
-  attributes :id, :address, :city, :pincode, :subscription,
-    :start_time, :end_time, :category_set
+  attributes :id, :address, :city, :pincode, :lat, :lon, :subscription,
+    :start_time, :end_time, :category_set, :status
 
   def category_set
     Category.where(id: object.category_set).as_json(only: [:id, :name, :price])
@@ -12,5 +12,15 @@ class PickUpSerializer < ActiveModel::Serializer
 
   def end_time
     !object.end_time? ? nil : object.end_time.to_i
+  end
+
+  def status
+    if object.accepted_at?
+      'accepted'
+    elsif Time.now.utc < object.start_time
+      'pending'
+    else
+      'expired'
+    end
   end
 end

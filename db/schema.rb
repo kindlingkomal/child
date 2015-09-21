@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916075628) do
+ActiveRecord::Schema.define(version: 20150921083308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20150916075628) do
     t.text     "category_set", default: [],              array: true
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.float    "lat",          index: {name: "index_pick_ups_on_lat_and_lon", with: ["lon"]}
+    t.float    "lon"
   end
 
   create_table "line_items", force: :cascade do |t|
