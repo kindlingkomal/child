@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921090716) do
+ActiveRecord::Schema.define(version: 20150922081631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,18 @@ ActiveRecord::Schema.define(version: 20150921090716) do
     t.integer  "pick_up_id",  index: {name: "index_line_items_on_pick_up_id"}, foreign_key: {references: "pick_ups", name: "fk_line_items_pick_up_id", on_update: :no_action, on_delete: :no_action}
     t.integer  "quantity"
     t.decimal  "cost_price",  precision: 10, scale: 2
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "pickup_users", force: :cascade do |t|
+    t.integer  "pick_up_id",  index: {name: "index_pickup_users_on_pick_up_id"}, foreign_key: {references: "pick_ups", name: "fk_pickup_users_pick_up_id", on_update: :no_action, on_delete: :no_action}
+    t.integer  "user_id",     index: {name: "index_pickup_users_on_user_id"}, foreign_key: {references: "users", name: "fk_pickup_users_user_id", on_update: :no_action, on_delete: :no_action}
+    t.string   "type"
+    t.string   "reason"
+    t.datetime "canceled_at"
+    t.datetime "rejected_at"
+    t.datetime "accepted_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

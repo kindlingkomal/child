@@ -1,6 +1,6 @@
 class PickUpSerializer < ActiveModel::Serializer
   attributes :id, :address, :city, :pincode, :lat, :lon, :subscription,
-    :start_time, :end_time, :category_set, :status
+    :start_time, :end_time, :category_set, :status, :accepted_at
 
   belongs_to :user
 
@@ -14,6 +14,10 @@ class PickUpSerializer < ActiveModel::Serializer
 
   def end_time
     !object.end_time? ? nil : object.end_time.to_i
+  end
+
+  def accepted_at
+    !object.accepted_at? ? nil : object.accepted_at.to_i
   end
 
   def status

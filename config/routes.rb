@@ -29,7 +29,9 @@ Rails.application.routes.draw do
       end
 
       resources :categories, only: :index
-      # resources :pick_ups, only: :index
+      resources :pick_ups, only: [] do
+        get :accept, on: :member
+      end
 
       post 'authentication', to: 'authentication#create'
       get  'authentication/logout', to: 'authentication#logout'

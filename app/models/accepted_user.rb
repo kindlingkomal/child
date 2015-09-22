@@ -1,0 +1,2 @@
+class AcceptedUser < PickupUser
+end
