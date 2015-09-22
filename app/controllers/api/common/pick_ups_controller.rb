@@ -11,7 +11,7 @@ class Api::Common::PickUpsController < Api::ApiController
     when 'pending'
       PickUp.pending
     else
-      PickUp.where(id: -1)
+      PickUp.where.not(id: -1)
     end
     @pick_ups = @pick_ups.where(parent_id: nil)
     if (user_id = params[:user_id]).present?
