@@ -22,7 +22,8 @@ class Api::Ragpicker::PickUpsController < Api::ApiController
       @pick_up.update(accepted_at: nil)
       render json: @pick_up, meta: { canceled_at: @accepted_user.canceled_at.to_i }
     else
-      render json: {error: {code: 20000, msg: "This pick-up cannot canceled"}}, status: 405
+      render json: {error: {code: 20000, msg: "This pick-up cannot be canceled",
+        accepted_at: @pick_up.accepted_at.try(:to_i)}}, status: 405
     end
   end
 

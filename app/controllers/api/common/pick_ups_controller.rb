@@ -5,21 +5,27 @@ class Api::Common::PickUpsController < Api::ApiController
   end
 
   def index
-    @pick_ups = case params[:filter]
+    case params[:filter]
     when 'accepted'
-      PickUp.accepted
+      @pick_ups = PickUp.accepted
+      if (ragpicker_id = params[:ragpicker_id]).present?
+        @pick_ups = @pick_ups.joins(:accepted_users).
+          where(pickup_users: {user_id: ragpicker_id, canceled_at: nil})
+      end
     when 'pending'
-      PickUp.pending
+      @pick_ups = PickUp.pending
+    when 'canceled'
+      @pick_ups = PickUp.joins(:accepted_users).where.not(pickup_users: {canceled_at: nil})
+      if (ragpicker_id = params[:ragpicker_id]).present?
+        @pick_ups = @pick_ups.joins(:accepted_users).
+          where(pickup_users: {user_id: ragpicker_id})
+      end
     else
-      PickUp.where.not(id: -1)
+      @pick_ups = PickUp.where.not(id: -1)
     end
     @pick_ups = @pick_ups.where(parent_id: nil)
     if (user_id = params[:user_id]).present?
       @pick_ups = @pick_ups.where(user_id: user_id)
-    end
-    if (ragpicker_id = params[:ragpicker_id]).present?
-      @pick_ups = @pick_ups.joins(:accepted_users).
-        where(pickup_users: {user_id: ragpicker_id, canceled_at: nil})
     end
     if params[:date].present? && (date = Util.beginning_of_day params[:date] rescue nil)
       @pick_ups = @pick_ups.where(':start <= start_time AND start_time < :end',
