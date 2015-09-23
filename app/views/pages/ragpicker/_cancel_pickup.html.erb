@@ -1,0 +1,43 @@
+<h3>GET /api/ragpicker/pick_ups/:id/cancel</h3>
+<div>
+  Cancel a pick-up
+</div>
+<b>Resource URL </b>
+<div>
+  http://ragpickers.herokuapp.com/api/ragpicker/pick_ups/:id/cancel
+</div>
+<b>Example request</b>
+<div>
+  curl 'http://ragpickers.herokuapp.com/api/ragpicker/pick_ups/:id/cancel?token=login_token'
+</div>
+<h4> Parameters</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Name </th>
+    <th style='width: 100px'>Required</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>token </td>
+    <td>Y</td>
+    <td>login token</td>
+  </tr>
+  <tr>
+    <td>id </td>
+    <td>Y</td>
+    <td>id of pick-up</td>
+  </tr>
+</table>
+
+<h4>Response </h4>
+<div>
+ a json object
+</div>
+<h4>sample response</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <td>
+      {"pick_up":{"id":40,"address":"address","city":"city","pincode":"pincode","lat":28.633074,"lon":77.219543,"subscription":"weekly","start_time":1445407253,"end_time":1445414453,"category_set":[{"id":1,"name":"News Paper","price":"15.0"},{"id":2,"name":"Clothes","price":"25.0"}],"status":"canceled","accepted_at":null,"user":{"id":18,"email":"","full_name":"Bao Vuong","phone_number":"01234567890","created_at":"2015-09-02T07:51:58.080Z","authentication_token":null,"avatar":{"image_url":"http://url_A","thumb_url":"http://url_A_thumb"},"gender":"female","address":"address","city":null,"notified":true,"pincode":"pincode","lat":null,"lon":null}},"meta":{"canceled_at": 1445407253}}
+    </td>
+  </tr>
+</table>

@@ -17,8 +17,13 @@ class Api::Ragpicker::PickUpsController < Api::ApiController
       where(pickup_users: { user_id: @current_user,
         accepted_at: @pick_up.accepted_at, canceled_at: nil
       }).first
-    @accepted_user.update(canceled_at: Time.now.utc) if @accepted_user
-    render json: @pick_up, meta: { canceled_at: @accepted_user.canceled_at }
+    if @accepted_user
+      @accepted_user.update(canceled_at: Time.now.utc)
+      @pick_up.update(accepted_at: nil)
+      render json: @pick_up, meta: { canceled_at: @accepted_user.canceled_at.to_i }
+    else
+      render json: {error: {code: 20000, msg: "This pick-up cannot canceled"}}, status: 405
+    end
   end
 
 private
