@@ -12,6 +12,15 @@ class Api::Ragpicker::PickUpsController < Api::ApiController
     end
   end
 
+  def cancel
+    @accepted_user = @pick_up.accepted_users.
+      where(pickup_users: { user_id: @current_user,
+        accepted_at: @pick_up.accepted_at, canceled_at: nil
+      }).first
+    @accepted_user.update(canceled_at: Time.now.utc) if @accepted_user
+    render json: @pick_up, meta: { canceled_at: @accepted_user.canceled_at }
+  end
+
 private
   def load_pick_up
     @pick_up = PickUp.find_by(id: params[:id])

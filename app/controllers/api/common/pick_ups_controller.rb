@@ -17,6 +17,10 @@ class Api::Common::PickUpsController < Api::ApiController
     if (user_id = params[:user_id]).present?
       @pick_ups = @pick_ups.where(user_id: user_id)
     end
+    if (ragpicker_id = params[:ragpicker_id]).present?
+      @pick_ups = @pick_ups.joins(:accepted_users).
+        where(pickup_users: {user_id: ragpicker_id, canceled_at: nil})
+    end
     if params[:date].present? && (date = Util.beginning_of_day params[:date] rescue nil)
       @pick_ups = @pick_ups.where(':start <= start_time AND start_time < :end',
         start: date, end: date + 1.day)
