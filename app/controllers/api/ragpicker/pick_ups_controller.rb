@@ -27,6 +27,17 @@ class Api::Ragpicker::PickUpsController < Api::ApiController
     end
   end
 
+  def reject
+    now = Time.now.utc
+    return if handle_errors_before_reject
+    @rejected_user = @pick_up.rejected_users.create(user: @current_user, rejected_at: now)
+    if @rejected_user.errors.blank?
+      render json: @pick_up, meta: { rejected_at: @rejected_user.rejected_at.to_i }
+    else
+      handle_errors_reject(@rejected_user)
+    end
+  end
+
 private
   def load_pick_up
     @pick_up = PickUp.find_by(id: params[:id])
@@ -47,6 +58,20 @@ private
 
   def handle_errors_accept
     code, msg = [90002, @pick_up.errors.full_messages.join('. ')]
+    render json: {error: {code: code, msg: msg}}, status: 405
+  end
+
+  def handle_errors_before_reject
+    array = if @pick_up.start_time.utc < Time.now.utc
+      code, msg, start_time = [10002, "This pick-up cannot be rejected",
+        @pick_up.start_time.to_i]
+      render json: {error: {code: code, msg: msg, start_time: start_time}}, status: 405
+    end
+    array.blank? ? nil : array[0]
+  end
+
+  def handle_errors_reject(rejected_user)
+    code, msg = [90003, rejected_user.errors.full_messages.join('. ')]
     render json: {error: {code: code, msg: msg}}, status: 405
   end
 end

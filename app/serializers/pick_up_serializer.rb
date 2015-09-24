@@ -32,6 +32,8 @@ class PickUpSerializer < ActiveModel::Serializer
     elsif object.accepted_users.count > 0 &&
       object.accepted_users.where(pickup_users: {canceled_at: nil}).count == 0
       'canceled'
+    elsif object.rejected_users.count > 0
+      'rejected'
     elsif Time.now.utc < object.start_time
       'pending'
     else

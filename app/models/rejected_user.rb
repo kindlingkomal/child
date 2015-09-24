@@ -1,0 +1,2 @@
+class RejectedUser < PickupUser
+end

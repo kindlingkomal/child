@@ -9,8 +9,9 @@ class PickUp < ActiveRecord::Base
   belongs_to :user
   belongs_to :parent, class_name: 'PickUp'
   has_one :child, :class_name => 'PickUp', foreign_key: 'parent_id'
-  has_many :accepted_users, dependent: :destroy
   has_many :pickup_users, dependent: :destroy
+  has_many :accepted_users, dependent: :destroy
+  has_many :rejected_users, dependent: :destroy
 
   scope :pending,  -> { where(accepted_at: nil).where('start_time > ?', Time.now.utc) }
   scope :accepted, -> { where.not(accepted_at: nil)}
