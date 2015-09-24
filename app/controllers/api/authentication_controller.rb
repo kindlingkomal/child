@@ -17,6 +17,7 @@ class Api::AuthenticationController < Api::ApiController
   def logout
     if @current_user
       @current_user.invalidate_authentication_token!
+      @current_user.update(gcm_registration: nil)
       render json: {success: true}
     end
   end

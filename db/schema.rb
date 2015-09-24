@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922081631) do
+ActiveRecord::Schema.define(version: 20150924172324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150922081631) do
     t.string   "pincode"
     t.float    "lat"
     t.float    "lon"
+    t.string   "gcm_registration",       index: {name: "index_users_on_gcm_registration"}
   end
 
   create_table "pick_ups", force: :cascade do |t|

@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   namespace :api, :defaults => {:format => :json} do
     namespace :common, :defaults => {:format => :json} do
       resources :pick_ups, only: [:show, :index]
+      resources :users, only: [] do
+        post :gcm_registration, on: :collection
+      end
     end
   end
 

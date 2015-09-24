@@ -188,8 +188,14 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    gcm (0.1.0)
+      httparty
+      json
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     ice_nine (0.11.1)
     inflecto (0.0.2)
@@ -224,6 +230,7 @@ GEM
       ice_nine (~> 0.11.0)
       procto (~> 0.0.2)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     mutant (0.8.2)
       abstract_type (~> 0.0.7)
       adamantium (~> 0.2.0)
@@ -410,6 +417,7 @@ DEPENDENCIES
   devise
   figaro
   fog
+  gcm
   kaminari
   mini_magick
   mutant

@@ -1,0 +1,46 @@
+<h3>POST /api/common/users/gcm_registration</h3>
+<div>
+  Update registration for GCM
+</div>
+<b>Resource URL </b>
+<div>
+http://ragpickers.herokuapp.com/api/common/users/gcm_registration
+</div>
+<b>Example request</b>
+<div>
+curl --data "gcm_registration=a123&token=login_token" "http://ragpickers.herokuapp.com/api/common/users/gcm_registration"
+</div>
+<h4> Parameters</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Name </th>
+    <th style='width: 100px'>Required</th>
+    <th style='width: 100px'>Data type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>token </td>
+    <td>Y</td>
+    <td>String</td>
+    <td>login token</td>
+  </tr>
+  <tr>
+    <td>gcm_registration</td>
+    <td>Y</td>
+    <td>String</td>
+    <td>registration id for sending notification </td>
+  </tr>
+</table>
+
+<h4>Response </h4>
+<div>
+ a json object
+</div>
+<h4>sample response</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <td>
+      {"success":true,"gcm_registration":"a123"}
+    </td>
+  </tr>
+</table>
