@@ -7,23 +7,22 @@ class Api::Common::PickUpsController < Api::ApiController
   def index
     case params[:filter]
     when 'accepted'
-      @pick_ups = PickUp.accepted
-      if (ragpicker_id = params[:ragpicker_id]).present?
-        @pick_ups = @pick_ups.joins(:accepted_users).
-          where(pickup_users: {user_id: ragpicker_id, canceled_at: nil})
-      end
+      @pick_ups = PickUp.accepted.joins(:accepted_users).uniq
     when 'pending'
       @pick_ups = PickUp.pending
     when 'canceled'
-      @pick_ups = PickUp.joins(:accepted_users).where.not(pickup_users: {canceled_at: nil})
-      if (ragpicker_id = params[:ragpicker_id]).present?
-        @pick_ups = @pick_ups.joins(:accepted_users).
-          where(pickup_users: {user_id: ragpicker_id})
-      end
+      @pick_ups = PickUp.joins(:accepted_users).where.not(pickup_users: {canceled_at: nil}).uniq
+    when 'canceled_tab'
+      query = PickupUser[:canceled_at].not_eq(nil).or(PickupUser[:rejected_at].not_eq(nil))
+      @pick_ups = PickUp.joins(:pickup_users).where(query).uniq
     else
       @pick_ups = PickUp.where.not(id: -1)
     end
-    @pick_ups = @pick_ups.where(parent_id: nil)
+    if %w(accepted canceled canceled_tab).include?(params[:filter])
+      if (ragpicker_id = params[:ragpicker_id]).present?
+        @pick_ups = @pick_ups.where(pickup_users: {user_id: ragpicker_id})
+      end
+    end
     if (user_id = params[:user_id]).present?
       @pick_ups = @pick_ups.where(user_id: user_id)
     end

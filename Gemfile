@@ -12,6 +12,7 @@ gem 'fog', require: 'fog/aws'
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'kaminari'
+gem 'arel-helpers'
 
 group :staging, :production do
   gem 'rails_12factor'

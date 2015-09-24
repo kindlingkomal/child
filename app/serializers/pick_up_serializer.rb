@@ -1,6 +1,6 @@
 class PickUpSerializer < ActiveModel::Serializer
   attributes :id, :address, :city, :pincode, :lat, :lon, :subscription,
-    :start_time, :end_time, :category_set, :status, :accepted_at
+    :start_time, :end_time, :category_set, :status, :accepted_at, :reason
 
   belongs_to :user
 
@@ -18,6 +18,12 @@ class PickUpSerializer < ActiveModel::Serializer
 
   def accepted_at
     !object.accepted_at? ? nil : object.accepted_at.to_i
+  end
+
+  def reason
+    current_user_id = meta.try(:[], :current_user_id)
+    pickup_user = object.pickup_users.find_by(user_id: current_user_id)
+    !pickup_user.try(:canceled_at) ? nil : pickup_user.try(:reason)
   end
 
   def status

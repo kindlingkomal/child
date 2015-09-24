@@ -55,6 +55,8 @@ GEM
       adamantium (~> 0.1)
       equalizer (~> 0.0.8)
     arel (6.0.3)
+    arel-helpers (2.1.0)
+      activerecord (>= 3.1.0, < 5)
     ast (2.0.0)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
@@ -403,6 +405,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers!
+  arel-helpers
   carrierwave
   devise
   figaro
