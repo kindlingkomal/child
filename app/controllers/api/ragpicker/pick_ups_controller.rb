@@ -18,9 +18,9 @@ class Api::Ragpicker::PickUpsController < Api::ApiController
         accepted_at: @pick_up.accepted_at, canceled_at: nil
       }).first
     if @accepted_user
-      @accepted_user.update(canceled_at: Time.now.utc)
+      @accepted_user.update(canceled_at: Time.now.utc, reason: params[:reason])
       @pick_up.update(accepted_at: nil)
-      render json: @pick_up, meta: { canceled_at: @accepted_user.canceled_at.to_i }
+      render json: @pick_up, meta: { canceled_at: @accepted_user.canceled_at.to_i, reason: @accepted_user.reason }
     else
       render json: {error: {code: 20000, msg: "This pick-up cannot be canceled",
         accepted_at: @pick_up.accepted_at.try(:to_i)}}, status: 405
