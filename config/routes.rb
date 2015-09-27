@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       resources :categories, only: :index
       resources :customers, only: :create
       resources :pick_ups, only: [] do
-        get :accept, :cancel, :reject, :start, on: :member
+        get :accept, :cancel, :reject, :start, :done, on: :member
       end
 
       resources :line_items, only: [] do

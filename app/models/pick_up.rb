@@ -22,4 +22,11 @@ class PickUp < ActiveRecord::Base
     started_at.nil? && accepted_at? && accepted_users.
       where(user_id: ragpicker.id, canceled_at: nil).count == 1
   end
+
+  def can_be_done?(ragpicker)
+    return false unless ragpicker
+    proceeded_at.nil? && accepted_at? && accepted_users.
+      where(user_id: ragpicker.id, canceled_at: nil).count == 1
+  end
+
 end

@@ -1,6 +1,6 @@
 class PickUpSerializer < ActiveModel::Serializer
   attributes :id, :address, :city, :pincode, :lat, :lon, :subscription,
-    :start_time, :end_time, :category_set, :status, :accepted_at, :reason
+    :start_time, :end_time, :category_set, :status, :accepted_at, :reason, :total
 
   belongs_to :user
   has_many :line_items
@@ -27,8 +27,14 @@ class PickUpSerializer < ActiveModel::Serializer
     !pickup_user.try(:canceled_at) ? nil : pickup_user.try(:reason)
   end
 
+  def total
+    object.proceeded_at? ? object.total : nil
+  end
+
   def status
-    if object.accepted_at?
+    if object.proceeded_at?
+      'done'
+    elsif object.accepted_at?
       'accepted'
     elsif object.accepted_users.count > 0 &&
       object.accepted_users.where(pickup_users: {canceled_at: nil}).count == 0
