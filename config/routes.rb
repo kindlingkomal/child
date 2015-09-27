@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
       resources :categories, only: :index
       resources :pick_ups, only: [] do
-        get :accept, :cancel, :reject, on: :member
+        get :accept, :cancel, :reject, :start, on: :member
       end
 
       post 'authentication', to: 'authentication#create'

@@ -38,6 +38,20 @@ class Api::Ragpicker::PickUpsController < Api::ApiController
     end
   end
 
+  def start
+    unless @pick_up.can_start?(@current_user)
+      render json: {error: {code: 10101, msg: 'invalid action'}}, status: 405 and return
+    end
+    if @pick_up.update(started_at: Time.now.utc)
+      Category.where(id: @pick_up.category_set).each do |cat|
+        @pick_up.line_items.create(category: cat, name: cat.name, cost_price: cat.price)
+      end
+      render json: @pick_up
+    else
+      render json: {error: {code: 10100, msg: @pick_up.errors.full_messages.join('. ')}}, status: 405
+    end
+  end
+
 private
   def load_pick_up
     @pick_up = PickUp.find_by(id: params[:id])

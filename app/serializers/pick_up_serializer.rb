@@ -3,6 +3,7 @@ class PickUpSerializer < ActiveModel::Serializer
     :start_time, :end_time, :category_set, :status, :accepted_at, :reason
 
   belongs_to :user
+  has_many :line_items
 
   def category_set
     Category.where(id: object.category_set).as_json(only: [:id, :name, :price])
