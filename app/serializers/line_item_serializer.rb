@@ -1,6 +1,4 @@
 class LineItemSerializer < ActiveModel::Serializer
-  attributes :id, :name, :cost_price, :quantity
-
-  belongs_to :category
+  attributes :id, :name, :cost_price, :quantity, :item_total, :category_id
 
 end

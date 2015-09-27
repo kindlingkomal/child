@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927024559) do
+ActiveRecord::Schema.define(version: 20150927100609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,22 +64,24 @@ ActiveRecord::Schema.define(version: 20150927024559) do
     t.datetime "accepted_at"
     t.datetime "started_at"
     t.datetime "proceeded_at"
-    t.text     "category_set", default: [],              array: true
+    t.text     "category_set", default: [],               array: true
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.float    "lat",          index: {name: "index_pick_ups_on_lat_and_lon", with: ["lon"]}
     t.float    "lon"
     t.integer  "user_id",      index: {name: "index_pick_ups_on_user_id"}, foreign_key: {references: "users", name: "fk_pick_ups_user_id", on_update: :no_action, on_delete: :no_action}
+    t.decimal  "total",        precision: 10, scale: 2, default: 0.0
   end
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "category_id", index: {name: "index_line_items_on_category_id"}, foreign_key: {references: "categories", name: "fk_line_items_category_id", on_update: :no_action, on_delete: :no_action}
     t.integer  "pick_up_id",  index: {name: "index_line_items_on_pick_up_id"}, foreign_key: {references: "pick_ups", name: "fk_line_items_pick_up_id", on_update: :no_action, on_delete: :no_action}
-    t.integer  "quantity"
+    t.float    "quantity"
     t.decimal  "cost_price",  precision: 10, scale: 2
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "name"
+    t.decimal  "item_total",  precision: 10, scale: 2, default: 0.0
   end
 
   create_table "pickup_users", force: :cascade do |t|

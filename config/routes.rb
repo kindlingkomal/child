@@ -36,6 +36,10 @@ Rails.application.routes.draw do
         get :accept, :cancel, :reject, :start, on: :member
       end
 
+      resources :line_items, only: [] do
+        post :add, on: :collection
+      end
+
       post 'authentication', to: 'authentication#create'
       get  'authentication/logout', to: 'authentication#logout'
     end
