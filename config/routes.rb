@@ -34,11 +34,8 @@ Rails.application.routes.draw do
       resources :categories, only: :index
       resources :customers, only: :create
       resources :pick_ups, only: [] do
-        get :accept, :cancel, :reject, :start, :done, on: :member
-      end
-
-      resources :line_items, only: [] do
-        post :add, on: :collection
+        get :accept, :cancel, :reject, on: :member
+        post :proceed, on: :member
       end
 
       post 'authentication', to: 'authentication#create'

@@ -17,13 +17,7 @@ class PickUp < ActiveRecord::Base
   scope :pending,  -> { where(accepted_at: nil).where('start_time > ?', Time.now.utc) }
   scope :accepted, -> { where.not(accepted_at: nil)}
 
-  def can_start?(ragpicker)
-    return false unless ragpicker
-    started_at.nil? && accepted_at? && accepted_users.
-      where(user_id: ragpicker.id, canceled_at: nil).count == 1
-  end
-
-  def can_be_done?(ragpicker)
+  def can_proceed?(ragpicker)
     return false unless ragpicker
     proceeded_at.nil? && accepted_at? && accepted_users.
       where(user_id: ragpicker.id, canceled_at: nil).count == 1
