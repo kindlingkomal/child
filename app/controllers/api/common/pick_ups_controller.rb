@@ -6,6 +6,8 @@ class Api::Common::PickUpsController < Api::ApiController
 
   def index
     case params[:filter]
+    when 'done'
+      @pick_ups = PickUp.accepted.joins(:accepted_users).where.not(proceeded_at: nil).uniq
     when 'accepted'
       @pick_ups = PickUp.accepted.joins(:accepted_users).uniq
     when 'pending'
@@ -18,7 +20,7 @@ class Api::Common::PickUpsController < Api::ApiController
     else
       @pick_ups = PickUp.where.not(id: -1)
     end
-    if %w(accepted canceled canceled_tab).include?(params[:filter])
+    if %w(done accepted canceled canceled_tab).include?(params[:filter])
       if (ragpicker_id = params[:ragpicker_id]).present?
         @pick_ups = @pick_ups.where(pickup_users: {user_id: ragpicker_id})
       end
