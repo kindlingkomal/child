@@ -14,6 +14,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'kaminari'
 gem 'arel-helpers'
+gem 'geocoder'
 
 group :staging, :production do
   gem 'rails_12factor'

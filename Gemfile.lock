@@ -191,6 +191,7 @@ GEM
     gcm (0.1.0)
       httparty
       json
+    geocoder (1.2.11)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     httparty (0.13.7)
@@ -418,6 +419,7 @@ DEPENDENCIES
   figaro
   fog
   gcm
+  geocoder
   kaminari
   mini_magick
   mutant

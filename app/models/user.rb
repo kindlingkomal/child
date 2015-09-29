@@ -15,8 +15,14 @@ class User < ActiveRecord::Base
 
   before_validation :set_default_role, :if => :new_record?
 
+  reverse_geocoded_by :lat, :lon
+
   def active?
    !inactive
+  end
+
+  def near_ragpickers
+    User.ragpicker.near([lat, lon], 5, :units => :km)
   end
 
 private
