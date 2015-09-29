@@ -6,7 +6,9 @@ class PickUpSerializer < ActiveModel::Serializer
   has_many :line_items
 
   def category_set
-    Category.where(id: object.category_set).as_json(only: [:id, :name, :price])
+    Category.where(id: object.category_set).map {|cat|
+      CategorySerializer.new(cat).attributes
+    }
   end
 
   def start_time

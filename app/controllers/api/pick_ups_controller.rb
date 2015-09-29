@@ -4,7 +4,7 @@ class Api::PickUpsController < Api::ApiController
     @pick_up = PickUp.new handle_params
     @pick_up.user = @current_user
     if @pick_up.save
-      ragpickers = @current_user.near_ragpickers
+      MessagingService.with_pickup_created(@pick_up)
       render json: @pick_up
     else
       handle_errors_create
