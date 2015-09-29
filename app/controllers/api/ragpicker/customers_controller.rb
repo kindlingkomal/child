@@ -1,22 +1,12 @@
 class Api::Ragpicker::CustomersController < Api::ApiController
 
-  def create
-    @customer = Customer.new customer_params
-    if @customer.save
-      render json: @customer
-    else
-      handle_errors_create
+  def add_customers
+    customers = []
+    params[:customers].each do |cus|
+      customer = Customer.find_or_create_by name: cus[:name], phone_number: cus[:phone_number]
+      customers << customer if customer.errors.blank?
     end
-  end
-
-private
-  def customer_params
-    params.require(:customer).permit(:name, :phone_number)
-  end
-
-  def handle_errors_create
-    code, msg = [90002, @customer.errors.full_messages.join('. ')]
-    render json: {error: {code: code, msg: msg}}, status: 405
+    render json: customers
   end
 
 end
