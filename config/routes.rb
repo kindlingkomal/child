@@ -32,12 +32,11 @@ Rails.application.routes.draw do
       end
 
       resources :categories, only: :index
-      resources :customers, only: [] do
-        post :add_customers, on: :collection
-      end
+
       resources :pick_ups, only: [] do
         get :accept, :cancel, :reject, on: :member
         post :proceed, on: :member
+        
       end
 
       post 'authentication', to: 'authentication#create'
