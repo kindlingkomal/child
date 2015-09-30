@@ -3,6 +3,7 @@ class PickUpSerializer < ActiveModel::Serializer
     :start_time, :end_time, :category_set, :status, :accepted_at, :reason, :total
 
   belongs_to :user
+  belongs_to :customer
   has_many :line_items
 
   def category_set

@@ -24,13 +24,8 @@ private
 
   def handle_params
     params[:pick_up][:category_set] = params[:pick_up][:category_set].try(:uniq)
-    attrs = pick_up_params.merge(start_time: to_time(pick_up_params[:start_time]))
-    attrs = attrs.merge(end_time: to_time(pick_up_params[:end_time]))
+    attrs = pick_up_params.merge(start_time: Util.to_time(pick_up_params[:start_time]))
+    attrs = attrs.merge(end_time: Util.to_time(pick_up_params[:end_time]))
   end
 
-  def to_time(epoch)
-    epoch = epoch.to_i
-    return nil if epoch == 0
-    Time.at(epoch) rescue nil
-  end
 end

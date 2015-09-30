@@ -1,4 +1,10 @@
 class Util
+  def self.to_time(epoch)
+    epoch = epoch.to_i
+    return nil if epoch == 0
+    Time.at(epoch) rescue nil
+  end
+
   def self.is_long?(str)
     0 == (str =~ /\A[+-]?\d+\Z/)
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927103944) do
+ActiveRecord::Schema.define(version: 20150930102501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 20150927103944) do
     t.string   "pincode"
     t.string   "city"
     t.string   "address"
-    t.integer  "parent_id",    index: {name: "index_pick_ups_on_parent_id"}, foreign_key: {references: "pick_ups", name: "fk_pick_ups_parent_id", on_update: :no_action, on_delete: :no_action}
     t.integer  "subscription"
     t.datetime "start_time"
     t.datetime "end_time"
@@ -78,6 +77,7 @@ ActiveRecord::Schema.define(version: 20150927103944) do
     t.float    "lon"
     t.integer  "user_id",      index: {name: "index_pick_ups_on_user_id"}, foreign_key: {references: "users", name: "fk_pick_ups_user_id", on_update: :no_action, on_delete: :no_action}
     t.decimal  "total",        precision: 10, scale: 2, default: 0.0
+    t.integer  "customer_id",  index: {name: "index_pick_ups_on_customer_id"}, foreign_key: {references: "customers", name: "fk_pick_ups_customer_id", on_update: :no_action, on_delete: :no_action}
   end
 
   create_table "line_items", force: :cascade do |t|

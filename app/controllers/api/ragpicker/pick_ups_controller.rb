@@ -49,6 +49,15 @@ class Api::Ragpicker::PickUpsController < Api::ApiController
     end
   end
 
+  def add_customer
+    @pick_up = PickupService.add_customer(@current_user, params)
+    if @pick_up && @pick_up.errors.blank?
+      render json: @pick_up
+    else
+      render json: {error: {code: 10100, msg: @pick_up.errors.full_messages.join('. ')}}, status: 405
+    end
+  end
+
 private
   def load_pick_up
     @pick_up = PickUp.find_by(id: params[:id])
