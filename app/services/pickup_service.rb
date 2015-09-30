@@ -1,6 +1,6 @@
 class PickupService
   def self.proceed(pick_up, params)
-    params[:line_items].each do |item|
+    params[:line_items].each do |key, item|
       category = Category.find_by(id: item[:category_id])
       pick_up.line_items.
         find_or_create_by(category_id: category.id) do |line_item|
