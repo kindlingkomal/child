@@ -17,12 +17,17 @@ class PickUp < ActiveRecord::Base
   before_validation :set_default_subscription
 
   scope :pending,  -> { where(accepted_at: nil).where('start_time > ?', Time.now.utc) }
-  scope :accepted, -> { where.not(accepted_at: nil)}
+  scope :accepted, -> { where.not(accepted_at: nil).where(canceled_at: nil) }
 
   def can_proceed?(ragpicker)
     return false unless ragpicker
     proceeded_at.nil? && accepted_at? && accepted_users.
       where(user_id: ragpicker.id, canceled_at: nil).count == 1
+  end
+
+  def can_cancel?(seller)
+    return false unless seller
+    proceeded_at.nil? && canceled_at.nil? && start_time.utc > Time.now.utc
   end
 
 private
