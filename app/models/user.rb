@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  ratyrate_rateable 'customer', 'ragpicker' #, 'experience'
+  ratyrate_rater
 
   include TokenAuthenticatable
 

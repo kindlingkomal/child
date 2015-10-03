@@ -1,0 +1,73 @@
+<h3>POST /api/rates</h3>
+<div>
+  Rating an user that has role 'ragpicker'
+</div>
+<b>Resource URL </b>
+<div>
+http://ragpickers.herokuapp.com/api/rates
+</div>
+<b>sample request</b>
+<div>
+  curl --data "user_id=18&score=1.6&comment=not good&token=login_token" "http://ragpickers.herokuapp.com/api/rates"
+</div>
+<h4> Parameters</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Name </th>
+    <th style='width: 100px'>Required</th>
+    <th style='width: 100px'>Data type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>token</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>authentication token that api sign_in returned</td>
+  </tr>
+  <tr>
+    <td>user_id</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>id of user that has role 'ragpicker'</td>
+  </tr>
+  <tr>
+    <td>comment</td>
+    <td>Y</td>
+    <td>string</td>
+    <td>Comment</td>
+  </tr>
+</table>
+
+<h4>Response </h4>
+<div>
+ a json object
+</div>
+<h4>sample response</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <td>
+      {"rate":{"id":3,"stars":1.6,"dimension":"ragpicker","comment":"not good","rater":{"id":18,"email":"","full_name":"Bao Vuong","phone_number":"01234567890","created_at":"2015-09-02T07:51:58.080Z","authentication_token":null,"avatar":{"image_url":"http://url_A","thumb_url":"http://url_A_thumb"},"gender":"female","address":"address","city":null,"notified":true,"pincode":"pincode","lat":10.757797,"lon":106.659107},"rateable":{"id":21,"email":"","full_name":"Bao Vuong1","phone_number":"01234567891","created_at":"2015-09-12T11:15:10.804Z","authentication_token":null,"avatar":{"image_url":"http://url_A","thumb_url":"http://url_A_thumb"},"gender":null,"address":null,"city":null,"notified":false,"pincode":null,"lat":10.777021,"lon":106.695414}}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {"error":{"code":20000,"msg":"Rating failed"}}
+    </td>
+  </tr>
+</table>
+
+<h4>Error codes</h4>
+<table border="1" style="width:100%">
+  <tr>
+    <th style='width: 200px'> Status </th>
+    <th style='width: 200px'>Code</th>
+    <th>Message</th>
+    <th>Resolve</th>
+  </tr>
+  <tr>
+    <td>405</td>
+    <td>20000</td>
+    <td>Rating failed</td>
+    <td>user_id is id of user that has role 'user'</td>
+  </tr>
+</table>

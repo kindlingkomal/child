@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   root to: "pages#doc"
   get 'ragpicker/doc', to: 'pages#ragpicker'
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     end
 
     resources :categories, only: :index
+    resources :rates, only: :create
     resources :time_slots, only: :index
     resources :pick_ups, only: :create
 
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
       end
 
       resources :categories, only: :index
+      resources :rates, only: :create
 
       resources :pick_ups, only: [] do
         get :accept, :cancel, :reject, on: :member

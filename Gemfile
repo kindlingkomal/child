@@ -15,6 +15,7 @@ gem 'carrierwave'
 gem 'kaminari'
 gem 'arel-helpers'
 gem 'geocoder'
+gem 'ratyrate'
 
 group :staging, :production do
   gem 'rails_12factor'

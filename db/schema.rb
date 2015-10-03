@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001042103) do
+ActiveRecord::Schema.define(version: 20151003090440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,28 @@ ActiveRecord::Schema.define(version: 20151001042103) do
     t.datetime "accepted_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.integer  "rater_id",      index: {name: "fk__rates_rater_id"}, foreign_key: {references: "users", name: "fk_rates_rater_id", on_update: :no_action, on_delete: :no_action}
+    t.integer  "rateable_id",   index: {name: "index_rates_on_rateable_id_and_rateable_type", with: ["rateable_type"]}
+    t.string   "rateable_type", index: {name: "fk__rates_rateable_id", with: ["rateable_id"]}
+    t.float    "stars",         null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "comment"
+  end
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id"
+
+  create_table "rating_caches", force: :cascade do |t|
+    t.integer  "cacheable_id",   index: {name: "index_rating_caches_on_cacheable_id_and_cacheable_type", with: ["cacheable_type"]}
+    t.string   "cacheable_type", index: {name: "fk__rating_caches_cacheable_id", with: ["cacheable_id"]}
+    t.float    "avg",            null: false
+    t.integer  "qty",            null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "time_slots", force: :cascade do |t|
