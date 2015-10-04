@@ -6,6 +6,9 @@ class Api::UsersController < Api::ApiController
     @user = User.new user_params
     # @user.inactive = true
     if @user.save
+      if (@invitation = Invitation.find_by(phone_number: @user.phone_number))
+        @invitation.update(user: @user, accepted_at: @user.created_at)
+      end
       render json: @user
     else
       handle_errors_create
@@ -18,6 +21,21 @@ class Api::UsersController < Api::ApiController
       render json: @user
     else
       handle_errors_update
+    end
+  end
+
+  def invite
+    phone_number = params[:phone_number].presence
+    name = params[:name].presence
+    unless name && phone_number
+      render json: {error: {code: 20010, msg: 'Name and phone number cannot be blank'}}, status: 405 and return
+    end
+    if User.where(phone_number: phone_number).count == 0
+      @invitation = @current_user.invitations.
+        create(phone_number: phone_number, name: name)
+      render json: @invitation
+    else
+      render json: {error: {code: 20011, msg: 'Phone number had already registered'}}, status: 405
     end
   end
 

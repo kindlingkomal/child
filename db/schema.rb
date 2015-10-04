@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003090440) do
+ActiveRecord::Schema.define(version: 20151004124752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 20151003090440) do
     t.float    "lat"
     t.float    "lon"
     t.string   "gcm_registration",       index: {name: "index_users_on_gcm_registration"}
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer  "user_id",       index: {name: "index_invitations_on_user_id"}, foreign_key: {references: "users", name: "fk_invitations_user_id", on_update: :no_action, on_delete: :no_action}
+    t.integer  "invited_by_id", index: {name: "index_invitations_on_invited_by_id"}, foreign_key: {references: "users", name: "fk_invitations_invited_by_id", on_update: :no_action, on_delete: :no_action}
+    t.string   "name"
+    t.string   "phone_number"
+    t.datetime "accepted_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "pick_ups", force: :cascade do |t|

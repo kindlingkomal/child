@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   validates :phone_number, uniqueness: true, presence: true
 
   has_many :pick_ups, dependent: :destroy
+  has_many :invitations, dependent: :destroy, foreign_key: 'invited_by_id'
 
   before_validation :set_default_role, :if => :new_record?
 
