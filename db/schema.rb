@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005065115) do
+ActiveRecord::Schema.define(version: 20151005072521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,27 @@ ActiveRecord::Schema.define(version: 20151005065115) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "zonals", force: :cascade do |t|
+    t.string   "zipcode"
+    t.float    "lat"
+    t.float    "lon"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pricing_zonals", force: :cascade do |t|
+    t.integer  "category_id",   index: {name: "fk__pricing_zonals_category_id"}, foreign_key: {references: "categories", name: "fk_pricing_zonals_category_id", on_update: :no_action, on_delete: :no_action}
+    t.integer  "zonal_id",      index: {name: "fk__pricing_zonals_zonal_id"}, foreign_key: {references: "zonals", name: "fk_pricing_zonals_zonal_id", on_update: :no_action, on_delete: :no_action}
+    t.string   "category_name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.decimal  "price"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+  add_index "pricing_zonals", ["category_id", "zonal_id"], name: "index_pricing_zonals_on_category_id_and_zonal_id"
 
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id",      index: {name: "fk__rates_rater_id"}, foreign_key: {references: "users", name: "fk_rates_rater_id", on_update: :no_action, on_delete: :no_action}
