@@ -16,7 +16,7 @@ class PickUp < ActiveRecord::Base
 
   before_validation :set_default_subscription
 
-  scope :pending,  -> { where(accepted_at: nil).where('start_time > ?', Time.now.utc) }
+  scope :pending,  -> { where(accepted_at: nil).where('pick_ups.tart_time > ?', Time.now.utc) }
   scope :accepted, -> { where.not(accepted_at: nil).where(canceled_at: nil) }
 
   def can_proceed?(ragpicker)
@@ -29,6 +29,8 @@ class PickUp < ActiveRecord::Base
     return false unless seller
     proceeded_at.nil? && canceled_at.nil? && start_time.utc > Time.now.utc
   end
+
+  
 
 private
   def set_default_subscription
