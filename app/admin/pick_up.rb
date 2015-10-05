@@ -28,8 +28,11 @@ ActiveAdmin.register PickUp do
     # column :updated_at
     # column :lat
     # column :lon
-    column :user_id do |obj|
-      obj.user.full_name rescue nil
+    column "Customer" do |obj|
+      obj.customer_name rescue nil
+    end
+    column "Ragpicker" do |obj|
+      obj.ragpicker_name rescue nil
     end
     column :total
     # column :customer_id

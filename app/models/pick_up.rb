@@ -39,6 +39,20 @@ class PickUp < ActiveRecord::Base
     Category.where(id: category_set)
   end
 
+  def ragpicker_name
+    if customer_id && user
+      user.full_name
+    end
+  end
+
+  def customer_name
+    if customer
+      customer.name
+    elsif user
+      user.full_name
+    end
+  end
+
 private
   def set_default_subscription
     self.subscription ||= :no
