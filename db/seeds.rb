@@ -16,3 +16,5 @@ TimeSlot.create(start_hour: 10.hours + 30.minutes, end_hour: 11.hours + 30.minut
 TimeSlot.create(start_hour: 13.hours, end_hour: 14.hours)
 TimeSlot.create(start_hour: 15.hours, end_hour: 16.hours)
 TimeSlot.create(start_hour: 16.hours + 30.minutes, end_hour: 17.hours + 30.minutes)
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
