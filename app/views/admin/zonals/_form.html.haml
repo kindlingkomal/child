@@ -5,7 +5,7 @@
     = f.input :lon
     = f.input :address
   = f.inputs "Pricing" do
-    - category_ids = []
+    - category_ids = [-1]
     - f.object.pricing_zonals.each do |pz|
       - category_ids.push(pz.category_id)
       %div(style="display: block; margin: 5px;")
