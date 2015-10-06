@@ -10,23 +10,37 @@ class Api::User::PickUpsController < Api::ApiController
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
   end
 
-  def pending
-    @pick_ups = PickUp.pending.where(user_id: current_user.id)
-    @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
+  # def pending
+  #   @pick_ups = PickUp.pending.where(user_id: current_user.id)
+  #   @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
+  # end
+  #
+  # def done
+  #   @pick_ups = PickUp.accepted.joins(:accepted_users).where.not(proceeded_at: nil).uniq
+  # end
+  #
+  # def accepted
+  #   @pick_ups = PickUp.accepted.joins(:accepted_users).uniq
+  # end
+  #
+  # def canceled
+  #   @pick_ups = PickUp.joins(:accepted_users).where.not(pickup_users: {canceled_at: nil}).uniq
+  # end
+
+  def cancel
+    @pick_up = PickUp.where(user_id: current_user.id).find params[:id]
+    @pick_up.canceled_at = Time.now
+    if @pick_up.save
+      
+    else
+
+    end
+
   end
 
-  def done
-    @pick_ups = PickUp.accepted.joins(:accepted_users).where.not(proceeded_at: nil).uniq
+  def reschedule
+    @pick_up = PickUp.where(user_id: current_user.id).find params[:id]
+
   end
-
-  def accepted
-    @pick_ups = PickUp.accepted.joins(:accepted_users).uniq
-  end
-
-  def canceled
-    @pick_ups = PickUp.joins(:accepted_users).where.not(pickup_users: {canceled_at: nil}).uniq
-  end
-
-
 
 end
