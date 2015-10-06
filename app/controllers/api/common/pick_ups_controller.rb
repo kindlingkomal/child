@@ -20,11 +20,13 @@ class Api::Common::PickUpsController < Api::ApiController
     else
       @pick_ups = PickUp.where.not(id: -1)
     end
+
     if %w(done accepted canceled canceled_tab).include?(params[:filter])
       if (ragpicker_id = params[:ragpicker_id]).present?
         @pick_ups = @pick_ups.where(pickup_users: {user_id: ragpicker_id})
       end
     end
+
     if (user_id = params[:user_id]).present?
       @pick_ups = @pick_ups.where(user_id: user_id)
     end
