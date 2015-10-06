@@ -30,6 +30,9 @@ class PickUp < ActiveRecord::Base
     proceeded_at.nil? && canceled_at.nil? && start_time.utc > Time.now.utc
   end
 
+  def ragpicker
+    accepted_users.order("accepted_at DESC").first
+  end
 
   def pick_time
     "#{start_time.strftime('%I:%M %p')} - #{end_time.strftime('%I:%M %p')}" rescue nil
