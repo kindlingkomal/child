@@ -31,7 +31,7 @@ class PickUp < ActiveRecord::Base
   end
 
   def ragpicker
-    accepted_users.order("accepted_at DESC").first
+    accepted_users.order("accepted_at DESC").first.user rescue nil
   end
 
   def pick_time
@@ -45,6 +45,8 @@ class PickUp < ActiveRecord::Base
   def ragpicker_name
     if customer_id && user
       user.full_name
+    else
+      ragpicker.full_name rescue nil
     end
   end
 

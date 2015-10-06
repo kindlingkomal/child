@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   root to: "pages#doc"
   get 'ragpicker/doc', to: 'pages#ragpicker'
 
+  namespace :api, defaults: {format: :json} do
+    namespace :user do
+      resources :pick_ups
+    end
+  end
+
   namespace :api, :defaults => {:format => :json} do
     resources :users, only: [:create] do
       put :update, on: :collection

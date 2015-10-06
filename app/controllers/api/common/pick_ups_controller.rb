@@ -39,7 +39,8 @@ class Api::Common::PickUpsController < Api::ApiController
     render json: @pick_ups,
       meta: {
         current_user_id: @current_user.id,
-        total_pages: @pick_ups.total_pages, total_pick_ups: @pick_ups.total_count
+        total_pages: @pick_ups.total_pages,
+        total_pick_ups: @pick_ups.total_count
       }
   end
 end

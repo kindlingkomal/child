@@ -1,6 +1,6 @@
 class PickUpSerializer < ActiveModel::Serializer
   attributes :id, :address, :city, :pincode, :lat, :lon, :subscription,
-    :start_time, :end_time, :category_set, :status, :accepted_at, :reason, :total
+    :start_time, :end_time, :category_set, :status, :accepted_at, :reason, :total, :ragpicker
 
   belongs_to :user
   belongs_to :customer
@@ -32,6 +32,15 @@ class PickUpSerializer < ActiveModel::Serializer
 
   def total
     object.proceeded_at? ? object.total : nil
+  end
+
+  def ragpicker
+    if object.ragpicker
+      {
+        id: object.ragpicker.id,
+        full_name: object.ragpicker.full_name
+      }
+    end
   end
 
   def status
