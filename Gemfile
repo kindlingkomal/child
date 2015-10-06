@@ -17,7 +17,7 @@ gem 'kaminari'
 gem 'arel-helpers'
 gem 'geocoder'
 gem 'ratyrate'
-
+gem 'haml-rails'
 group :staging, :production do
   gem 'rails_12factor'
 end
