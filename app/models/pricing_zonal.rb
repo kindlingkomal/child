@@ -5,5 +5,5 @@ class PricingZonal < ActiveRecord::Base
   validates :category_id, presence: true
   validates :zonal_id, presence: true, uniqueness: {scope: :category_id}
   validates :price, presence: true
-  
+
 end
