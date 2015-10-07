@@ -6,10 +6,35 @@ class Api::User::PickUpsController < Api::UserController
     render json: @pick_up
   end
 
-  def index
+  def upcoming
+    @pick_ups = current_user.pick_ups.pending
+    @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
+    render  json: @pick_ups,
+              each_serializer: User::PickupSerializer,
+              meta: {
+                total_pages: @pick_ups.total_pages,
+                total_pick_ups: @pick_ups.total_count
+              },
+              root: 'pick_ups'
+
+  end
+
+  def history
     @pick_ups = current_user.pick_ups
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
+    render  json: @pick_ups,
+              each_serializer: User::PickupSerializer,
+              meta: {
+                total_pages: @pick_ups.total_pages,
+                total_pick_ups: @pick_ups.total_count
+              },
+              root: 'pick_ups'
   end
+
+  # def index
+  #   @pick_ups = current_user.pick_ups
+  #   @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
+  # end
 
   # POST /api/user/pick_ups
   # add new order/subscription

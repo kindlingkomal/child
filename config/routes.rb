@@ -13,6 +13,10 @@ Rails.application.routes.draw do
           get :cancel
           # post :reschedule
         end
+        collection do
+          get :upcoming
+          get :history
+        end
       end
     end
   end
