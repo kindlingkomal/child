@@ -19,6 +19,19 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    namespace :picker do
+      resources :pick_ups do
+        member do
+          get :cancel
+          # post :reschedule
+        end
+        collection do
+          get :pending
+          get :accepted
+        end
+      end
+    end
   end
 
   namespace :api, :defaults => {:format => :json} do

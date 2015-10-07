@@ -6,6 +6,6 @@ class Picker::PickupSerializer < PickupSerializer
   belongs_to :user, serializer: UserCommonSerializer
   belongs_to :customer
   has_many :line_items
-  
+
 
 end
