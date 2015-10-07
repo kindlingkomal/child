@@ -1,46 +1,55 @@
-class Api::User::PickUpsController < Api::ApiController
+class Api::User::PickUpsController < Api::UserController
+  before_action :init_service
 
   def show
-    @pick_up = PickUp.where(user_id: current_user.id).find params[:id]
+    @pick_up = current_user.pick_ups.find params[:id]
     render json: @pick_up
   end
 
   def index
-    @pick_ups = PickUp.where(user_id: current_user.id)
+    @pick_ups = current_user.pick_ups
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
   end
 
-  # def pending
-  #   @pick_ups = PickUp.pending.where(user_id: current_user.id)
-  #   @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
-  # end
-  #
-  # def done
-  #   @pick_ups = PickUp.accepted.joins(:accepted_users).where.not(proceeded_at: nil).uniq
-  # end
-  #
-  # def accepted
-  #   @pick_ups = PickUp.accepted.joins(:accepted_users).uniq
-  # end
-  #
-  # def canceled
-  #   @pick_ups = PickUp.joins(:accepted_users).where.not(pickup_users: {canceled_at: nil}).uniq
-  # end
-
-  def cancel
-    @pick_up = PickUp.where(user_id: current_user.id).find params[:id]
-    @pick_up.canceled_at = Time.now
-    if @pick_up.save
-      
+  # POST /api/user/pick_ups
+  # add new order/subscription
+  def create
+    result = @service.add(params)
+    if result.errors.any?
+      code, msg = [90002, @pick_up.errors.full_messages.join('. ')]
+      render json: {error: {code: code, msg: msg}}, status: 405
     else
-
+      render json: result
     end
-
   end
 
-  def reschedule
-    @pick_up = PickUp.where(user_id: current_user.id).find params[:id]
 
+  def cancel
+    result = @service.cancel(params)
+    if result.errors.any?
+      code, msg = [90002, result.errors.full_messages.join('. ')]
+      render json: {error: {code: code, msg: msg}}, status: 405
+    else
+      render json: result
+    end
+  end
+
+
+  def reschedule
+    result = @service.reschedule(params)
+    if result.errors.any?
+      code, msg = [90002, result.errors.full_messages.join('. ')]
+      render json: {error: {code: code, msg: msg}}, status: 405
+    else
+      render json: result
+    end
+  end
+
+
+private
+
+  def init_service
+    @service = User::PickupService.new(current_user)
   end
 
 end
