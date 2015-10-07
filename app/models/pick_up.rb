@@ -6,7 +6,8 @@ class PickUp < ActiveRecord::Base
     pending: 'pending',
     accepted: 'accepted',
     done: 'done',
-    canceled: 'canceled'
+    canceled: 'canceled',
+    expired: 'expired'
   }
   validates :address, :city, :start_time, :end_time, :category_set,
     presence: true, if: proc { |o| o.customer_id.nil? }

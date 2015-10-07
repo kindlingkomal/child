@@ -8,7 +8,12 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :user do
-      resources :pick_ups
+      resources :pick_ups do
+        member do
+          get :cancel
+          # post :reschedule
+        end
+      end
     end
   end
 

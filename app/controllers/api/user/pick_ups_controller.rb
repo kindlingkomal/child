@@ -35,7 +35,7 @@ class Api::User::PickUpsController < Api::UserController
   end
 
 
-  def reschedule
+  def update
     result = @service.reschedule(params)
     if result.errors.any?
       code, msg = [90002, result.errors.full_messages.join('. ')]
