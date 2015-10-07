@@ -3,7 +3,7 @@ class Api::User::PickUpsController < Api::UserController
 
   def show
     @pick_up = current_user.pick_ups.find params[:id]
-    render json: @pick_up
+    render json: @pick_up, serializer: User::PickupSerializer
   end
 
   def upcoming

@@ -1,5 +1,5 @@
 class PickupSerializer < ActiveModel::Serializer
-  attributes :id, :address, :city, :pincode, :lat, :lon, :subscription,
+  attributes :id, :address, :city, :pincode, :lat, :lon,
     :start_time, :end_time, :category_set, :status, :accepted_at, :total, :status
 
   def category_set
