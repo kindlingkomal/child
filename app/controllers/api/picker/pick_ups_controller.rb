@@ -1,5 +1,5 @@
 class Api::Picker::PickUpsController < Api::PickerController
-  # before_action :init_service
+  before_action :init_service
 
   def show
     @pick_up = current_user.pick_ups.find params[:id]
@@ -30,6 +30,27 @@ class Api::Picker::PickUpsController < Api::PickerController
               },
               root: 'pick_ups'
 
+  end
+
+  def reject
+    @result = @service.reject(params)
+
+  end
+
+  def accept
+    @result = @service.accept(params)
+
+  end
+
+  def cancel
+    @result = @service.accept(params)
+    render json: {}
+  end
+
+private
+
+  def init_service
+    @service = ::Picker::PickupService.new(current_user)
   end
 
 end
