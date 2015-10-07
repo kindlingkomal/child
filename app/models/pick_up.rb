@@ -14,7 +14,8 @@ class PickUp < ActiveRecord::Base
   validates :user, presence: true
 
   belongs_to :user
-  belongs_to :customer
+  belongs_to :ragpicker
+  # belongs_to :customer
   has_many :pickup_users, dependent: :destroy
   has_many :accepted_users, dependent: :destroy
   has_many :rejected_users, dependent: :destroy
