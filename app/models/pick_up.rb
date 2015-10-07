@@ -2,7 +2,12 @@ class PickUp < ActiveRecord::Base
   include ArelHelpers::ArelTable
   include ArelHelpers::JoinAssociation
   enum subscription: [:no, :daily, :weekly, :monthly]
-
+  STATUSES = {
+    pending: 'pending',
+    accepted: 'accepted',
+    done: 'done',
+    canceled: 'canceled'
+  }
   validates :address, :city, :start_time, :end_time, :category_set,
     presence: true, if: proc { |o| o.customer_id.nil? }
   validates :user, presence: true
