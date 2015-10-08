@@ -29,22 +29,21 @@ class Api::Picker::PickUpsController < Api::PickerController
                 total_pick_ups: @pick_ups.total_count
               },
               root: 'pick_ups'
-
   end
 
   def reject
     @result = @service.reject(params)
-
+    render json: {success: 'OK'}
   end
 
   def accept
     @result = @service.accept(params)
-
+    render json: {success: 'OK'}
   end
 
   def cancel
     @result = @service.accept(params)
-    render json: {}
+    render json: {success: 'OK'}
   end
 
 private

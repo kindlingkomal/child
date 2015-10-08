@@ -19,6 +19,13 @@ Rails.application.routes.draw do
         end
       end
     end
+    post '/user/rates', to: 'rates#create'
+    get '/user/categories', to: 'categories#index'
+    get '/user/time_slots', to: 'time_slots#index'
+
+    post '/user/signup', to: 'users#create'
+    post '/user/authentication', to: 'authentication#create'
+    get '/user/logout', to: 'authentication#logout'
 
     namespace :picker do
       resources :pick_ups do
@@ -32,6 +39,10 @@ Rails.application.routes.draw do
         end
       end
     end
+    post '/picker/signup', to: 'pickers#create'
+    post '/picker/authentication', to: 'authentication#create'
+    get '/picker/logout', to: 'authentication#logout'
+
   end
 
   namespace :api, :defaults => {:format => :json} do
