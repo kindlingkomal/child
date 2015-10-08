@@ -10,5 +10,6 @@ class Api::RatesController < Api::ApiController
     else
       render json: {error: {code: 20000, msg: "Rating failed"}}, status: 405
     end
+    
   end
 end
