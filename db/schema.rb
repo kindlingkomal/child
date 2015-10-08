@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007134151) do
+ActiveRecord::Schema.define(version: 20151008022529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,15 @@ ActiveRecord::Schema.define(version: 20151007134151) do
   add_index "line_items", ["category_id"], name: "index_line_items_on_category_id", using: :btree
   add_index "line_items", ["pick_up_id"], name: "index_line_items_on_pick_up_id", using: :btree
 
+  create_table "mobile_devices", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "platform"
+    t.boolean  "disabled"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "zipcode"
@@ -164,8 +173,6 @@ ActiveRecord::Schema.define(version: 20151007134151) do
   end
 
   add_index "pricing_zonals", ["category_id", "zonal_id"], name: "index_pricing_zonals_on_category_id_and_zonal_id", using: :btree
-  add_index "pricing_zonals", ["category_id"], name: "fk__pricing_zonals_category_id", using: :btree
-  add_index "pricing_zonals", ["zonal_id"], name: "fk__pricing_zonals_zonal_id", using: :btree
 
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id"
@@ -254,7 +261,5 @@ ActiveRecord::Schema.define(version: 20151007134151) do
   add_foreign_key "pick_ups", "users", name: "fk_pick_ups_user_id"
   add_foreign_key "pickup_users", "pick_ups", name: "fk_pickup_users_pick_up_id"
   add_foreign_key "pickup_users", "users", name: "fk_pickup_users_user_id"
-  add_foreign_key "pricing_zonals", "categories", name: "fk_pricing_zonals_category_id"
-  add_foreign_key "pricing_zonals", "zonals", name: "fk_pricing_zonals_zonal_id"
   add_foreign_key "rates", "users", column: "rater_id", name: "fk_rates_rater_id"
 end
