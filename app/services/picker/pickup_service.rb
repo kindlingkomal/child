@@ -48,4 +48,10 @@ class Picker::PickupService < BaseService
   end
 
 
+  def proceed params
+    pick_up = current_user.accepted_pick_ups.find params[:id]
+
+    pick_up
+  end
+
 end
