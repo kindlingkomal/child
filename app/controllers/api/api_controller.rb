@@ -11,14 +11,22 @@ class Api::ApiController < ApplicationController
         msg: e.message
       }
     }
+    Rails.logger.error("\n\nEXCEPTION: RecordNotFound #{e.inspect}\n")
     render json: missing_json, status: 404
   end
+
+  rescue_from Exception do |ex|
+    Rails.logger.error("\n\nEXCEPTION: #{ex.inspect}\n")
+    render json: {error: exception.message}, status: 500
+  end
+
 
 private
 
   def authenticate_user_from_token!
     auth_token = params[:token].presence
-    user       = auth_token && User.where(:authentication_token => auth_token.to_s).first
+    user = User.find_by(authentication_token: auth_token) if auth_token
+    # user       = auth_token && User.where(:authentication_token => auth_token.to_s).first
 
     if user && user.active?
       # Notice we are passing store false, so the user is not
@@ -27,25 +35,31 @@ private
       # sign in token, you can simply remove store: false.
       sign_in user, store: false
       @current_user = user
-      if request.url.include?('/api/ragpicker/')
-        unless @current_user.ragpicker?
-          @current_user = nil
-          render json: {error: {code: "20001", msg: "role invalid"}}, status: 403
-        end
-      elsif request.url.include?('/api/common/')
-        if @current_user.admin?
-          @current_user = nil
-          render json: {error: {code: "20001", msg: "role invalid"}}, status: 403
-        end
-      else
-        unless @current_user.user?
-          @current_user = nil
-          render json: {error: {code: "20001", msg: "role invalid"}}, status: 403
-        end
-      end
+
+      # if request.url.include?('/api/ragpicker/')
+      #   unless @current_user.ragpicker?
+      #     @current_user = nil
+      #     render json: {error: {code: "20001", msg: "role invalid"}}, status: 403
+      #   end
+      # elsif request.url.include?('/api/common/')
+      #   if @current_user.admin?
+      #     @current_user = nil
+      #     render json: {error: {code: "20001", msg: "role invalid"}}, status: 403
+      #   end
+      # else
+      #   unless @current_user.user?
+      #     @current_user = nil
+      #     render json: {error: {code: "20001", msg: "role invalid"}}, status: 403
+      #   end
+      # end
     else
       render json: {error: {code: "20000", msg: "token invalid"}}, status: 403
     end
+  end
+
+
+  def authorize_api_permission
+
   end
 
 end

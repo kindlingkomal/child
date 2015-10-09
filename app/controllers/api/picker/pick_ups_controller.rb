@@ -34,7 +34,7 @@ class Api::Picker::PickUpsController < Api::PickerController
   def reject
     @result = @service.reject(params)
     if @result.errors.any?
-      render json: {error: {code: 4000, message: @result.errors.full_messages.join(', ')}}, status: 405
+      render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}
     end
@@ -43,7 +43,7 @@ class Api::Picker::PickUpsController < Api::PickerController
   def accept
     @result = @service.accept(params)
     if @result.errors.any?
-      render json: {error: {code: 4000, message: @result.errors.full_messages.join(', ')}}, status: 405
+      render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}
     end
@@ -52,7 +52,7 @@ class Api::Picker::PickUpsController < Api::PickerController
   def cancel
     @result = @service.accept(params)
     if @result.errors.any?
-      render json: {error: {code: 4000, message: @result.errors.full_messages.join(', ')}}, status: 405
+      render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}
     end
@@ -61,7 +61,7 @@ class Api::Picker::PickUpsController < Api::PickerController
   def proceed
     @result = @service.proceed(params)
     if @result.errors.any?
-      render json: {error: {code: 4000, message: @result.errors.full_messages.join(', ')}}, status: 405
+      render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}
     end

@@ -1,6 +1,20 @@
 class Api::User::ProfileController < Api::PickerController
   before_action :init_service
 
+  # def device
+  #   @mobile = MobileDevice.where(token: device_params[:token], platform: device_params[:platform]).first
+  #   @mobile ||= current_user.mobile_devices.new(device_params)
+  #   @mobile.owner = current_user
+  #   @mobile.enabled = true
+  #   if @mobile.save
+  #     render json: {message: 'Register user device successfully.'}, status: 200
+  #     return
+  #   else
+  #     render json: @mobile.errors, status: 406
+  #     return
+  #   end
+  # end
+
   def show
     @user = current_user
     render json: @user
