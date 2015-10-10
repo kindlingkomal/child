@@ -20,12 +20,11 @@ Rails.application.routes.draw do
       end
       put '/profile', to: 'profile#update'
       post '/device/register', to: 'profile#mobile'
+      post '/rates', to: 'rates#create'
     end
     get '/user/categories', to: 'categories#index'
     get '/user/time_slots', to: 'time_slots#index'
-    post '/user/rates', to: 'rates#create'
     post '/user/friends/invite', to: 'users#invite'
-
     post '/user/signup', to: 'users#create'
     post '/user/signin', to: 'authentication#create'
     get '/user/logout', to: 'authentication#logout'
@@ -45,6 +44,7 @@ Rails.application.routes.draw do
       end
       post '/device/register', to: 'profile#mobile'
     end
+
     post '/picker/rates', to: 'rates#create'
     get '/picker/categories', to: 'categories#index'
     get '/picker/time_slots', to: 'time_slots#index'

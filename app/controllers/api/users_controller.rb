@@ -33,7 +33,7 @@ class Api::UsersController < Api::ApiController
     if User.where(phone_number: phone_number).count == 0
       @invitation = @current_user.invitations.
         create(phone_number: phone_number, name: name)
-      render json: @invitation
+      render json: {success: true}
     else
       render json: {error: {code: 20011, msg: 'Phone number had already registered'}}, status: 405
     end

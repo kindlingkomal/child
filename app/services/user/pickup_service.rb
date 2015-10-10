@@ -12,6 +12,7 @@ class User::PickupService < BaseService
     pick_up = current_user.pick_ups.find params[:id]
     pick_up.canceled_at = Time.now
     pick_up.status = PickUp::STATUSES[:canceled]
+    pick_up.reason = params[:reason]
     pick_up.save
     pick_up
   end
