@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         end
       end
       put '/profile', to: 'profile#update'
+      post '/device/register', to: 'profile#mobile'
     end
     get '/user/categories', to: 'categories#index'
     get '/user/time_slots', to: 'time_slots#index'
@@ -42,6 +43,7 @@ Rails.application.routes.draw do
           get :accepted
         end
       end
+      post '/device/register', to: 'profile#mobile'
     end
     post '/picker/rates', to: 'rates#create'
     get '/picker/categories', to: 'categories#index'
