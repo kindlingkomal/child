@@ -18,6 +18,7 @@ Rails.application.routes.draw do
           get :history
         end
       end
+      put '/profile', to: 'profile#update'
     end
     get '/user/categories', to: 'categories#index'
     get '/user/time_slots', to: 'time_slots#index'

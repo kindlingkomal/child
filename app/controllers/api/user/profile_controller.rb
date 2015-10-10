@@ -1,4 +1,4 @@
-class Api::User::ProfileController < Api::PickerController
+class Api::User::ProfileController < Api::UserController
   before_action :init_service
 
   # def device

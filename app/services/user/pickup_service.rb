@@ -19,7 +19,7 @@ class User::PickupService < BaseService
   def reschedule params
     pick_up = current_user.pick_ups.find params[:id]
     pick_up_param = process_pickup_param(params)
-    pick_up.udpate_attributes(pick_up_param)
+    pick_up.update_attributes(pick_up_param)
     pick_up
   end
 
@@ -28,8 +28,8 @@ private
     pick_up_param = params.require(:pick_up).permit(:address, :city, :pincode, :lat, :lon,
       :subscription, :start_time, :end_time, category_set: [])
     pick_up_param[:category_set] = pick_up_param[:category_set].try(:uniq)
-    pick_up_param = pick_up_param.merge(start_time: Util.to_time(pick_up_params[:start_time]))
-    pick_up_param = pick_up_param.merge(end_time: Util.to_time(pick_up_params[:end_time]))
+    pick_up_param = pick_up_param.merge(start_time: Util.to_time(pick_up_param[:start_time]))
+    pick_up_param = pick_up_param.merge(end_time: Util.to_time(pick_up_param[:end_time]))
     pick_up_param
   end
 

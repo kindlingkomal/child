@@ -40,8 +40,9 @@ class Api::User::PickUpsController < Api::UserController
   # add new order/subscription
   def create
     result = @service.add(params)
+    puts result
     if result.errors.any?
-      code, msg = [90002, @pick_up.errors.full_messages.join('. ')]
+      code, msg = [90002, result.errors.full_messages.join('. ')]
       render json: {error: {code: code, msg: msg}}, status: 405
     else
       render json: result
