@@ -45,7 +45,7 @@ class Api::User::PickUpsController < Api::UserController
       code, msg = [90002, result.errors.full_messages.join('. ')]
       render json: {error: {code: code, msg: msg}}, status: 405
     else
-      render json: result
+      render json: result, serializer: User::PickupSerializer
     end
   end
 
@@ -56,7 +56,7 @@ class Api::User::PickUpsController < Api::UserController
       code, msg = [90002, result.errors.full_messages.join('. ')]
       render json: {error: {code: code, msg: msg}}, status: 405
     else
-      render json: result
+      render json: {success: true}
     end
   end
 

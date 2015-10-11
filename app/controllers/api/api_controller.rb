@@ -1,9 +1,14 @@
 class Api::ApiController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user_from_token!
+  before_action :authorize_api_permission, :authenticate_user_from_token!
   before_action :authenticate_user!, except: :doc
 
   respond_to :json
+
+  rescue_from Exception do |ex|
+    Rails.logger.error("\n\nEXCEPTION: #{ex.inspect}\n")
+    render json: {error: ex.message}, status: 500
+  end
 
   rescue_from ActiveRecord::RecordNotFound do |e|
     missing_json = {
@@ -15,10 +20,7 @@ class Api::ApiController < ApplicationController
     render json: missing_json, status: 404
   end
 
-  rescue_from Exception do |ex|
-    Rails.logger.error("\n\nEXCEPTION: #{ex.inspect}\n")
-    render json: {error: exception.message}, status: 500
-  end
+
 
 
 private
@@ -59,7 +61,10 @@ private
 
 
   def authorize_api_permission
+    if request.headers['x-svalue-auth'] == '1234512345'
 
+    else
+    end
   end
 
 end
