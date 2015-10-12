@@ -50,7 +50,7 @@ class Api::Picker::PickUpsController < Api::PickerController
   end
 
   def cancel
-    @result = @service.accept(params)
+    @result = @service.cancel(params)
     if @result.errors.any?
       render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
     else

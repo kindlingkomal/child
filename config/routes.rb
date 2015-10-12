@@ -34,8 +34,8 @@ Rails.application.routes.draw do
     namespace :picker do
       resources :pick_ups do
         member do
-          get :cancel
-          # post :reschedule
+          post :cancel
+          post :proceed
         end
         collection do
           get :pending

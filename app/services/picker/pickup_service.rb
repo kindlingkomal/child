@@ -50,8 +50,20 @@ class Picker::PickupService < BaseService
 
   def proceed params
     pick_up = current_user.accepted_pick_ups.find params[:id]
+    params[:line_items].each do |key, item|
+      category = Category.find_by(id: item[:category_id])
+      pick_up.line_items.
+        find_or_create_by(category_id: category.id) do |line_item|
+        line_item.name = category.name
+        line_item.cost_price = category.price
+        line_item.quantity = item[:quantity]
+      end
+    end
+    pick_up.update(proceeded_at: Time.now.utc, total: pick_up.line_items.sum(:item_total))
 
     pick_up
   end
+
+
 
 end

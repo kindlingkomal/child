@@ -26,6 +26,8 @@ class PickUp < ActiveRecord::Base
   scope :pending,  -> { where(accepted_at: nil).where('pick_ups.start_time > ?', Time.now.utc) }
   scope :accepted, -> { where.not(accepted_at: nil).where(canceled_at: nil) }
 
+  accepts_nested_attributes_for :customer, :line_items
+
   def can_proceed?(ragpicker)
     return false unless ragpicker
     proceeded_at.nil? && accepted_at? && accepted_users.
