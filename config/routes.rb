@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       end
       post '/device/register', to: 'profile#device'
       post '/signup', to: 'sessions#create'
+      post '/signin', to: 'sessions#signin'
 
     end
 
