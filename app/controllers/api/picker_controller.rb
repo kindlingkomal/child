@@ -5,7 +5,7 @@ class Api::PickerController < Api::ApiController
 protected
   def require_picker!
     if !current_user || !current_user.ragpicker?
-      render json: {error: {msg: 'Invalid action', code: 403}}, status: 403
+      render(json: {error: {msg: 'Invalid action', code: 403}}, status: 403) and return
     end
   end
 

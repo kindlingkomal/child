@@ -43,6 +43,8 @@ Rails.application.routes.draw do
         end
       end
       post '/device/register', to: 'profile#device'
+      post '/signup', to: 'sessions#create'
+
     end
 
     post '/picker/rates', to: 'rates#create'

@@ -5,10 +5,10 @@ class Api::ApiController < ApplicationController
 
   respond_to :json
 
-  rescue_from Exception do |ex|
-    Rails.logger.error("\n\nEXCEPTION: #{ex.inspect}\n")
-    render json: {error: ex.message}, status: 500
-  end
+  # rescue_from Exception do |ex|
+  #   Rails.logger.error("\n\nEXCEPTION: #{ex.inspect}\n")
+  #   render(json: {error: ex.message}, status: 500) and return
+  # end
 
   rescue_from ActiveRecord::RecordNotFound do |e|
     missing_json = {
@@ -17,7 +17,7 @@ class Api::ApiController < ApplicationController
       }
     }
     Rails.logger.error("\n\nEXCEPTION: RecordNotFound #{e.inspect}\n")
-    render json: missing_json, status: 404
+    render(json: missing_json, status: 404) and return
   end
 
 
@@ -62,12 +62,12 @@ private
 
   def authorize_api_permission
     if request.headers['x-svalue-auth'] != '1234512345'
-      render json: {
+      render(json: {
         error: {
           code: 4000,
           msg: "x-svalue-auth is invalid"
         }
-      }, status: 401
+      }, status: 401) and return
     end
   end
 
