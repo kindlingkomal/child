@@ -61,9 +61,13 @@ private
 
 
   def authorize_api_permission
-    if request.headers['x-svalue-auth'] == '1234512345'
-
-    else
+    if request.headers['x-svalue-auth'] != '1234512345'
+      render json: {
+        error: {
+          code: 4000,
+          msg: "x-svalue-auth is invalid"
+        }
+      }, status: 401
     end
   end
 
