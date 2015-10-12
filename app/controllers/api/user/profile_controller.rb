@@ -29,10 +29,10 @@ class Api::User::ProfileController < Api::UserController
     end
   end
 
-  def mobile
+  def device
     @user = current_user
-    @user.gcm_registration = params[:registration_id]
-    if @user.save
+    @user.gcm_registration = params[:device_token]
+    if !@user.save
       render json: {error: {code: 4000, message: @user.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}

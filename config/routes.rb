@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         end
       end
       put '/profile', to: 'profile#update'
-      post '/device/register', to: 'profile#mobile'
+      post '/device/register', to: 'profile#device'
       post '/rates', to: 'rates#create'
     end
     get '/user/categories', to: 'categories#index'
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
           get :accepted
         end
       end
-      post '/device/register', to: 'profile#mobile'
+      post '/device/register', to: 'profile#device'
     end
 
     post '/picker/rates', to: 'rates#create'

@@ -10,7 +10,7 @@ class ProfileService < BaseService
 
 private
   def process_user_param(params)
-    params.require(:user).permit(:email, :password, :password_confirmation, :avatar,
+    params.require(:user).permit(:email, :current_password, :password, :password_confirmation, :avatar,
       :full_name, :phone_number, :gender, :address, :city, :notified, :pincode, :lat, :lon)
   end
 
