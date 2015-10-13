@@ -19,9 +19,9 @@ class Api::Picker::ProfileController < Api::PickerController
     @user = current_user
     @user.gcm_registration = params[:device_token]
     if @user.save
-      render json: {error: {code: 4000, msg: @user.errors.full_messages.join(', ')}}, status: 405
-    else
       render json: {success: true}
+    else
+      render json: {error: {code: 4000, msg: @user.errors.full_messages.join(', ')}}, status: 405
     end
   end
 
