@@ -9,7 +9,7 @@ class PickUp < ActiveRecord::Base
     canceled: 'canceled',
     expired: 'expired'
   }
-  validates :address, :city, :start_time, :end_time, :category_set,
+  validates :address, :city, :start_time, :end_time, :category_ids,
     presence: true, if: proc { |o| o.customer_id.nil? }
   validates :user, presence: true
 
@@ -20,6 +20,7 @@ class PickUp < ActiveRecord::Base
   has_many :accepted_users, dependent: :destroy
   has_many :rejected_users, dependent: :destroy
   has_many :line_items, dependent: :destroy
+  has_and_belongs_to_many :categories
 
   before_validation :set_default_subscription
 
@@ -47,9 +48,9 @@ class PickUp < ActiveRecord::Base
     "#{start_time.strftime('%I:%M %p')} - #{end_time.strftime('%I:%M %p')}" rescue nil
   end
 
-  def categories
-    Category.where(id: category_set)
-  end
+  # def categories
+  #   Category.where(id: category_set)
+  # end
 
   def ragpicker_name
     if customer_id && user
