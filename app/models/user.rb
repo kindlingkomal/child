@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
 
   scope :ragpickers, -> {where(role: 1)}
 
+
+
   def active?
    !inactive
   end

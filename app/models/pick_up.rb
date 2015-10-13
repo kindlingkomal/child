@@ -11,7 +11,7 @@ class PickUp < ActiveRecord::Base
   }
   validates :address, :city, :start_time, :end_time, :category_ids,
     presence: true, if: proc { |o| o.customer_id.nil? }
-  validates :user, presence: true
+  validates :user, presence: {if: Proc.new { |pk| !pk.manual?}}
 
   belongs_to :user
   belongs_to :ragpicker
@@ -28,6 +28,10 @@ class PickUp < ActiveRecord::Base
   scope :accepted, -> { where.not(accepted_at: nil).where(canceled_at: nil) }
 
   accepts_nested_attributes_for :customer, :line_items
+
+  def manual?
+    manual
+  end
 
   def can_proceed?(ragpicker)
     return false unless ragpicker
