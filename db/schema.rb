@@ -58,13 +58,13 @@ ActiveRecord::Schema.define(version: 20151013024049) do
     t.datetime "updated_at",                          null: false
   end
 
-  create_table "categories_pickups", id: false, force: :cascade do |t|
+  create_table "categories_pick_ups", id: false, force: :cascade do |t|
     t.integer "category_id"
     t.integer "pick_up_id"
   end
 
-  add_index "categories_pickups", ["category_id"], name: "index_categories_pickups_on_category_id", using: :btree
-  add_index "categories_pickups", ["pick_up_id"], name: "index_categories_pickups_on_pick_up_id", using: :btree
+  add_index "categories_pick_ups", ["category_id"], name: "index_categories_pick_ups_on_category_id", using: :btree
+  add_index "categories_pick_ups", ["pick_up_id"], name: "index_categories_pick_ups_on_pick_up_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
