@@ -18,6 +18,7 @@ Rails.application.routes.draw do
           get :history
         end
       end
+      get '/profile', to: 'profile#show'
       put '/profile', to: 'profile#update'
       post '/device/register', to: 'profile#device'
       post '/rates', to: 'rates#create'
@@ -42,6 +43,10 @@ Rails.application.routes.draw do
           get :accepted
         end
       end
+
+      get '/profile', to: 'profile#show'
+      put '/profile', to: 'profile#update'
+
       post '/device/register', to: 'profile#device'
       post '/signup', to: 'sessions#create'
       post '/signin', to: 'sessions#signin'
