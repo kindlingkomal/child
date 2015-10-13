@@ -4,7 +4,6 @@ class Api::Picker::SessionsController < Api::PickerController
 
   def create
     @user = User.new user_params
-    # @user.inactive = true
     @user.role = :ragpicker
     if @user.save
       if (@invitation = Invitation.find_by(phone_number: @user.phone_number))
@@ -22,7 +21,6 @@ class Api::Picker::SessionsController < Api::PickerController
     end
   end
 
-
   def signin
     user = User.ragpickers.find_for_database_authentication(
       phone_number: params[:phone_number].try(:downcase)
@@ -31,12 +29,11 @@ class Api::Picker::SessionsController < Api::PickerController
       user.last_sign_in_at = Time.now
       user.invalidate_authentication_token
       user.save
-      render json: user, meta: { show_token: true }
+      render json: user, serializer: UserDetailSerializer
     else
       user = User.find_for_database_authentication(
         phone_number: params[:phone_number].try(:downcase)
       )
-      puts user
       if user.nil?
         render json: {error: {code: 10000, msg: "User not registered"}}, status: 403
       elsif !user.valid_password?(params[:password])

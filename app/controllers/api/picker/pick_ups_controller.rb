@@ -20,7 +20,7 @@ class Api::Picker::PickUpsController < Api::PickerController
   end
 
   def accepted
-    @pick_ups = PickUp.pending
+    @pick_ups = PickUp.where(ragpicker_id: current_user.id)
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
     render  json: @pick_ups,
               each_serializer: ::Picker::PickupSerializer,
