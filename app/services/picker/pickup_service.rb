@@ -57,7 +57,7 @@ class Picker::PickupService < BaseService
 
   def proceed params
     pick_up = current_user.accepted_pick_ups.find params[:id]
-    params[:line_items].each do |key, item|
+    params[:line_items].each do |item|
       category = Category.find_by(id: item[:category_id])
       pick_up.line_items.
         find_or_create_by(category_id: category.id) do |line_item|
@@ -84,9 +84,10 @@ class Picker::PickupService < BaseService
     return nil unless customer
     pick_up = customer.pick_ups.create(pick_up_params)
     return pick_up if pick_up.errors.any?
-    params[:line_items].each do |key, item|
-      category = Category.find_by(id: item[:category_id])
+    params[:line_items].each do |item|
       puts '================'
+      puts item.inspect
+      category = Category.find_by(id: item[:category_id])
       pick_up.line_items.find_or_create_by(category_id: category.id) do |line_item|
         puts '--------'
         puts item
