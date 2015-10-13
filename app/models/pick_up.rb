@@ -24,7 +24,7 @@ class PickUp < ActiveRecord::Base
 
   before_validation :set_default_subscription
 
-  scope :pending,  -> { where(accepted_at: nil).where('pick_ups.start_time > ?', Time.now.utc) }
+  scope :pending,  -> { where(status: STATUSES[:pending]).where('pick_ups.start_time > ?', Time.now.utc) }
   scope :accepted, -> { where.not(accepted_at: nil).where(canceled_at: nil) }
 
   accepts_nested_attributes_for :customer, :line_items

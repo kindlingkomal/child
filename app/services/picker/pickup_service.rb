@@ -85,12 +85,8 @@ class Picker::PickupService < BaseService
     pick_up = customer.pick_ups.create(pick_up_params)
     return pick_up if pick_up.errors.any?
     params[:line_items].each do |item|
-      puts '================'
-      puts item.inspect
       category = Category.find_by(id: item[:category_id])
       pick_up.line_items.find_or_create_by(category_id: category.id) do |line_item|
-        puts '--------'
-        puts item
         line_item.name = category.name
         line_item.cost_price = category.price
         line_item.quantity = item[:quantity]
