@@ -37,6 +37,8 @@ Rails.application.routes.draw do
         member do
           post :cancel
           post :proceed
+          get :accept
+          get :reject
         end
         collection do
           get :pending
@@ -60,6 +62,7 @@ Rails.application.routes.draw do
     post '/picker/signup', to: 'users#create'
     post '/picker/signin', to: 'authentication#create'
     get '/picker/logout', to: 'authentication#logout'
+    post '/picker/friends/invite', to: 'users#invite'
 
   end
 

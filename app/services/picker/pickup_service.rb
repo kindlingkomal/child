@@ -1,7 +1,14 @@
 class Picker::PickupService < BaseService
 
   def reject params
-
+    pick_up = PickUp.pending.find params[:id]
+    pick_user = PickupUser.find_or_create_by({
+      user_id: current_user.id,
+      pick_up_id: pick_up.id
+    })
+    pick_user.status = PickupUser::STATUSES[:rejected]
+    pick_user.save
+    pick_user
   end
 
   def cancel params
