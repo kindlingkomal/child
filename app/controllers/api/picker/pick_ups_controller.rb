@@ -1,12 +1,27 @@
 class Api::Picker::PickUpsController < Api::PickerController
   before_action :init_service
 
+  def create
+    @result = @service.add_customer(params)
+    if @result.blank?
+      render json: {error: {code: 4000, msg: "could not add customer"}}, status: 405
+    elsif @result.errors.any?
+      render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
+    else
+      render json: pick_up, serializer: ::Picker::PickupSerializer,
+    end
+  end
+
   def show
     @pick_up = current_user.pick_ups.find params[:id]
     render json: @pick_up, serializer: User::PickupSerializer
   end
 
   def pending
+    # date = Date.today
+    # if params[:date]
+    #   date = Util.to_datetime(params[:date])
+    # end
     @pick_ups = PickUp.pending
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
     render  json: @pick_ups,
@@ -20,6 +35,10 @@ class Api::Picker::PickUpsController < Api::PickerController
   end
 
   def accepted
+    # date = Date.today
+    # if params[:date]
+    #   date = Util.to_datetime(params[:date])
+    # end
     @pick_ups = PickUp.where(ragpicker_id: current_user.id)
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
     render  json: @pick_ups,
