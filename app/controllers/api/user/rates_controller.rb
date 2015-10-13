@@ -2,7 +2,7 @@ class Api::User::RatesController < Api::UserController
 
   def create
     dimension = 'ragpicker'
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find(params[:user_id])
     if @user.ragpicker? && @user.rate(params[:score].to_f, @current_user, dimension)
       @current_rate = @user.reload.rates(dimension).where(rater_id: @current_user.id).take
       @current_rate.update(comment: params[:comment])

@@ -5,25 +5,26 @@ class Api::ApiController < ApplicationController
 
   respond_to :json
 
-  # rescue_from Exception do |ex|
-  #   Rails.logger.error("\n\nEXCEPTION: #{ex.inspect}\n")
-  #   render(json: {error: ex.message}, status: 500) and return
-  # end
-
-  rescue_from ActiveRecord::RecordNotFound do |e|
-    missing_json = {
-      errors: {
-        msg: e.message
-      }
-    }
-    Rails.logger.error("\n\nEXCEPTION: RecordNotFound #{e.inspect}\n")
-    render(json: missing_json, status: 404) and return
-  end
-
+  rescue_from Exception, with: :render_500
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
 
 
 private
+
+  def render_500(ex)
+    Rails.logger.error("\n\nEXCEPTION: #{ex.inspect}\n")
+    render json: {
+      msg: ex.message
+    }, status: 500
+  end
+
+  def render_not_found(ex)
+    Rails.logger.error("\n\nEXCEPTION: RecordNotFound #{ex.inspect}\n")
+    render json: {
+      msg: ex.message
+    }, status: 404
+  end
 
   def authenticate_user_from_token!
     auth_token = params[:token].presence
