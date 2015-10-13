@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
 
   before_validation :set_default_role, :if => :new_record?
 
+
+  mount_uploader :avatar, AvatarUploader
+
   reverse_geocoded_by :lat, :lon
 
   scope :ragpickers, -> {where(role: 1)}

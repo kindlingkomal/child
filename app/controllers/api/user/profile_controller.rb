@@ -17,7 +17,7 @@ class Api::User::ProfileController < Api::UserController
 
   def show
     @user = current_user
-    render json: @user
+    render json: @user, serializer: UserDetailSerializer
   end
 
   def update
@@ -32,6 +32,16 @@ class Api::User::ProfileController < Api::UserController
   def device
     @user = current_user
     @user.gcm_registration = params[:device_token]
+    if !@user.save
+      render json: {error: {code: 4000, message: @user.errors.full_messages.join(', ')}}, status: 405
+    else
+      render json: {success: true}
+    end
+  end
+
+  def logoutdevice
+    @user = current_user
+    @user.gcm_registration = nil
     if !@user.save
       render json: {error: {code: 4000, message: @user.errors.full_messages.join(', ')}}, status: 405
     else

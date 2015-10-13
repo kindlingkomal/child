@@ -3,13 +3,13 @@ class Api::Picker::ProfileController < Api::PickerController
 
   def show
     @user = current_user
-    render json: @user
+    render json: @user, serializer: UserDetailSerializer
   end
 
   def update
     @result = @service.update(params)
     if @result.errors.any?
-      render json: {error: {code: 4000, message: @result.errors.full_messages.join(', ')}}, status: 405
+      render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}
     end
@@ -19,7 +19,7 @@ class Api::Picker::ProfileController < Api::PickerController
     @user = current_user
     @user.gcm_registration = params[:device_token]
     if @user.save
-      render json: {error: {code: 4000, message: @user.errors.full_messages.join(', ')}}, status: 405
+      render json: {error: {code: 4000, msg: @user.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}
     end
