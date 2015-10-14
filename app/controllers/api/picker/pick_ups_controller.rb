@@ -23,7 +23,9 @@ class Api::Picker::PickUpsController < Api::PickerController
     # if params[:date]
     #   date = Util.to_datetime(params[:date])
     # end
-    @pick_ups = PickUp.pending
+    ex_ids = [-1]
+    ex_ids = PickupUser.where(status: [PickupUser::STATUSES[:canceled], PickupUser::STATUSES[:rejected]]).where(user_id: current_user.id).pluck('pick_up_id')
+    @pick_ups = PickUp.pending.where("id IS NOT IN (?)", ex_ids)
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
     render  json: @pick_ups,
               each_serializer: ::Picker::PickupSerializer,
