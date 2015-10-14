@@ -59,7 +59,7 @@ class Picker::PickupService < BaseService
     pick_up = current_user.accepted_pick_ups.where(status: PickUp::STATUSES[:accepted]).find params[:id]
     # TODO
     line_items = params[:line_items] || []
-    if line_items.class.name == 'Hash'
+    if line_items.is_a?(Hash)
       line_items = line_items.values
     end
     puts line_items.inspect
@@ -99,7 +99,7 @@ class Picker::PickupService < BaseService
     return pick_up if pick_up.errors.any?
     cat_ids = []
     line_items = params[:line_items] || []
-    if line_items.class.name == 'Hash'
+    if line_items.is_a?(Hash)
       line_items = line_items.values
     end
     puts line_items.inspect
