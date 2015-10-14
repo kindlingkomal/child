@@ -80,19 +80,28 @@ class Picker::PickupService < BaseService
       name: customer_params[:name].try(:strip),
       phone_number: customer_params[:phone_number].try(:strip)
     )
-    pick_up_params = pick_up_params.merge(customer_id: customer.id, user_id: nil, accepted_at: Time.now.utc, ragpicker_id: current_user.id, manual: true)
+    pick_up_params = pick_up_params.merge({
+      customer_id: customer.id,
+      user_id: nil,
+      accepted_at: Time.now.utc,
+      ragpicker_id: current_user.id,
+      manual: true,
+      status: PickUp::STATUSES[:done]
+    })
     return nil unless customer
     pick_up = customer.pick_ups.create(pick_up_params)
     return pick_up if pick_up.errors.any?
+    cat_ids = []
     params[:line_items].each do |item|
       category = Category.find_by(id: item[:category_id])
+      cat_ids.push(category.id)
       pick_up.line_items.find_or_create_by(category_id: category.id) do |line_item|
         line_item.name = category.name
         line_item.cost_price = category.price
         line_item.quantity = item[:quantity]
       end
     end
-    pick_up.update(proceeded_at: Time.now.utc, total: pick_up.line_items.sum(:item_total))
+    pick_up.update(proceeded_at: Time.now.utc, total: pick_up.line_items.sum(:item_total), category_ids: cat_ids)
     pick_up
   end
 

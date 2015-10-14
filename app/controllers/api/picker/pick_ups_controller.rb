@@ -8,7 +8,7 @@ class Api::Picker::PickUpsController < Api::PickerController
     elsif @result.errors.any?
       render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
     else
-      render json: pick_up, serializer: ::Picker::PickupSerializer
+      render json: @result, serializer: ::Picker::PickupSerializer
     end
 
   end
