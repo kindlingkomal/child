@@ -7,7 +7,7 @@ class Api::User::PickUpsController < Api::UserController
   end
 
   def upcoming
-    @pick_ups = current_user.pick_ups.pending
+    @pick_ups = current_user.pick_ups.where(status: [PickUp::STATUSES[:accepted], PickUp::STATUSES[:pending]]).where("start_time > ?", Time.now)
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
     render  json: @pick_ups,
               each_serializer: User::PickupSerializer,
@@ -20,7 +20,7 @@ class Api::User::PickUpsController < Api::UserController
   end
 
   def history
-    @pick_ups = current_user.pick_ups
+    @pick_ups = current_user.pick_ups.where(status: [PickUp::STATUSES[:done], PickUp::STATUSES[:canceled]])
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
     render  json: @pick_ups,
               each_serializer: User::PickupSerializer,
