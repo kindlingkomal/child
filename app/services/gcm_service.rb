@@ -1,15 +1,15 @@
 require 'gcm'
 class GcmService
-  def initialize app_key, user
+  def initialize user, app_key
     @current_user = user
-    @gcm = GCM.new(app_key||'AIzaSyDWn6_GofSOKvMSG7lWyOhgwYLHzQ4J0m0')
+    @gcm = GCM.new(app_key||'AIzaSyCDcjxhc_7sTLGC2u4oRUwvDxsgecyhjpk')
   end
 
   def push_to_registration_ids(reg_ids, opts={})
     return false if reg_ids.blank? || opts[:data].blank?
     reg_ids = [
-      "ev-pmPVXrjY%3AAPA91bErCTNKHn8lt3DjdGFfVNAKXBlRZtGL8VIBoQCvUuZZzf77byEojgfd3zC0GA8pGaO2tnG0X9obUHi0eFNXcaA6WhwWq8Qx4T58S-RlmzLgXY7KWx54cdbuvVoXB8rWNb3-Exf5",
-      "caOIEJuzQQ8:APA91bGgtd86DT3WfIqHBk_4Xlns5aVPg9TLXKzaeMxPaPlL_Qz_WK9xMUrr1hfQxC_hmDSvm6AFxs7XlQRZL5sc5iOQc35VC-UyfbMLQa8ciQtLg_f-gbPQNx2Mq9xsB0cUMDy4nmEb"
+      # 'e2K_J_kYVBo:APA91bEqaHkMW8M23UT23A_J4QzXJJP0-auUlKNtsF7wulKrnxIwxb1MFygV19d3fVwppLmMr2hyp7mNpgJY2s_IAmc6vBXQG4k_vdvTnhKW5fzwXus-kSPiQNPE_kMub1bsD-SJY7YC',
+      'fgA_dT7hKKA:APA91bFlAzP6brJ9Gs8brMxnLZXnzzIqHWO2oguwza4DVVG8VHkQPWj0Ti0v6NnLN7RaLaLSLhzCPIhunxJvLGyOI5bbgMRNVQ_vLE0sHUfkF__3m4ctQO9IJLzvcQTkGFvIKftzLLpM'
     ]
     options = opts.merge({
       collapse_key: "demo",
@@ -22,7 +22,7 @@ class GcmService
 
   def notify_new_pickup(pickup)
     options = {
-      data: {id: pickup.id},
+      data: {id: pickup.id, key: 'pickup.new', msg: "hello"},
       collapse_key: 'demo1',
     }
     reg_ids = User.where("gcm_registration IS NOT NULL").pluck('gcm_registration')
