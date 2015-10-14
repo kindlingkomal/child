@@ -56,7 +56,7 @@ class Picker::PickupService < BaseService
 
 
   def proceed params
-    pick_up = current_user.accepted_pick_ups.find params[:id]
+    pick_up = current_user.accepted_pick_ups.where(status: PickUp::STATUSES[:accepted]).find params[:id]
     params[:line_items].each do |item|
       category = Category.find_by(id: item[:category_id])
       pick_up.line_items.
