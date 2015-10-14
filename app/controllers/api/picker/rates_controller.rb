@@ -1,7 +1,7 @@
-class Api::User::RatesController < Api::UserController
+class Api::Picker::RatesController < Api::PickerController
 
   def create
-    dimension = 'ragpicker'
+    dimension = 'customer'
     @user = User.find(params[:user_id])
     if @user.rate(params[:score].to_f, @current_user, dimension)
       @current_rate = @user.reload.rates(dimension).where(rater_id: @current_user.id).take

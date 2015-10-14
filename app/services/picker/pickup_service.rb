@@ -1,5 +1,12 @@
 class Picker::PickupService < BaseService
 
+  def canceled params
+    picks = PickupUser.where(user_id: current_user.id)
+    picks = picks.where(status: [PickupUser::STATUSES[:canceled], PickupUser::STATUSES[:rejected]])
+    picks = picks.page(params[:page]).per(params[:per_page] || 10)
+    picks
+  end
+
   def reject params
     pick_up = PickUp.pending.find params[:id]
     pick_user = PickupUser.find_or_create_by({
@@ -102,7 +109,6 @@ class Picker::PickupService < BaseService
     if line_items.is_a?(Hash)
       line_items = line_items.values
     end
-    puts line_items.inspect
     line_items.each do |item|
       category = Category.find_by(id: item[:category_id])
       cat_ids.push(category.id)
