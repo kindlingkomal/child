@@ -57,7 +57,12 @@ class Picker::PickupService < BaseService
 
   def proceed params
     pick_up = current_user.accepted_pick_ups.where(status: PickUp::STATUSES[:accepted]).find params[:id]
-    params[:line_items].each do |item|
+    # TODO
+    line_items = params[:line_items] || []
+    if line_items.class.name == 'Hash'
+      line_items = line_items.values
+    end
+    line_items.each do |item|
       category = Category.find_by(id: item[:category_id])
       pick_up.line_items.
         find_or_create_by(category_id: category.id) do |line_item|
@@ -92,7 +97,11 @@ class Picker::PickupService < BaseService
     pick_up = customer.pick_ups.create(pick_up_params)
     return pick_up if pick_up.errors.any?
     cat_ids = []
-    params[:line_items].each do |item|
+    line_items = params[:line_items] || []
+    if line_items.class.name == 'Hash'
+      line_items = line_items.values
+    end
+    line_items.each do |item|
       category = Category.find_by(id: item[:category_id])
       cat_ids.push(category.id)
       pick_up.line_items.find_or_create_by(category_id: category.id) do |line_item|
