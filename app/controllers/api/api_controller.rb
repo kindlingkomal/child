@@ -14,6 +14,7 @@ private
 
   def render_500(ex)
     Rails.logger.error("\n\nEXCEPTION: #{ex.inspect}\n")
+    Rails.logger.info(ex)
     render json: {
       msg: ex.message
     }, status: 500
@@ -21,6 +22,7 @@ private
 
   def render_not_found(ex)
     Rails.logger.error("\n\nEXCEPTION: RecordNotFound #{ex.inspect}\n")
+    Rails.logger.info(ex)
     render json: {
       msg: ex.message
     }, status: 404

@@ -62,6 +62,7 @@ class Picker::PickupService < BaseService
     if line_items.class.name == 'Hash'
       line_items = line_items.values
     end
+    puts line_items.inspect
     line_items.each do |item|
       category = Category.find_by(id: item[:category_id])
       pick_up.line_items.
@@ -101,6 +102,7 @@ class Picker::PickupService < BaseService
     if line_items.class.name == 'Hash'
       line_items = line_items.values
     end
+    puts line_items.inspect
     line_items.each do |item|
       category = Category.find_by(id: item[:category_id])
       cat_ids.push(category.id)
