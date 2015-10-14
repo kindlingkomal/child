@@ -43,6 +43,8 @@ Rails.application.routes.draw do
         collection do
           get :pending
           get :accepted
+          get :canceled
+          get :picked
         end
       end
 

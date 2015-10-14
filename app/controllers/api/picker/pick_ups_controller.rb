@@ -53,6 +53,33 @@ class Api::Picker::PickUpsController < Api::PickerController
               root: 'pick_ups'
   end
 
+  def canceled
+    in_ids = PickupUser.where(status: PickupUser::STATUSES[:canceled]).where(user_id: current_user.id).pluck('id')
+    @pick_ups = PickUp.where(id: in_ids)
+    @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
+    render  json: @pick_ups,
+              each_serializer: ::Picker::PickupSerializer,
+              meta: {
+                total_pages: @pick_ups.total_pages,
+                total_pick_ups: @pick_ups.total_count
+              },
+              root: 'pick_ups'
+  end
+
+  def picked
+    @pick_ups = PickUp.where(ragpicker_id: current_user.id)
+    @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
+    render  json: @pick_ups,
+              each_serializer: ::Picker::PickupSerializer,
+              meta: {
+                total_pages: @pick_ups.total_pages,
+                total_pick_ups: @pick_ups.total_count
+              },
+              root: 'pick_ups'
+  end
+
+
+
   def reject
     @result = @service.reject(params)
     if @result.errors.any?
