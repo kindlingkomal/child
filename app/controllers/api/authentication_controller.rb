@@ -1,6 +1,6 @@
 class Api::AuthenticationController < Api::ApiController
-  skip_before_action :authenticate_user_from_token!, only: [:create, :resetpwd]
-  skip_before_action :authenticate_user!, only: [:create, :resetpwd]
+  skip_before_action :authenticate_user_from_token!, only: [:create, :resendpwd]
+  skip_before_action :authenticate_user!, only: [:create, :resendpwd]
 
   def create
     if user = authenticated_user
@@ -22,7 +22,7 @@ class Api::AuthenticationController < Api::ApiController
     end
   end
 
-  def resetpwd
+  def resendpwd
     user = User.find_by({
       phone_number: params[:phone_number].to_s.strip
     })
