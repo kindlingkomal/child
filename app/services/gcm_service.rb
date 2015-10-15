@@ -6,6 +6,7 @@ class GcmService
   end
 
   def push_to_registration_ids(reg_ids, opts={})
+    Rails.logger.debug(reg_ids.inspect)
     return false if reg_ids.blank? || opts[:data].blank?
     reg_ids = reg_ids.compact.uniq
     return false if reg_ids.blank?
