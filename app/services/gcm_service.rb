@@ -22,12 +22,76 @@ class GcmService
 
   def notify_new_pickup(pickup)
     options = {
-      data: {id: pickup.id, key: 'pickup.new', msg: "hello"},
+      data: {
+        key: 'pk.new',
+        pk: {
+          id: pickup.id,
+          start_time: pickup.start_time.to_i,
+          end_time: pickup.end_time.to_i,
+          address: pickup.address
+        },
+        user: {
+          id: pickup.user_id,
+          name: pickup.user.name,
+          gender: pickup.user.gender
+        }
+      },
       collapse_key: 'demo1',
     }
     reg_ids = User.where("gcm_registration IS NOT NULL").pluck('gcm_registration')
     push_to_registration_ids(reg_ids, options)
   end
 
+  def accept_pickup(pickup)
+    options = pickup_activity_data(pickup, 'accepted')
+    reg_ids = []
+    if @current_user.id == pickup.user_id
+      user = pickup.ragpicker
+      reg_ids = [user.gcm_registration] if user
+    else
+      user = pickup.user
+      reg_ids = [user.gcm_registration]
+    end
+    push_to_registration_ids(reg_ids, options)
+  end
 
+  def cancel_pickup(pickup)
+    options = pickup_activity_data(pickup, 'canceled')
+    reg_ids = []
+    if @current_user.id == pickup.user_id
+      user = pickup.ragpicker
+      reg_ids = [user.gcm_registration] if user
+    else
+      user = pickup.user
+      reg_ids = [user.gcm_registration]
+    end
+    push_to_registration_ids(reg_ids, options)
+  end
+
+  def proceed_pickup(pickup)
+    options = pickup_activity_data(pickup, 'proceeded')
+    user = pickup.user
+    reg_ids = [user.gcm_registration]
+    push_to_registration_ids(reg_ids, options)
+  end
+
+private
+  def pickup_activity_data(pickup, status)
+    options = {
+      data: {
+        key: "pk.#{status}",
+        pk: {
+          id: pickup.id,
+          start_time: pickup.start_time.to_i,
+          end_time: pickup.end_time.to_i,
+          address: pickup.address
+        },
+        user: {
+          id: @current_user.id,
+          name: @current_user.name,
+        }
+      },
+      collapse_key: 'demo1',
+    }
+  end
 end

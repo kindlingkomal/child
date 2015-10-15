@@ -52,9 +52,6 @@ class PickUp < ActiveRecord::Base
     "#{start_time.strftime('%I:%M %p')} - #{end_time.strftime('%I:%M %p')}" rescue nil
   end
 
-  # def categories
-  #   Category.where(id: category_set)
-  # end
 
   def ragpicker_name
     if customer_id && user
