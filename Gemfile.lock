@@ -103,6 +103,11 @@ GEM
       adamantium (~> 0.2.0)
       equalizer (~> 0.0.9)
     debug_inspector (0.0.2)
+    delayed_job (4.1.1)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.1.0)
+      activerecord (>= 3.0, < 5)
+      delayed_job (>= 3.0, < 5)
     devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -448,6 +453,7 @@ DEPENDENCIES
   activeadmin!
   arel-helpers
   carrierwave
+  delayed_job_active_record
   devise
   figaro
   fog
@@ -472,4 +478,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.4
+   1.10.6

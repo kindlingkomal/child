@@ -4,6 +4,7 @@ ruby "2.2.0"
 
 gem 'activeadmin', github: 'activeadmin'
 # gem 'schema_plus'
+gem 'delayed_job_active_record'
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 gem 'rails', '4.2.4'
 gem 'puma'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013134536) do
+ActiveRecord::Schema.define(version: 20151015115819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,22 @@ ActiveRecord::Schema.define(version: 20151013134536) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "user_id"
@@ -182,6 +198,8 @@ ActiveRecord::Schema.define(version: 20151013134536) do
   end
 
   add_index "pricing_zonals", ["category_id", "zonal_id"], name: "index_pricing_zonals_on_category_id_and_zonal_id", using: :btree
+  add_index "pricing_zonals", ["category_id"], name: "fk__pricing_zonals_category_id", using: :btree
+  add_index "pricing_zonals", ["zonal_id"], name: "fk__pricing_zonals_zonal_id", using: :btree
 
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id"
@@ -270,5 +288,7 @@ ActiveRecord::Schema.define(version: 20151013134536) do
   add_foreign_key "pick_ups", "users", name: "fk_pick_ups_user_id"
   add_foreign_key "pickup_users", "pick_ups", name: "fk_pickup_users_pick_up_id"
   add_foreign_key "pickup_users", "users", name: "fk_pickup_users_user_id"
+  add_foreign_key "pricing_zonals", "categories", name: "fk_pricing_zonals_category_id"
+  add_foreign_key "pricing_zonals", "zonals", name: "fk_pricing_zonals_zonal_id"
   add_foreign_key "rates", "users", column: "rater_id", name: "fk_rates_rater_id"
 end
