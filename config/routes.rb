@@ -23,11 +23,12 @@ Rails.application.routes.draw do
       post '/device/register', to: 'profile#device'
       post '/rates', to: 'rates#create'
     end
-    
+
     get '/user/categories', to: 'categories#index'
     get '/user/time_slots', to: 'time_slots#index'
     post '/user/friends/invite', to: 'users#invite'
     post '/user/signup', to: 'users#create'
+    post '/user/resetpwd', to: 'authentication#resetpwd'
     post '/user/signin', to: 'authentication#create'
     get '/user/logout', to: 'authentication#logout'
   end
@@ -67,6 +68,7 @@ Rails.application.routes.draw do
     post '/picker/signin', to: 'authentication#create'
     get '/picker/logout', to: 'authentication#logout'
     post '/picker/friends/invite', to: 'users#invite'
+    post '/picker/resetpwd', to: 'authentication#resetpwd'
 
   end
 

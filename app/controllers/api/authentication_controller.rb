@@ -1,6 +1,6 @@
 class Api::AuthenticationController < Api::ApiController
-  skip_before_action :authenticate_user_from_token!, only: :create
-  skip_before_action :authenticate_user!, only: :create
+  skip_before_action :authenticate_user_from_token!, only: [:create, :resetpwd]
+  skip_before_action :authenticate_user!, only: [:create, :resetpwd]
 
   def create
     if user = authenticated_user
@@ -19,6 +19,22 @@ class Api::AuthenticationController < Api::ApiController
       @current_user.invalidate_authentication_token!
       @current_user.update(gcm_registration: nil)
       render json: {success: true}
+    end
+  end
+
+  def resetpwd
+    user = User.find_by({
+      phone_number: params[:phone_number].to_s.strip
+    })
+    if user
+      user.password = '1234512345'
+      if user.save
+        render json: {success: true}
+      else
+        render json: {error: {code: 10001, msg: "Could not send password to your number"}}, status: 403
+      end
+    else
+      render json: {error: {code: 10000, msg: "User not registered"}}, status: 403
     end
   end
 
