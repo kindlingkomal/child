@@ -4,7 +4,10 @@ class User::PickupService < BaseService
     pick_up_param = process_pickup_param(params)
     pick_up = current_user.pick_ups.new(pick_up_param)
     pick_up.status = PickUp::STATUSES[:pending]
-    pick_up.save
+    if pick_up.save
+      gcm_service = GcmService.new(current_user)
+      gcm_service.delay.notify_new_pickup(pick_up)
+    end
     pick_up
   end
 
@@ -13,7 +16,10 @@ class User::PickupService < BaseService
     pick_up.canceled_at = Time.now
     pick_up.status = PickUp::STATUSES[:canceled]
     # pick_up.reason = params[:reason]
-    pick_up.save
+    if pick_up.save
+      gcm_service = GcmService.new(current_user)
+      gcm_service.delay.cancel_pickup(pick_up)
+    end
     pick_up
   end
 

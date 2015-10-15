@@ -31,9 +31,10 @@ class Picker::PickupService < BaseService
     pick_up.ragpicker_id = nil
     pick_up.status = PickUp::STATUSES[:pending]
 
-    pick_user.save!
-    pick_up.save
-
+    if pick_user.save! && pick_up.save
+      gcm_service = GcmService.new(current_user)
+      gcm_service.delay.cancel_pickup(pick_up)
+    end
     pick_user
   end
 
@@ -57,7 +58,10 @@ class Picker::PickupService < BaseService
     pick_up.status = PickUp::STATUSES[:accepted]
 
     pick_user.save!
-    pick_up.save
+    if pick_user.save! && pick_up.save
+      gcm_service = GcmService.new(current_user)
+      gcm_service.delay.accept_pickup(pick_up)
+    end
     pick_up
   end
 
@@ -79,8 +83,10 @@ class Picker::PickupService < BaseService
         line_item.quantity = item[:quantity]
       end
     end
-    pick_up.update(proceeded_at: Time.now.utc, total: pick_up.line_items.sum(:item_total), status: PickUp::STATUSES[:done])
-
+    if pick_up.update(proceeded_at: Time.now.utc, total: pick_up.line_items.sum(:item_total), status: PickUp::STATUSES[:done])
+      gcm_service = GcmService.new(current_user)
+      gcm_service.delay.proceed_pickup(pick_up)
+    end
     pick_up
   end
 
