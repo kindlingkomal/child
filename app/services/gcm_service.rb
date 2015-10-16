@@ -15,6 +15,7 @@ class GcmService
       delay_while_idle: true,
       time_to_live: 100
     })
+    Rails.logger.debug(options.inspect)
     response = @gcm.send(reg_ids, options)
     # Rails.logger.info(response)
     Rails.logger.info(response.inspect)
