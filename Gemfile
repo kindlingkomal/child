@@ -20,6 +20,7 @@ gem 'arel-helpers'
 gem 'geocoder'
 gem 'ratyrate'
 gem 'haml-rails'
+gem "rest-client"
 group :staging, :production do
   gem 'rails_12factor'
 end

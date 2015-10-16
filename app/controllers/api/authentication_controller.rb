@@ -27,6 +27,7 @@ class Api::AuthenticationController < Api::ApiController
       phone_number: params[:phone_number].to_s.strip
     })
     if user
+      password = Time.now.to_i.to_s(16)
       user.password = '1234512345'
       if user.save
         render json: {success: true}
