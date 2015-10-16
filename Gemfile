@@ -5,7 +5,7 @@ ruby "2.2.0"
 gem 'activeadmin', '1.0.0.pre2' #, github: 'activeadmin'
 # gem 'schema_plus'
 gem 'delayed_job_active_record'
-gem 'active_model_serializers', '0.10.0.rc2' #:github => 'rails-api/active_model_serializers'
+gem 'active_model_serializers', '0.10.0.rc3' #:github => 'rails-api/active_model_serializers'
 gem 'rails', '4.2.4'
 gem 'puma'
 gem 'pg'
