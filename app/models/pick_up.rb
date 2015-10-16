@@ -14,7 +14,7 @@ class PickUp < ActiveRecord::Base
   validates :user, presence: {if: Proc.new { |pk| !pk.manual?}}
 
   belongs_to :user
-  belongs_to :ragpicker
+  # belongs_to :ragpicker
   belongs_to :customer
   has_many :pickup_users, dependent: :destroy
   has_many :accepted_users, dependent: :destroy
