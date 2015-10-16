@@ -44,7 +44,7 @@ class GcmService
       },
       collapse_key: 'demo1',
     }
-    reg_ids = User.where("gcm_registration IS NOT NULL").pluck('gcm_registration')
+    reg_ids = User.ragpickers.where("gcm_registration IS NOT NULL").pluck('gcm_registration')
     push_to_registration_ids(reg_ids, options)
   end
 
