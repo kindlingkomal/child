@@ -94,7 +94,6 @@ class Picker::PickupService < BaseService
   def add_customer(params)
     customer_params = params.require(:customer).permit(:name, :phone_number)
     pick_up_params = params.require(:pick_up).permit(:start_time, :end_time)
-
     customer = Customer.find_or_create_by(
       name: customer_params[:name].try(:strip),
       phone_number: customer_params[:phone_number].try(:strip)
@@ -108,6 +107,8 @@ class Picker::PickupService < BaseService
       status: PickUp::STATUSES[:done]
     })
     return nil unless customer
+    pick_up_params[:start_time] = 1.hours.ago
+    pick_up_params[:end_time] = Time.now
     pick_up = customer.pick_ups.create(pick_up_params)
     return pick_up if pick_up.errors.any?
     cat_ids = []
