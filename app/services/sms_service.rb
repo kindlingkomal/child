@@ -10,7 +10,7 @@ class SmsService
     json['data'].nil? ? false : json['data']['0']['status'] == 'AWAITED-DLR'
   end
 
-  def self.send_otp(to, otp, country='IN')
+  def self.send_otp(to, otp)
     message = "Your STV password: #{otp}"
     sms = send(to, message)
     status(sms)

@@ -28,8 +28,8 @@ class Api::AuthenticationController < Api::ApiController
     })
     if user
       password = Time.now.to_i.to_s(16)
-      user.password = '1234512345'
-      if user.save
+      user.password = '1234512345' # password
+      if user.save #&& SmsService.send_otp(user.phone_number, password)
         render json: {success: true}
       else
         render json: {error: {code: 10001, msg: "Could not send password to your number"}}, status: 403
