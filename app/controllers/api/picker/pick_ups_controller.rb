@@ -54,7 +54,7 @@ class Api::Picker::PickUpsController < Api::PickerController
   end
 
   def canceled
-    in_ids = PickupUser.where(status: PickupUser::STATUSES[:canceled]).where(user_id: current_user.id).pluck('id')
+    in_ids = PickupUser.where(status: [PickupUser::STATUSES[:canceled], PickupUser::STATUSES[:rejected]]).where(user_id: current_user.id).pluck('id')
     @pick_ups = PickUp.where(id: in_ids)
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
     render  json: @pick_ups,
