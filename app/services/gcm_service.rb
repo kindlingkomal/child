@@ -34,7 +34,7 @@ class GcmService
         },
         user: {
           id: pickup.user_id,
-          name: pickup.user.name,
+          name: pickup.user.full_name,
           gender: pickup.user.gender
         }
       },
@@ -90,7 +90,7 @@ private
         },
         user: {
           id: @current_user.id,
-          name: @current_user.name,
+          name: @current_user.full_name,
         }
       },
       collapse_key: 'demo1',
