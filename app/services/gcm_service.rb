@@ -2,7 +2,7 @@ require 'gcm'
 class GcmService
   def initialize user
     @current_user = user
-    @gcm = GCM.new(ENV['GCM_SECRET_KEY']||'AIzaSyCDcjxhc_7sTLGC2u4oRUwvDxsgecyhjpk')
+    @gcm = GCM.new(ENV['GCM_SECRET_KEY'])#||'AIzaSyCDcjxhc_7sTLGC2u4oRUwvDxsgecyhjpk')
   end
 
   def push_to_registration_ids(reg_ids, opts={})
