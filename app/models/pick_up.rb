@@ -14,7 +14,7 @@ class PickUp < ActiveRecord::Base
   validates :user, presence: {if: Proc.new { |pk| !pk.manual?}}
 
   belongs_to :user
-  # belongs_to :ragpicker
+  belongs_to :ragpicker
   belongs_to :customer
   has_many :pickup_users, dependent: :destroy
   has_many :accepted_users, dependent: :destroy
@@ -44,9 +44,9 @@ class PickUp < ActiveRecord::Base
     proceeded_at.nil? && canceled_at.nil? && start_time.utc > Time.now.utc
   end
 
-  def ragpicker
-    accepted_users.order("accepted_at DESC").first.user rescue nil
-  end
+  # def ragpicker
+  #   accepted_users.order("accepted_at DESC").first.user rescue nil
+  # end
 
   def pick_time
     "#{start_time.strftime('%I:%M %p')} - #{end_time.strftime('%I:%M %p')}" rescue nil
