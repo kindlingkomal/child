@@ -54,15 +54,16 @@ class Api::Picker::PickUpsController < Api::PickerController
   end
 
   def canceled
-    in_ids = PickupUser.where(status: [PickupUser::STATUSES[:canceled], PickupUser::STATUSES[:rejected]]).where(user_id: current_user.id).pluck('id')
+    in_ids = PickupUser.where(status: [PickupUser::STATUSES[:canceled], PickupUser::STATUSES[:rejected]]).where(user_id: current_user.id).pluck('pick_up_id')
     @pick_ups = PickUp.where(id: in_ids)
     @pick_ups = @pick_ups.page(params[:page]).per(params[:per_page] || 10)
     render  json: @pick_ups,
-              each_serializer: ::Picker::PickupSerializer,
+              each_serializer: ::Picker::CanceledPickupSerializer,
               meta: {
                 total_pages: @pick_ups.total_pages,
                 total_pick_ups: @pick_ups.total_count
               },
+              current_user: current_user,
               root: 'pick_ups'
   end
 
