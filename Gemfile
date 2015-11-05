@@ -21,6 +21,7 @@ gem 'geocoder'
 gem 'ratyrate'
 gem 'haml-rails'
 gem "rest-client"
+gem 'twilio-ruby'
 group :staging, :production do
   gem 'rails_12factor'
 end
