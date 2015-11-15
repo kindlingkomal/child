@@ -22,8 +22,8 @@ class GcmService
     response
   end
 
-
-  def notify_new_pickup(pickup)
+  def notify_new_pickup(pickup, reg_ids = nil)
+    return if reg_ids.blank?
     options = {
       data: {
         key: 'pk.new',
@@ -41,7 +41,6 @@ class GcmService
       },
       collapse_key: 'demo1',
     }
-    reg_ids = User.ragpickers.where("gcm_registration IS NOT NULL").pluck('gcm_registration')
     push_to_registration_ids(reg_ids, options)
   end
 

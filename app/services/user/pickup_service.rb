@@ -4,10 +4,8 @@ class User::PickupService < BaseService
     pick_up_param = process_pickup_param(params)
     pick_up = current_user.pick_ups.new(pick_up_param)
     pick_up.status = PickUp::STATUSES[:pending]
-    if pick_up.save
-      gcm_service = GcmService.new(current_user)
-      gcm_service.delay.notify_new_pickup(pick_up)
-    end
+    pick_up.save
+
     pick_up
   end
 

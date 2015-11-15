@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015115819) do
+ActiveRecord::Schema.define(version: 20151114015759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20151015115819) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "fk__active_admin_comments_author_id", using: :btree
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
@@ -124,6 +123,17 @@ ActiveRecord::Schema.define(version: 20151015115819) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "notifying_pickups", force: :cascade do |t|
+    t.integer  "pick_up_id"
+    t.integer  "ragpicker_id"
+    t.datetime "sent_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "notifying_pickups", ["pick_up_id"], name: "index_notifying_pickups_on_pick_up_id", using: :btree
+  add_index "notifying_pickups", ["ragpicker_id"], name: "index_notifying_pickups_on_ragpicker_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -282,6 +292,8 @@ ActiveRecord::Schema.define(version: 20151015115819) do
   add_foreign_key "invitations", "users", name: "fk_invitations_user_id"
   add_foreign_key "line_items", "categories", name: "fk_line_items_category_id"
   add_foreign_key "line_items", "pick_ups", name: "fk_line_items_pick_up_id"
+  add_foreign_key "notifying_pickups", "pick_ups"
+  add_foreign_key "notifying_pickups", "users", column: "ragpicker_id"
   add_foreign_key "pick_ups", "customers", name: "fk_pick_ups_customer_id"
   add_foreign_key "pick_ups", "users", name: "fk_pick_ups_user_id"
   add_foreign_key "pickup_users", "pick_ups", name: "fk_pickup_users_pick_up_id"

@@ -36,7 +36,15 @@ ActiveAdmin.register PickUp do
 
     # column :total
     # column :customer_id
-    actions
+
+    actions do |pick_up|
+      if pick_up.status == PickUp::STATUSES[:pending] && pick_up.start_time.utc > Time.now.utc
+        except_ids = NotifyingPickup.where(pick_up_id: pick_up.id).pluck(:ragpicker_id).uniq
+        if User.ragpicker.where("gcm_registration IS NOT NULL").where.not(id: except_ids).count > 0
+          link_to 'Process', admin_notifying_ragpickers_path(pickup_id: pick_up.id), class: 'member_link'
+        end
+      end
+    end
   end
 
   filter :status, as: :select, collection: PickupUser::STATUSES.values
