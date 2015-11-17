@@ -9,7 +9,7 @@ body, h1,h2,h3,h4,h5,h6 {
 }
 
 .topnav {
-    font-size: 14px; 
+    font-size: 14px;
 }
 
 .lead {
@@ -22,7 +22,7 @@ body, h1,h2,h3,h4,h5,h6 {
     padding-bottom: 70px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/gb.png) no-repeat center center;
+    background: asset_url('gb.png') no-repeat center center;
     background-size: cover;
     height: 620px;
 }
@@ -87,8 +87,8 @@ body, h1,h2,h3,h4,h5,h6 {
     margin-top: 30px;
 }
 .pad2{
-    text-align:center; 
-    padding-top:100px; 
+    text-align:center;
+    padding-top:100px;
     padding-bottom:100px;
 }
 .pad2 h4{
@@ -125,11 +125,11 @@ body, h1,h2,h3,h4,h5,h6 {
         width: 20%;
         float: left;
     }
-}    
+}
 .bg-offer{
     padding-top: 50px;
     padding-bottom: 50px;
-    background-color:#ebebeb; 
+    background-color:#ebebeb;
     text-align:center;
 }
 .bg-rate{
@@ -175,7 +175,7 @@ body, h1,h2,h3,h4,h5,h6 {
     word-spacing: 1px;
     letter-spacing: 1px;
 }
-    
+
 
 #quote-carousel .carousel-indicators {
     right: 50%;
@@ -220,7 +220,7 @@ body, h1,h2,h3,h4,h5,h6 {
     font-size: 21px;
     margin-bottom: 65px;
     margin-top: 22px;
-}  
+}
 .fot{
     background-color: black;
      color: #fff;
@@ -283,7 +283,7 @@ body, h1,h2,h3,h4,h5,h6 {
 
 /* List */
 .lstpad{
-     padding-top:100px; 
+     padding-top:100px;
     padding-bottom:50px;
     height: 100%
 }
@@ -302,8 +302,8 @@ body, h1,h2,h3,h4,h5,h6 {
     font-size: 16px;
     box-shadow: 0px 0px 4px -1px black;
 }
-.table-list th, .table td { 
-    border-top: none !important; 
+.table-list th, .table td {
+    border-top: none !important;
     border-bottom: 1px solid #eee;
 }
 .table-list > tbody > tr > td:nth-child(1){
@@ -338,7 +338,7 @@ body, h1,h2,h3,h4,h5,h6 {
     margin-right: 5px;
 }
 .profile-dropdown > li:first-child > a > span > img{
-    width:50px; 
+    width:50px;
     height:50px;
 }
 /* List 2 */
@@ -356,7 +356,7 @@ body, h1,h2,h3,h4,h5,h6 {
     width: 100%;
     background-color: #eee;
     margin-left: 0px;
-   
+
 }
 .list-nav > ul > li{
     height: 40px;
@@ -376,15 +376,15 @@ color: #010101;
     color: #010101;
     font-weight: 400;
 }
-    
+
 .lsrmg{
-     margin-left: 10%; 
+     margin-left: 10%;
     margin-right: 10%;
 }
 .btn-sl{
-    background: black; 
-    width: 100%; 
-    margin-top: 25px; 
+    background: black;
+    width: 100%;
+    margin-top: 25px;
     border: none;
     border-radius: 0;
     height: 40px;
@@ -401,8 +401,8 @@ color: #010101;
     text-align: center;
 }
 .pktxt > a {
-    background: black; 
-    width: 50%; 
+    background: black;
+    width: 50%;
    padding-top: 10px;
     border: none;
     border-radius: 0;
@@ -415,13 +415,13 @@ color: #010101;
 }
 
 .radio {
-    padding-left: 20px; 
+    padding-left: 20px;
 }
 .radio label {
     display: inline-block;
     vertical-align: middle;
     position: relative;
-    padding-left: 5px; 
+    padding-left: 5px;
 }
 .radio label::before {
     content: "";
@@ -436,7 +436,7 @@ color: #010101;
     background-color: #fff;
     -webkit-transition: border 0.15s ease-in-out;
     -o-transition: border 0.15s ease-in-out;
-    transition: border 0.15s ease-in-out; 
+    transition: border 0.15s ease-in-out;
 }
 .radio label::after {
     display: inline-block;
@@ -457,11 +457,11 @@ color: #010101;
     -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
     -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
     -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
-    transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33); 
+    transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
 }
 .radio input[type="radio"] {
     opacity: 0;
-    z-index: 1; 
+    z-index: 1;
 }
 .radio input[type="radio"]:focus + label::before {
     outline: thin dotted;
@@ -471,16 +471,16 @@ color: #010101;
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
-    transform: scale(1, 1); 
+    transform: scale(1, 1);
 }
 .radio input[type="radio"]:disabled + label {
-    opacity: 0.65; 
+    opacity: 0.65;
 }
 .radio input[type="radio"]:disabled + label::before {
-    cursor: not-allowed; 
+    cursor: not-allowed;
 }
 .radio.radio-inline {
-    margin-top: 0; 
+    margin-top: 0;
 }
 .clrbk{
     background-color: black;
@@ -527,8 +527,8 @@ color: #010101;
 .hppad{
     padding-top:100px;
     padding-bottom: 50px;
-    padding-left:10%; 
-    padding-right:10%; 
+    padding-left:10%;
+    padding-right:10%;
     min-height: 650px;
 }
 .hppad > div{
@@ -538,7 +538,7 @@ color: #010101;
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
 .hpbk{
-    background-color:black; 
+    background-color:black;
     color:#fff;
     text-align:center;
     height: 40px;
@@ -592,7 +592,7 @@ color: #010101;
     border: none;
     border-bottom: 2px solid white;
 }
-    
+
 .intxt > div> div:first-child{
     border-bottom: 1px solid #EBEBEB;
 }
@@ -611,9 +611,9 @@ color: #010101;
 }
 /* summary */
 .sumpad{
-    padding-top:100px; 
-    padding-left:25%; 
-    padding-right:25%; 
+    padding-top:100px;
+    padding-left:25%;
+    padding-right:25%;
     min-height:650px;
 }
 .sumbrd{
@@ -683,7 +683,7 @@ color: #010101;
     font-weight: 100;
 }
 .inpw{
-    background: url('../img/password.png') no-repeat right;
+    background: asset-url('password.png') no-repeat right;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
@@ -708,13 +708,13 @@ color: #010101;
     height: 40px;
     font-weight: 100;
 }
-    
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0; 
+    margin: 0;
 }
 .brd0{
     border-radius: 0;
@@ -729,7 +729,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 25px;
 }
 .txtctr > form > div {
-    margin-left: 10%; 
+    margin-left: 10%;
     margin-right: 10%;
 }
 .txtctr > form > div > div > a > img{
@@ -760,7 +760,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight:100;
 }
 .popfot > div > a{
-    font-weight:400; 
+    font-weight:400;
     color:black;
 }
 .close{
@@ -794,16 +794,16 @@ input[type=number]::-webkit-outer-spin-button {
         padding-bottom: 20px;
     }
     .bg-rate{
-      margin-top: -59px;  
+      margin-top: -59px;
     }
     .bg-rate > h3{
         font-size: 16px;
     }
     .table-list > tbody > tr > td:nth-child(1){
-        padding-top: 10px; 
+        padding-top: 10px;
         width: 100px;
         height: 100%;
-        padding-bottom: 10px; 
+        padding-bottom: 10px;
     }
     .table-list> tbody > tr > td:nth-child(2){
         padding-left: 10px;
@@ -815,7 +815,7 @@ input[type=number]::-webkit-outer-spin-button {
         font-size: 15px;
     }
     .table-list> tbody > tr > td:nth-child(4){
-        padding-top: 20px;   
+        padding-top: 20px;
     }
     .table-list> tbody > tr > td:nth-child(4) > a > img{
         width: 18px;
@@ -825,7 +825,7 @@ input[type=number]::-webkit-outer-spin-button {
         padding-right: 15px;
     }
     .pktxt > a {
-        width: 100%;   
+        width: 100%;
     }
     .pflpad{
         padding-left: 0px;
@@ -860,13 +860,13 @@ input[type=number]::-webkit-outer-spin-button {
     }
     .sumtxt > a{
         width: 100%;
-        margin-bottom:0px; 
+        margin-bottom:0px;
+    }
 }
     .sumpad{
         padding-left: 30px;
         padding-right: 30px;
 }
-    .list-nav > ul > li{
-    
-    width: 32%;
-    }
+.list-nav > ul > li{
+  width: 32%;
+}

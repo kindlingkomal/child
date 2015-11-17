@@ -1,5 +1,5 @@
 .inph{
-    background: url(../img/phone-icon.png) no-repeat right;
+    background: asset-url('phone-icon.png') no-repeat right;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
@@ -8,7 +8,7 @@
     font-weight: 100;
 }
 .infln{
-    background: url(../img/full-name.png) no-repeat right;
+    background: asset-url('full-name.png') no-repeat right;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
@@ -17,7 +17,7 @@
     font-weight: 100;
 }
 .inpw{
-    background: url('../img/password.png') no-repeat right;
+    background: asset-url('password.png') no-repeat right;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
@@ -26,7 +26,7 @@
     font-weight: 100;
 }
 .inad{
-     background: url('../img/location.png') no-repeat right;
+     background: asset-url('location.png') no-repeat right;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
@@ -42,13 +42,13 @@
     height: 40px;
     font-weight: 100;
 }
-    
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0; 
+    margin: 0;
 }
 .brd0{
     border-radius: 0;
@@ -63,7 +63,7 @@ border: 0;
     margin-top: 25px;
 }
 .txtctr > form > div {
-     margin-left: 10%; 
+     margin-left: 10%;
     margin-right: 10%;
 }
 .txtctr > form > div > div > a > img{
@@ -94,7 +94,7 @@ border: 0;
     font-weight:100;
 }
 .popfot > div > a{
-    font-weight:400; 
+    font-weight:400;
     color:black;
 }
 .close{

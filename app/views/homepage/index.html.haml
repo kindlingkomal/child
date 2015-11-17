@@ -19,7 +19,7 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand.topnav{:href => "#"}
-        %img{:alt => "STV-LOGO", :src => "logo-stv.png"}/
+        = image_tag 'logo-stv.png', :alt => "STV-LOGO"
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
@@ -57,7 +57,7 @@
               %a{:href => "#"}= image_tag "istore.png"
             %li
               %a{:href => "#"}
-                %img{:alt => "play-store", :src => "gplay.png"}/
+                = image_tag 'gplay.png', :alt => "play-store"
 / Header
 / How It works
 .conatiner
@@ -65,16 +65,16 @@
     .row
       .col-md-4
         .row
-          %img{:alt => "pickup", :src => "pickup.png"}
-            %h4 Schedule Pickup
+          = image_tag 'pickup.png'
+          %h4 Schedule Pickup
       .col-md-4
         .row
-          %img{:alt => "truck", :src => "truck.png"}
-            %h4{:style => " "} Get all your waste paper cloths and otherwaste items picked up
+          = image_tag 'truck.png'
+          %h4{:style => " "} Get all your waste paper cloths and otherwaste items picked up
       .col-md-4
         .row
-          %img{:alt => "money", :src => "money.png"}
-            %h4 Get Money in exchange!
+          = image_tag 'money.png'
+          %h4 Get Money in exchange!
 / /.How It works
 / Rate Card
 .col-md-12.bg-offer
@@ -82,34 +82,34 @@
     .row
       .col-md-5ths.col-xs-6
         %a{:href => "#"}
-          %img.img-responsive{:alt => "clothes", :src => "cloths.png", :style => "width:100%;"}
-            .bg-rate
-              %h3 Cloths
-              %h5 Rs 15/kg
+          = image_tag 'cloths.png', :alt => "clothes", :style => "width:100%;", class: 'img-responsive'
+          .bg-rate
+            %h3 Cloths
+            %h5 Rs 15/kg
       .col-md-5ths.col-xs-6.mob-pad
         %a{:href => "#"}
-          %img.img-responsive{:alt => "bottles", :src => "bottles.png", :style => "width:100%;"}
-            .bg-rate
-              %h3 Glass Bottels
-              %h5 Rs 50/kg
+          = image_tag 'bottles.png', :alt => "bottles", :style => "width:100%;", class: 'img-responsive'
+          .bg-rate
+            %h3 Glass Bottels
+            %h5 Rs 50/kg
       .col-md-5ths.col-xs-6.mob-pad
         %a{:href => "#"}
-          %img.img-responsive{:alt => "papper", :src => "papper.png", :style => "width:100%;"}
-            .bg-rate
-              %h3 News Paper
-              %h5 Rs 50/kg
+          = image_tag 'papper.png', :alt => "papper", :style => "width:100%;", class: 'img-responsive'
+          .bg-rate
+            %h3 News Paper
+            %h5 Rs 50/kg
       .col-md-5ths.col-xs-6.mob-pad
         %a{:href => "#"}
-          %img.img-responsive{:alt => "books", :src => "books.png", :style => "width:100%;"}
-            .bg-rate
-              %h3 Old Books
-              %h5 Rs 10/kg
+          = image_tag 'books.png', :alt => "books", :style => "width:100%;", class: 'img-responsive'
+          .bg-rate
+            %h3 Old Books
+            %h5 Rs 10/kg
       .col-md-5ths.col-xs-6.mob-pad
         %a{:href => "#"}
-          %img.img-responsive{:alt => "iron", :src => "iron.png", :style => "width:100%;"}
-            .bg-rate
-              %h3 Steel
-              %h5 Rs 60/kg
+          = image_tag 'iron.png', :alt => "iron", :style => "width:100%;", class: 'img-responsive'
+          .bg-rate
+            %h3 Steel
+            %h5 Rs 60/kg
     .row
       %a.btn.rtbtn{:href => "#"}
         View Rate Card
@@ -128,7 +128,7 @@
               .row
                 .col-md-12.crtxt
                   .row
-                    %img{:alt => "slide1", :src => "aviator.png"}
+                    = image_tag 'aviator.png', :alt => "slide1"
                   %p Andrea Pierce
                   %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
             / Quote 2
@@ -136,7 +136,7 @@
               .row
                 .col-md-12.crtxt
                   .row
-                    %img{:alt => "slider2", :src => "aviator.png"}
+                    = image_tag 'aviator.png', :alt => "slide2"
                   %p Andrea Pierce
                   %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
       / Slider Indicators
@@ -144,9 +144,9 @@
         #quote-carousel.slide{"data-ride" => "carousel"}
           %ol.carousel-indicators.caroselimgs
             %li{"data-slide-to" => "1", "data-target" => "#quote-carousel"}
-              %img.img-responsive{:alt => "indiactor1", :src => "carosol-indicator1.png"}
+              = image_tag 'carosol-indicator1.png', class: 'img-responsive'
             %li{"data-slide-to" => "2", "data-target" => "#quote-carousel"}
-              %img.img-responsive{:alt => "indicator2", :src => "carosol-indicator2.png"}
+              = image_tag 'carosol-indicator2.png', class: 'img-responsive'
 / / Slider
 / Footer
 %footer.fot
@@ -156,13 +156,13 @@
         %ul.list-inline
           %li
             %a{:href => "#"}
-              %img{:alt => "linkedin", :src => "linkedin.png"}/
+              = image_tag 'linkedin.png'
           %li
             %a{:href => "#"}
-              %img{:alt => "twitter", :src => "twitter.png"}/
+              = image_tag 'twitter.png'
           %li
             %a{:href => "#"}
-              %img{:alt => "facebook", :src => "fb.png"}/
+              = image_tag 'fb.png', :alt => "facebook"
           %li |
           %li
             %a{:href => "#"} Terms & Conditions
@@ -174,38 +174,34 @@
       .modal-header
         %a.close{"aria-label" => "Close", "data-dismiss" => "modal", :href => "#", :type => "button"} &times;
       .modal-body.txtctr
-        %img{:alt => "STV-logo", :src => "logo-stv.png"}
-          / Log-in
-          %form.login
-            .form-group
-              %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
-                %input.inpw{:placeholder => "PASSWORD", :type => "password"}
-                  %a.pull-right.frgpw{:href => "#"} Forget Password?
-                  %a.btn.popbtn{:href => "#"} LOG IN
-          / Sign up
-          %form.signup
-            .form-group
-              .row
-                %a{:href => "#"}
-                  %img{:src => "pro-pic.png", :style => "profile-pic"}/
-              %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
-                %input.inph{:placeholder => "PHONE NUMBER", :type => "number"}
-                  %input.inpw{:placeholder => "PASSWORD", :type => "password"}
-                    %a.btn.popbtn{:href => "#", :style => ""} SIGN UP
-          .modal-footer.popfot
-            .signup
-              %span Already a User ?
-              %a.log{:href => "#"} Login
-              %span here
-            .login
-              %span New User ?
-              %a.sign{:href => "#"} Sign in
-              %span here
-/ jQuery
-%script{:src => "js/jquery.js"}
-/ Bootstrap Core JavaScript
-%script{:src => "js/bootstrap.min.js"}
-/ Signin and login togle script
+        = image_tag 'logo-stv.png', :alt => "STV-logo"
+        / Log-in
+        %form.login
+          .form-group
+            %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
+            %input.inpw{:placeholder => "PASSWORD", :type => "password"}
+            %a.pull-right.frgpw{:href => "#"} Forget Password?
+            %a.btn.popbtn{:href => "#"} LOG IN
+        / Sign up
+        %form.signup
+          .form-group
+            .row
+              %a{:href => "#"}
+                = image_tag 'pro-pic.png', :alt => "profile-pic"
+            %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
+            %input.inph{:placeholder => "PHONE NUMBER", :type => "number"}
+            %input.inpw{:placeholder => "PASSWORD", :type => "password"}
+            %a.btn.popbtn{:href => "#", :style => ""} SIGN UP
+        .modal-footer.popfot
+          .signup
+            %span Already a User ?
+            %a.log{:href => "#"} Login
+            %span here
+          .login
+            %span New User ?
+            %a.sign{:href => "#"} Sign up
+            %span here
+
 :javascript
   $(document).ready(function(){
       $(".signup").hide();
