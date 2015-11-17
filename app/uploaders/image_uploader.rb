@@ -22,7 +22,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def scale(width, height)
-    convert 'jpg'
+    # convert 'jpg'
     resize_to_fill(width, height)
   end
 
