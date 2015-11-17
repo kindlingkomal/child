@@ -4,7 +4,7 @@ class CreatePickUps < ActiveRecord::Migration
       t.string :pincode
       t.string :city
       t.string :address
-      t.references :parent, references: :pick_ups, index: true, foreign_key: true
+      t.references :parent, index: true
       t.integer :subscription
       t.datetime :start_time
       t.datetime :end_time
@@ -15,5 +15,6 @@ class CreatePickUps < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_foreign_key :pick_ups, :pick_ups, column: :parent_id
   end
 end
