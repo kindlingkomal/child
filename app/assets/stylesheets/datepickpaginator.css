@@ -1,0 +1,45 @@
+.col-md-1,.col-md-6,.col-md-2{
+                padding:0px;
+                margin:0px;
+            }
+            .time > div {
+                border: 1px solid lightblue;
+                height:100px;
+            }
+            #dateslider{
+                display: block;
+                width:100%;
+            }
+            div.dateInSlider {
+                float: left;
+                padding:10px;
+                height: 70px;
+                border:none;
+                background: #f2f2f2;
+            }
+            div.monthDivider{
+                padding:5px 10px;
+                border: none;
+                float: left;
+                border-left: 1px solid #ccc ;
+                border-right: 1px solid #ccc ;
+                background: #f2f2f2;
+                height: 70px;
+                top:0px;
+                color:#ccc;
+            }
+            .clearBoth{
+                clear: both;
+            }
+            .dateofMonth{
+                font-size: 20px;
+                font-weight: 600;
+            }
+            .weekday{
+                font-size:15px;
+                font-weight: 400;
+                color:#ccc;
+            }
+			.prev_date_slider{
+				opacity:0.6;
+			}

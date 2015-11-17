@@ -1,0 +1,116 @@
+.inph{
+    background: url(../img/phone-icon.png) no-repeat right;
+    margin-top: 25px;
+    border: none;
+    border-bottom: 1px solid #ABA9A9;
+    width: 100%;
+    height: 40px;
+    font-weight: 100;
+}
+.infln{
+    background: url(../img/full-name.png) no-repeat right;
+    margin-top: 25px;
+    border: none;
+    border-bottom: 1px solid #ABA9A9;
+    width: 100%;
+    height: 40px;
+    font-weight: 100;
+}
+.inpw{
+    background: url('../img/password.png') no-repeat right;
+    margin-top: 25px;
+    border: none;
+    border-bottom: 1px solid #ABA9A9;
+    width: 100%;
+    height: 40px;
+    font-weight: 100;
+}
+.inad{
+     background: url('../img/location.png') no-repeat right;
+    margin-top: 25px;
+    border: none;
+    border-bottom: 1px solid #ABA9A9;
+    width: 100%;
+    height: 60px;
+    font-weight: 100;
+}
+.inad1{
+     margin-top: 25px;
+    border: none;
+    border-bottom: 1px solid #ABA9A9;
+    width: 100%;
+    height: 40px;
+    font-weight: 100;
+}
+    
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+.brd0{
+    border-radius: 0;
+}
+.modal-header{
+border: 0;
+}
+.txtctr{
+    text-align: center;
+}
+.txtctr > img{
+    margin-top: 25px;
+}
+.txtctr > form > div {
+     margin-left: 10%; 
+    margin-right: 10%;
+}
+.txtctr > form > div > div > a > img{
+    margin-top: 25px;
+}
+.popbtn{
+    background: black;
+    width: 100%;
+    margin-top: 25px;
+    border: none;
+    border-radius: 0;
+    height: 40px;
+    color: #fff;
+    padding-top: 10px;
+}
+.frgpw{
+    color: #909090;;
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 13px;
+}
+.popfot{
+    padding-top: 0;
+    border: none;
+    text-align: center;
+}
+.popfot > div > span{
+    font-weight:100;
+}
+.popfot > div > a{
+    font-weight:400; 
+    color:black;
+}
+.close{
+    opacity: 1;
+    color: #010101;
+}
+.txtctr > form > div > ul{
+    margin-top: 20px;
+}
+.txtctr > form > a{
+   background: black;
+    width: 82%;
+    margin-top: 25px;
+    border: none;
+    border-radius: 0;
+    height: 40px;
+    color: #fff;
+    padding-top: 10px;
+}

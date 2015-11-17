@@ -5,4 +5,8 @@ class PagesController < ApplicationController
   def ragpicker
     render 'pages/ragpicker/ragpicker'
   end
+
+  def home
+  end  
+
 end
