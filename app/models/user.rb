@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   enum gender: [:male, :female]
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => {phone_number: true, login: false}
   ratyrate_rateable 'customer', 'ragpicker' #, 'experience'
   ratyrate_rater
 

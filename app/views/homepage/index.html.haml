@@ -32,7 +32,11 @@
         %li
           %a{:href => "#"} Contact Us
         %li
-          %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN
+          - if current_user
+            = link_to 'SIGN OUT', destroy_user_session_path, method: :delete, class: 'btn'
+          - else
+            %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN 
+
     / /.navbar-collapse
 / /.Navigation
 / Header
@@ -176,22 +180,19 @@
       .modal-body.txtctr
         = image_tag 'logo-stv.png', :alt => "STV-logo"
         / Log-in
-        %form.login
+        = form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'login'}) do |f|
           .form-group
-            %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
-            %input.inpw{:placeholder => "PASSWORD", :type => "password"}
+            = f.text_field :phone_number, class: "infln", placeholder: "PHONE NUMBER"
+            = f.password_field :password, class: "inpw", placeholder: "PASSWORD"
             %a.pull-right.frgpw{:href => "#"} Forget Password?
-            %a.btn.popbtn{:href => "#"} LOG IN
-        / Sign up
-        %form.signup
+            = f.submit 'LOG IN', class: "btn popbtn"        
+        / / Sign up
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'signup'}) do |f|
           .form-group
-            .row
-              %a{:href => "#"}
-                = image_tag 'pro-pic.png', :alt => "profile-pic"
-            %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
-            %input.inph{:placeholder => "PHONE NUMBER", :type => "number"}
-            %input.inpw{:placeholder => "PASSWORD", :type => "password"}
-            %a.btn.popbtn{:href => "#", :style => ""} SIGN UP
+            = f.text_field :full_name, class: "infln", placeholder: "FULL NAME"
+            = f.text_field :phone_number, class: "inph", placeholder: "PHONE NUMBER"
+            = f.password_field :password, class: "inpw", placeholder: "PASSWORD"
+            = f.submit 'SIGN UP', class: "btn popbtn"
         .modal-footer.popfot
           .signup
             %span Already a User ?
