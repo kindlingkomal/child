@@ -1,13 +1,11 @@
 class SessionsController < Devise::SessionsController
   def create
-    self.resource = warden.authenticate!(auth_options)
-    set_flash_message(:notice, :signed_in) if is_flashing_format?
-    sign_in(resource_name, resource)
-    yield resource if block_given?
-    respond_with resource, location: after_sign_in_path_for(resource)
+    redirect_to root_path if !request.xhr?
+    user_params = params[:user]
+    @user = User.find_by_phone_number(user_params[:phone_number])
+    if @user && @user.valid_password?(user_params[:password])
+      flash[:notice] = "Login successfully."
+      sign_in(:user, @user)
+    end
   end
-
-  def new
-    redirect_to root_path
-  end  
 end

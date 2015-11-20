@@ -1,0 +1,6 @@
+= form_for resource, as: resource_name, url: session_path(resource_name),id: 'signinForm' , remote: true, html: {:class => 'login', 'data-parsley-validate'=> true} do |f|
+  .form-group
+    = f.text_field :phone_number, class: "infln", placeholder: "PHONE NUMBER", required: true
+    = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true
+    %a.pull-right.frgpw{:href => "#"} Forget Password?
+    = f.submit 'LOG IN', class: "btn popbtn"        

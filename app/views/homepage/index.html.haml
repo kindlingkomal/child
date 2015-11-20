@@ -36,6 +36,9 @@
             = link_to 'SIGN OUT', destroy_user_session_path, method: :delete, class: 'btn'
           - else
             %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN 
+        %li
+          %p.notice= notice
+          %p.alert= alert    
 
     / /.navbar-collapse
 / /.Navigation
@@ -180,12 +183,7 @@
       .modal-body.txtctr
         = image_tag 'logo-stv.png', :alt => "STV-logo"
         / Log-in
-        = form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'login'}) do |f|
-          .form-group
-            = f.text_field :phone_number, class: "infln", placeholder: "PHONE NUMBER"
-            = f.password_field :password, class: "inpw", placeholder: "PASSWORD"
-            %a.pull-right.frgpw{:href => "#"} Forget Password?
-            = f.submit 'LOG IN', class: "btn popbtn"        
+        = render partial: 'sessions/form', error: nil
         / / Sign up
         = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'signup'}) do |f|
           .form-group
