@@ -1,0 +1,6 @@
+= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'signup'}) do |f|
+  .form-group
+    = f.text_field :full_name, class: "infln", placeholder: "FULL NAME"
+    = f.text_field :phone_number, class: "inph", placeholder: "PHONE NUMBER"
+    = f.password_field :password, class: "inpw", placeholder: "PASSWORD"
+    = f.submit 'SIGN UP', class: "btn popbtn"
