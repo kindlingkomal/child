@@ -31,7 +31,7 @@ class User::PickupService < BaseService
 private
   def process_pickup_param(params)
     pick_up_param = params.require(:pick_up).permit(:address, :city, :pincode, :lat, :lon,
-      :subscription, :start_time, :end_time, category_set: [], category_ids: [])
+      :landmark, :subscription, :start_time, :end_time, category_set: [], category_ids: [])
     pick_up_param[:category_set] = pick_up_param[:category_set].try(:uniq)
     pick_up_param = pick_up_param.merge(start_time: Util.to_time(pick_up_param[:start_time]))
     pick_up_param = pick_up_param.merge(end_time: Util.to_time(pick_up_param[:end_time]))
