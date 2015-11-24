@@ -38,7 +38,6 @@
             %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN 
         %li
           %p.notice= notice
-          %p.alert= alert    
 
     / /.navbar-collapse
 / /.Navigation
@@ -184,10 +183,10 @@
         = image_tag 'logo-stv.png', :alt => "STV-logo"
         / Log-in
         .devise-login-form.txtctr
-          = render partial: 'sessions/form', error: nil
+          = render partial: 'users/sessions/form', error: nil
         / / Sign up
         .devise-logout-form.txtctr
-          = render partial: 'registrations/form'
+          = render partial: 'users/registrations/form'
         .modal-footer.popfot
           .signup
             %span Already a User ?
@@ -209,4 +208,5 @@
           $(".login").show('slow');
           $(".signup").hide('slow');
       });
+      $(".notice" ).fadeOut(4000);
   });

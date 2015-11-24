@@ -1,5 +1,0 @@
-- if !current_user	
-  $("#sign-log .modal-body .devise-login-form").html("#{escape_javascript(render partial: "sessions/form", locals: {resource: (@user||User.new), resource_name: :user, error: "Phone or password is invalid"})}");
-  $('#signinForm').parsley();	  
-- else
-  window.location.reload();

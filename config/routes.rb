@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, :controllers => { registrations: 'registrations', sessions: 'sessions'}
+  devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions'}
   root to: "homepage#index"
   get 'user/doc', to: 'pages#doc'
   get 'ragpicker/doc', to: 'pages#ragpicker'

@@ -1,11 +1,11 @@
-class RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
 
     resource.save
     if resource.persisted?
       if resource.active_for_authentication?
-        flash[:notice] = "Login successfully."
+        flash[:notice] = "Welcome! You have signed up successfully."
         sign_up(resource_name, resource)
       end
     else
