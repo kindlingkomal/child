@@ -52,7 +52,7 @@
             %br>/
             and everyone's envited
           %p
-            This will chang your home,your city and lives of few others.
+            &nbsp;This will chang your home,your city and lives of few others.
             %br/
             Partner with us in our moment towards the making of swacch Bharath
             %br/
@@ -126,9 +126,9 @@
     .row
       .col-md-12
         %h3 What our customer think about us
-      .col-lg-6.col-lg-offset-3{"data-wow-delay" => "0.2s"}
-        #quote-carousel.carosel1.carousel.slide{"data-ride" => "carousel"}
-          .carousel-inner.text-center
+      .col-md-8.col-md-offset-2
+        #myCarousel.carousel.slide.carosel1{"data-ride" => "carousel"}
+          .carousel-inner.text-center{:role => "listbox"}
             / Quote 1
             .item.active
               .row
@@ -139,20 +139,18 @@
                   %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
             / Quote 2
             .item
-              .row
-                .col-md-12.crtxt
-                  .row
-                    = image_tag 'aviator.png', :alt => "slide2"
-                  %p Andrea Pierce
-                  %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
+              .col-md-12.crtxt
+                .row
+                  = image_tag 'aviator.png', :alt => "slide2"
+                %p Andrea Pierce
+                %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
       / Slider Indicators
-      .col-md-8.col-md-offset-4
-        #quote-carousel.slide{"data-ride" => "carousel"}
-          %ol.carousel-indicators.caroselimgs
-            %li{"data-slide-to" => "1", "data-target" => "#quote-carousel"}
-              = image_tag 'carosol-indicator1.png', class: 'img-responsive'
-            %li{"data-slide-to" => "2", "data-target" => "#quote-carousel"}
-              = image_tag 'carosol-indicator2.png', class: 'img-responsive'
+    .col-md-8.col-md-offset-2
+      %ol.carousel-indicators{:style => ""}
+        %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+          = image_tag 'carosol-indicator1.png', alt: 'carsol1'
+        %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+          = image_tag 'carosol-indicator2.png', alt: 'carsol2'   
 / / Slider
 / Footer
 %footer.fot
@@ -169,7 +167,8 @@
           %li
             %a{:href => "#"}
               = image_tag 'fb.png', :alt => "facebook"
-          %li |
+          %li 
+            |
           %li
             %a{:href => "#"} Terms & Conditions
 / / Footer
