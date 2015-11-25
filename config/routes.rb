@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'terms-conditions', to: 'homepage#terms'
   
   get 'account', to: 'account#list'
-
+  get 'account/setting', to: 'account#setting'
 
 
 

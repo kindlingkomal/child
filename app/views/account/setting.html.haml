@@ -1,0 +1,42 @@
+- @page_title = "Profile"
+= render 'account/nav_bar'
+/ Profile Page content
+.container-fluid.edt-pad
+  .row
+    .col-md-2
+      .row
+        = image_tag 'aviator.png', alt: 'user-pic'
+    .col-md-8.pflpad
+      .row
+        .col-md-12
+          %table.table.table-user-information
+            %tbody
+              %tr
+                %td
+                  = image_tag 'profile/name.png', class: 'hidden-xs'
+                %td Andrea Pierce
+              %tr
+                %td
+                  = image_tag 'profile/address.png'
+                %td andrea.pierce@andrea.pierce.com
+              %tr
+                %td
+                  = image_tag 'profile/password.png'
+                %td *************
+              %tr
+                %td
+                  = image_tag 'profile/phone.png'
+                %td +91 893929028476
+              %tr
+                %td
+                  = image_tag 'profile/gender.png'
+                %td Female
+              %tr
+                %td
+                  = image_tag 'profile/address.png'
+                %td #01, 2nd main, 3rd cross 4th sector, Hsr layout bangalore-560102
+    .col-md-2
+      .row
+        %a.btn.edt-btn.fltrer{:href => "#"} EDIT
+/ /.Profile Page content
+= render 'shared/footer'
