@@ -1,0 +1,41 @@
+- @page_title = "List"
+= render 'account/nav_bar'
+/ page Content
+.container.lstpad
+  .row
+    .col-md-12
+      .row
+        %ul.list-inline
+          %li.lstxt List
+          %li.pull-right
+            %a.btn.btncnt{:href => "#"} Continue
+      .row
+        .table-responsive
+          %table.table.table-list
+            %tbody
+              %tr
+                %td
+                  = image_tag 'papper.png', style: "width:100%"
+                %td News Paper
+                %td Rs. 50/kg
+                %td
+                  %a{:href => "#"}
+                    = image_tag 'profile/add.png'
+              %tr
+                %td
+                  = image_tag 'bottles.png', style: 'width:100%'
+                %td News Paper
+                %td Rs. 50/kg
+                %td
+                  %a{:href => "#"}
+                    = image_tag 'profile/add.png'
+              %tr
+                %td
+                  = image_tag 'books.png', style: 'width:100%'
+                %td News Paper
+                %td Rs. 50/kg
+                %td
+                  %a{:href => "#"}
+                    = image_tag 'profile/add.png'
+/ /.page Content
+= render 'shared/footer'
