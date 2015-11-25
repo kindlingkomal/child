@@ -1,0 +1,29 @@
+.container.topnav
+  / Brand and toggle get grouped for better mobile display
+  .navbar-header
+    %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand.topnav{:href => "/"}
+      = image_tag 'logo-stv.png', :alt => "STV-LOGO"
+  / Collect the nav links, forms, and other content for toggling
+  #bs-example-navbar-collapse-1.collapse.navbar-collapse
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        %a{:href => "/"} Home
+      %li
+        %a{:href => "/about-us"} About Us
+      %li
+        %a.scrollto{:name => "pad2"} How it works
+      %li
+        %a{:href => "#"} Contact Us
+      %li
+        - if current_user
+          = link_to 'SIGN OUT', destroy_user_session_path, method: :delete, class: 'btn'
+        - else
+          %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN 
+      %li
+        %p.notice= notice
+    / /.navbar-collapse

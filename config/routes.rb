@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions'}
   root to: "homepage#index"
+  get 'about-us', to: 'homepage#about'
   get 'user/doc', to: 'pages#doc'
   get 'ragpicker/doc', to: 'pages#ragpicker'
 
