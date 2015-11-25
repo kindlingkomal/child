@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions'}
   root to: "homepage#index"
   get 'about-us', to: 'homepage#about'
+  get 'terms-conditions', to: 'homepage#terms'
   get 'user/doc', to: 'pages#doc'
   get 'ragpicker/doc', to: 'pages#ragpicker'
 
