@@ -13,27 +13,14 @@
         .table-responsive
           %table.table.table-list
             %tbody
+            - @categories.each do |category|
               %tr
                 %td
-                  = image_tag 'papper.png', style: "width:100%"
-                %td News Paper
-                %td Rs. 50/kg
-                %td
-                  %a{:href => "#"}
-                    = image_tag 'profile/add.png'
-              %tr
-                %td
-                  = image_tag 'bottles.png', style: 'width:100%'
-                %td News Paper
-                %td Rs. 50/kg
-                %td
-                  %a{:href => "#"}
-                    = image_tag 'profile/add.png'
-              %tr
-                %td
-                  = image_tag 'books.png', style: 'width:100%'
-                %td News Paper
-                %td Rs. 50/kg
+                  = image_tag category.image_url, style: "width:100%"
+                %td 
+                  = category.name
+                %td 
+                  Rs. #{category.price}/kg
                 %td
                   %a{:href => "#"}
                     = image_tag 'profile/add.png'

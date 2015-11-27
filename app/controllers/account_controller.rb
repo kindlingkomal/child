@@ -2,6 +2,10 @@ class AccountController < ApplicationController
   before_action :authenticate_user!
   before_action :get_user, only: [:ratecard, :profile, :edit, :update]		  
 
+  def ratecard
+    @categories = Category.all
+  end
+
   def update
     if !user_params[:current_password].blank? && !user_params[:password].blank?
       @user.update_with_password(user_params)    
