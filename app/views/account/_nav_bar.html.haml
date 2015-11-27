@@ -13,7 +13,7 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         %li
-          %a{:href => "#"} Rate card
+          = link_to 'Rate card', rate_card_path
         %li
           %a{:href => "#"}
             Summary
@@ -22,7 +22,7 @@
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"} Profile
           %ul.dropdown-menu.profile-dropdown
             %li
-              %a{:href => "/account"}
+              %a{:href => "#"}
                 %span>
                   = image_tag 'carosol-indicator1.png', class: 'img-circle'
                 = @user.full_name
@@ -31,13 +31,9 @@
               %a{:href => "#"} Mange Pickups
             %li.divider
             %li
-              = link_to 'Settings', account_setting_path
+              = link_to 'Settings', account_profile_path
         %li
           = link_to 'Sign Out', destroy_user_session_path, method: :delete
         %li  
           %p.notice= notice      
     / /.navbar-collapse
-:javascript
-  $(document).ready(function(){
-      $(".notice" ).fadeOut(4000);
-  });

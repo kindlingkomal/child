@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.2.0"
 
+gem 'simple_form'
 gem 'activeadmin', '1.0.0.pre2' #, github: 'activeadmin'
 # gem 'schema_plus'
 gem 'delayed_job_active_record'

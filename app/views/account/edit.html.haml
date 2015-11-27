@@ -1,0 +1,62 @@
+- @page_title = "Edit Account"
+= render 'account/nav_bar'
+/ page Content
+.container-fluid.edt-pad
+  .row
+    .col-md-2
+      .row
+        = image_tag 'aviator.png', alt: 'user-pic'
+    = simple_form_for @user, url: account_update_path, html: {'data-parsley-validate'=> true}, method: :patch do |f|
+      .col-md-8.pflpad
+        .row
+          .col-md-8
+            %table.table.table-user-information
+              %tbody
+                %tr
+                  %td
+                    = image_tag 'profile/name.png', class: 'hidden-xs'
+                  %td 
+                    = f.input :full_name, label: false
+                %tr
+                  %td
+                    = image_tag 'profile/address.png'
+                  %td 
+                    = f.input :email,label: false
+                %tr
+                  %td
+                    = image_tag 'profile/password.png'
+                  %td 
+                    = f.input :current_password, input_html: { placeholder: 'Current password', required: true}, label: false  
+                %tr
+                  %td
+                    = image_tag 'profile/password.png'
+                  %td 
+                    = f.input :password  , input_html: { placeholder: 'New password', required: true, minlength: 8, maxlength: 20 }, label: false
+                %tr
+                  %td
+                    = image_tag 'profile/password.png'
+                  %td 
+                    = f.input :password_confirmation  , input_html: { placeholder: 'Confirm password', required: true }, label: false  
+                %tr
+                  %td
+                    = image_tag 'profile/phone.png'
+                  %td 
+                    = f.input :phone_number, label: false, input_html: {}
+                %tr
+                  %td
+                    = image_tag 'profile/gender.png'
+                  %td
+                    = f.input :gender, as: :select,collection: User.genders.keys.to_a, label: false
+                %tr
+                  %td
+                    = image_tag 'profile/address.png'
+                  / %td #01, 2nd main, 3rd cross 4th sector, Hsr layout bangalore-560102
+                  %td
+                    = f.input :address, label: false
+                %tr
+                  %td
+                  / %td #01, 2nd main, 3rd cross 4th sector, Hsr layout bangalore-560102
+                  %td
+                    = f.submit 'EDIT', class: 'btn btn-default'
+/ /.page Content
+= render 'shared/footer'

@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
     if @user && @user.valid_password?(user_params[:password])
       flash[:notice] = "Login successfully."
       sign_in(:user, @user)
-      render :js => "window.location = 'account'"
+      render :js => "window.location = 'rate-card'"
     end
   end
 end

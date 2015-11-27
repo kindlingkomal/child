@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   get 'about-us', to: 'homepage#about'
   get 'terms-conditions', to: 'homepage#terms'
   
-  get 'account', to: 'account#list'
-  get 'account/setting', to: 'account#setting'
-
-
+  get 'rate-card', to: 'account#ratecard'
+  get 'account/profile', to: 'account#profile'
+  get 'account/edit', to: 'account#edit'
+  patch 'account/update',to: 'account#update'
 
   get 'user/doc', to: 'pages#doc'
   get 'ragpicker/doc', to: 'pages#ragpicker'

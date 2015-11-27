@@ -14,11 +14,13 @@
               %tr
                 %td
                   = image_tag 'profile/name.png', class: 'hidden-xs'
-                %td Andrea Pierce
+                %td 
+                  = @user.full_name
               %tr
                 %td
                   = image_tag 'profile/address.png'
-                %td andrea.pierce@andrea.pierce.com
+                %td 
+                  = @user.email
               %tr
                 %td
                   = image_tag 'profile/password.png'
@@ -26,17 +28,21 @@
               %tr
                 %td
                   = image_tag 'profile/phone.png'
-                %td +91 893929028476
+                %td 
+                  = @user.phone_number
               %tr
                 %td
                   = image_tag 'profile/gender.png'
-                %td Female
+                %td
+                  = @user.gender
               %tr
                 %td
                   = image_tag 'profile/address.png'
-                %td #01, 2nd main, 3rd cross 4th sector, Hsr layout bangalore-560102
+                / %td #01, 2nd main, 3rd cross 4th sector, Hsr layout bangalore-560102
+                %td
+                  = @user.address
     .col-md-2
       .row
-        %a.btn.edt-btn.fltrer{:href => "#"} EDIT
+        = link_to 'EDIT', account_edit_path, class: "btn edt-btn fltrer"
 / /.Profile Page content
 = render 'shared/footer'
