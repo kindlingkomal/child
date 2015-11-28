@@ -36,3 +36,4 @@ bower.json
 .powenv
 .ruby-version
 public/uploads
+public/assets
