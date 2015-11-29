@@ -1,9 +1,10 @@
-class AccountController < ApplicationController
-  before_action :authenticate_user!
-  before_action :get_user, only: [:ratecard, :profile, :edit, :update]		  
+class User::ProfileController < ApplicationController
+  before_action :get_user, only: [:show, :edit, :update]
 
-  def ratecard
-    @categories = Category.all
+  def show
+  end
+
+  def edit
   end
 
   def update
@@ -20,7 +21,7 @@ class AccountController < ApplicationController
     if @user.errors.blank?
       flash[:notice] = "Updated your profile successfully."
       sign_in @user, bypass: true
-      redirect_to account_profile_path
+      redirect_to user_profile_path
     else
       render :edit
     end
@@ -33,5 +34,5 @@ class AccountController < ApplicationController
 
   def user_params
     params.require(:user).permit(:full_name, :phone_number, :email, :address, :current_password, :password, :password_confirmation, :gender)    
-  end
+  end	
 end

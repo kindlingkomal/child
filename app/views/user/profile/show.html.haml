@@ -1,5 +1,5 @@
 - @page_title = "Profile"
-= render 'account/nav_bar'
+= render 'user/profile/nav_bar'
 / Profile Page content
 .container-fluid.edt-pad
   .row
@@ -43,6 +43,6 @@
                   = @user.address
     .col-md-2
       .row
-        = link_to 'EDIT', account_edit_path, class: "btn edt-btn fltrer"
+        = link_to 'EDIT', user_profile_edit_path, class: "btn edt-btn fltrer"
 / /.Profile Page content
 = render 'shared/footer'

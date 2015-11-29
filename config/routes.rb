@@ -2,16 +2,20 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions'}
+  devise_for :users, :controllers => { registrations: 'user/registrations', sessions: 'user/sessions'}
   root to: "homepage#index"
   
   get 'about-us', to: 'homepage#about'
   get 'terms-conditions', to: 'homepage#terms'
   
-  get 'rate-card', to: 'account#ratecard'
-  get 'account/profile', to: 'account#profile'
-  get 'account/edit', to: 'account#edit'
-  patch 'account/update',to: 'account#update'
+  
+  namespace :user do
+    get '/profile', to: 'profile#show'
+    get 'profile/edit',to: 'profile#edit'
+    patch 'profile', to: 'profile#update'
+  end
+  get 'user/categories',to: 'categories#index'
+
 
   get 'user/doc', to: 'pages#doc'
   get 'ragpicker/doc', to: 'pages#ragpicker'

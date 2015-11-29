@@ -13,7 +13,7 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         %li
-          = link_to 'Rate card', rate_card_path
+          = link_to 'Rate card', user_categories_path
         %li
           %a{:href => "#"}
             Summary
@@ -31,7 +31,7 @@
               %a{:href => "#"} Mange Pickups
             %li.divider
             %li
-              = link_to 'Settings', account_profile_path
+              = link_to 'Settings', user_profile_path
         %li
           = link_to 'Sign Out', destroy_user_session_path, method: :delete
         %li  

@@ -1,12 +1,12 @@
 - @page_title = "Edit Account"
-= render 'account/nav_bar'
+= render 'user/profile/nav_bar'
 / page Content
 .container-fluid.edt-pad
   .row
     .col-md-2
       .row
         = image_tag 'aviator.png', alt: 'user-pic'
-    = simple_form_for @user, url: account_update_path, html: {'data-parsley-validate'=> true}, method: :patch do |f|
+    = simple_form_for @user, url: user_profile_path, html: {'data-parsley-validate'=> true}, method: :patch do |f|
       .col-md-8.pflpad
         .row
           .col-md-8
