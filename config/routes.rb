@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get 'user/doc', to: 'pages#doc'
   get 'ragpicker/doc', to: 'pages#ragpicker'
+  get 'api', to: 'pages#doc'
 
   namespace :api, defaults: {format: :json} do
     namespace :user do

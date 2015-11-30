@@ -1,11 +1,7 @@
 class PagesController < ApplicationController
-  layout "api"
 
   def doc
-  end
-
-  def ragpicker
-    render 'pages/ragpicker/ragpicker'
+    redirect_to '/doc/ragpicker_api.html'
   end
 
 end
