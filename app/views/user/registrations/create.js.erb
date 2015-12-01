@@ -1,0 +1,6 @@
+<% if resource.errors.any? %>
+  $("#sign-log .modal-body .devise-logout-form").html("<%= j(render partial: 'user/registrations/form', locals: {resource: resource, resource_name: resource_name}) %>");
+  $('#signupForm').parsley();
+<% else %>
+  window.location.reload();
+<% end %>

@@ -4,13 +4,13 @@
       .modal-header
         %a.close{"aria-label" => "Close", "data-dismiss" => "modal", :href => "#", :type => "button"} &times;
       .modal-body.txtctr
-        = image_tag 'logo-stv.png', :alt => "STV-logo"
+        = image_tag 'logo-stv.png'
         / Log-in
         .devise-login-form.txtctr
-          = render partial: 'user/sessions/form', error: nil
+          = render 'user/sessions/form', error: nil
         / / Sign up
         .devise-logout-form.txtctr
-          = render partial: 'user/registrations/form'
+          = render 'user/registrations/form'
         .modal-footer.popfot
           .signup
             %span Already a User ?

@@ -473,7 +473,7 @@ DEPENDENCIES
   arel-helpers
   carrierwave
   delayed_job_active_record
-  devise
+  devise (= 3.5.2)
   figaro
   fog
   font-awesome-rails

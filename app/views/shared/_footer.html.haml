@@ -11,8 +11,8 @@
               = image_tag 'twitter.png'
           %li
             %a{:href => "#"}
-              = image_tag 'fb.png', :alt => "facebook"
+              = image_tag 'fb.png'
           %li 
             |
           %li
-            %a{:href => "/terms-conditions"} Terms & Conditions
+            = link_to 'Terms & Conditions', terms_conditions_path

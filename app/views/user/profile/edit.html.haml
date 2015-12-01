@@ -5,7 +5,7 @@
   .row
     .col-md-2
       .row
-        = image_tag 'aviator.png', alt: 'user-pic'
+        = image_tag 'aviator.png'
     = simple_form_for @user, url: user_profile_path, html: {'data-parsley-validate'=> true}, method: :patch do |f|
       .col-md-8.pflpad
         .row
@@ -21,7 +21,7 @@
                   %td
                     = image_tag 'profile/address.png'
                   %td 
-                    = f.input :email,label: false
+                    = f.input :email, label: false
                 %tr
                   %td
                     = image_tag 'profile/password.png'
@@ -31,22 +31,22 @@
                   %td
                     = image_tag 'profile/password.png'
                   %td 
-                    = f.input :password  , input_html: { placeholder: 'New password', required: true, minlength: 8, maxlength: 20 }, label: false
+                    = f.input :password, placeholder: 'New password', input_html: { minlength: 8, maxlength: 20 }, label: false
                 %tr
                   %td
                     = image_tag 'profile/password.png'
                   %td 
-                    = f.input :password_confirmation  , input_html: { placeholder: 'Confirm password', required: true }, label: false  
+                    = f.input :password_confirmation, placeholder: 'Confirm password', label: false  
                 %tr
                   %td
                     = image_tag 'profile/phone.png'
                   %td 
-                    = f.input :phone_number, label: false, input_html: {}
+                    = f.input :phone_number, label: false
                 %tr
                   %td
                     = image_tag 'profile/gender.png'
                   %td
-                    = f.input :gender, as: :select,collection: User.genders.keys.to_a, label: false
+                    = f.input :gender, as: :select, collection: User.genders.keys.to_a, label: false
                 %tr
                   %td
                     = image_tag 'profile/address.png'

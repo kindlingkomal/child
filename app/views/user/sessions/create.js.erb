@@ -1,0 +1,6 @@
+<% if !current_user %>
+  $("#sign-log .modal-body .devise-login-form").html(" <%= j(render partial: 'user/sessions/form', locals: {resource: (@user||User.new), resource_name: :user, error: 'Phone or password is invalid'}) %> ");
+  $('#signinForm').parsley();	  
+<% else %>
+  window.location.reload();
+<% end %>
