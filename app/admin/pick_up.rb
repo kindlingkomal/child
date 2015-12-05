@@ -1,5 +1,6 @@
 ActiveAdmin.register PickUp do
-  actions :index, :show
+  actions :index, :show, :edit, :update
+  permit_params :address, :city, :landmark, :start_time, :end_time, :date, :time_slot_id
 
   index do
     # selectable_column
@@ -49,6 +50,17 @@ ActiveAdmin.register PickUp do
 
   filter :status, as: :select, collection: PickupUser::STATUSES.values
 
+  form do |f|
+    f.inputs do
+      f.input :address
+      f.input :city
+      f.input :landmark
+      f.input :date, as: :datepicker
+      f.input :time_slot_id, collection: TimeSlotService.options_for_select, include_blank: true
+    end
+    actions
+  end
+
   show do
     # attributes_table :id, :user, :postable_type, :content, :like, :created_at, :updated_at
     attributes_table do
@@ -56,7 +68,7 @@ ActiveAdmin.register PickUp do
       row :pincode
       row :address
       row "Pick Date" do |obj|
-        obj.start_time.strftime('%a %d %b') rescue nil
+        obj.start_time.strftime('%a %d %b, %Y') rescue nil
       end
       row "Time" do |obj|
         obj.pick_time
