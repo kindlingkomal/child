@@ -64,55 +64,55 @@ Rails.application.routes.draw do
     get '/picker/categories', to: 'categories#index'
     get '/picker/time_slots', to: 'time_slots#index'
 
-    post '/picker/signup', to: 'users#create'
-    post '/picker/signin', to: 'authentication#create'
+    #post '/picker/signup', to: 'users#create'
+    #post '/picker/signin', to: 'authentication#create'
     get '/picker/logout', to: 'authentication#logout'
     post '/picker/friends/invite', to: 'users#invite'
     post '/picker/resendpwd', to: 'authentication#resendpwd'
 
   end
 
-  namespace :api, :defaults => {:format => :json} do
-    resources :users, only: [:create] do
-      put :update, on: :collection
-      post :invite, on: :collection
-    end
+  #namespace :api, :defaults => {:format => :json} do
+  #  resources :users, only: [:create] do
+  #    put :update, on: :collection
+  #    post :invite, on: :collection
+  #  end
 
-    resources :categories, only: :index
-    resources :rates, only: :create
-    resources :time_slots, only: :index
-    resources :pick_ups, only: :create
+  #  resources :categories, only: :index
+  #  resources :rates, only: :create
+  #  resources :time_slots, only: :index
+  #  resources :pick_ups, only: :create
 
-    post 'authentication', to: 'authentication#create'
-    get  'authentication/logout', to: 'authentication#logout'
-  end
+  #  post 'authentication', to: 'authentication#create'
+  #  get  'authentication/logout', to: 'authentication#logout'
+  #end
 
-  namespace :api, :defaults => {:format => :json} do
-    namespace :common, :defaults => {:format => :json} do
-      resources :pick_ups, only: [:show, :index]
-      resources :users, only: [] do
-        post :gcm_registration, on: :collection
-      end
-    end
-  end
+  #namespace :api, :defaults => {:format => :json} do
+  #  namespace :common, :defaults => {:format => :json} do
+  #    resources :pick_ups, only: [:show, :index]
+  #    resources :users, only: [] do
+  #      post :gcm_registration, on: :collection
+  #    end
+  #  end
+  #end
 
-  namespace :api, :defaults => {:format => :json} do
-    namespace :ragpicker, :defaults => {:format => :json} do
-      resources :users, only: [:create] do
-        put :update, on: :collection
-      end
+  #namespace :api, :defaults => {:format => :json} do
+  #  namespace :ragpicker, :defaults => {:format => :json} do
+  #    resources :users, only: [:create] do
+  #      put :update, on: :collection
+  #    end
 
-      resources :categories, only: :index
-      resources :rates, only: :create
+  #    resources :categories, only: :index
+  #    resources :rates, only: :create
 
-      resources :pick_ups, only: [] do
-        get :accept, :cancel, :reject, on: :member
-        post :proceed, on: :member
-        post :add_customer, on: :collection
-      end
+  #    resources :pick_ups, only: [] do
+  #      get :accept, :cancel, :reject, on: :member
+  #      post :proceed, on: :member
+  #      post :add_customer, on: :collection
+  #    end
 
-      post 'authentication', to: 'authentication#create'
-      get  'authentication/logout', to: 'authentication#logout'
-    end
-  end
+  #    post 'authentication', to: 'authentication#create'
+  #    get  'authentication/logout', to: 'authentication#logout'
+  #  end
+  #end
 end

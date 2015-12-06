@@ -129,9 +129,7 @@ class Picker::PickupService < BaseService
     pick_up
   end
 
-  def pending params
-
-
-  end
+  #def pending params
+  #end
 
 end
