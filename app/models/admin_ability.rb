@@ -6,7 +6,7 @@ class AdminAbility
     if user
       can :manage, :all
       cannot :update, PickUp do |pickup|
-        pickup.status != "pending" || pickup.start_time.utc <= Time.now.utc
+        pickup.status != "pending"
       end
     else
       cannot :read, :all
