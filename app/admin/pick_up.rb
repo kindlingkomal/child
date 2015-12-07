@@ -1,4 +1,5 @@
 ActiveAdmin.register PickUp do
+  menu label: 'Allocations'
   actions :index, :show, :edit, :update
   permit_params :address, :city, :landmark, :start_time, :end_time,
     :date, :time_slot_id, :payment_method

@@ -1,4 +1,5 @@
 ActiveAdmin.register Zonal do
+  menu label: 'Geo'
   form partial: 'form'
 
   show do

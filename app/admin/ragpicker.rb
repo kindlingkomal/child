@@ -1,4 +1,5 @@
 ActiveAdmin.register User, as: 'Ragpicker' do
+  menu label: 'Partners'
   permit_params :email, :city, :pincode, :phone_number, :full_name,
     :password, :password_confirmation
 
