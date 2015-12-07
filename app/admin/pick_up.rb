@@ -1,11 +1,14 @@
 ActiveAdmin.register PickUp do
   actions :index, :show, :edit, :update
-  permit_params :address, :city, :landmark, :start_time, :end_time, :date, :time_slot_id
+  permit_params :address, :city, :landmark, :start_time, :end_time,
+    :date, :time_slot_id, :payment_method
 
   index do
     # selectable_column
     # column :title
-
+    column 'Payment' do |obj|
+      obj.payment_method
+    end
     column :pincode
     column :city
     column :address
@@ -52,6 +55,7 @@ ActiveAdmin.register PickUp do
 
   form do |f|
     f.inputs do
+      f.input :payment_method, as: :radio, collection: ['COP', 'NGO'], label: 'Payment'
       f.input :address
       f.input :city
       f.input :landmark
@@ -62,8 +66,10 @@ ActiveAdmin.register PickUp do
   end
 
   show do
-    # attributes_table :id, :user, :postable_type, :content, :like, :created_at, :updated_at
     attributes_table do
+      row 'Payment' do |obj|
+        obj.payment_method
+      end
       row :city
       row :pincode
       row :address
