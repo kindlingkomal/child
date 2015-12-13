@@ -17,12 +17,16 @@
               %tr
                 %td
                   = image_tag category.image_url, style: "width:100%"
-                %td 
+                %td
                   = category.name
-                %td 
+                %td
                   Rs. #{category.price}/kg
                 %td
-                  %a{:href => "#"}
-                    = image_tag 'profile/add.png'
+                  %span.checkbox.category.unchecked
+                    %label
+                      %input.check_boxes{name: "category_ids[]", type: "checkbox", value: category.id}
+                      %i.fa.fa-plus-square-o.unchecked
+                      %i.fa.fa-minus-square-o.checked
+
 / /.page Content
 = render 'shared/footer'

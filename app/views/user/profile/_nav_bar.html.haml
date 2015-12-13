@@ -17,7 +17,7 @@
         %li
           %a{:href => "#"}
             Summary
-            %span (2)
+            %span.num_categories_selected (0)
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"} Profile
           %ul.dropdown-menu.profile-dropdown
@@ -34,6 +34,6 @@
               = link_to 'Settings', user_profile_path
         %li
           = link_to 'Sign Out', destroy_user_session_path, method: :delete
-        %li  
-          %p.notice= notice      
+        %li
+          %p.notice= notice
     / /.navbar-collapse

@@ -1,0 +1,10 @@
+span.checkbox.category {
+  font-size: 25px;
+  input { display: none; }
+  &.checked {
+    .fa-plus-square-o { display: none; }
+  }
+  &.unchecked {
+    .fa-minus-square-o { display: none; }
+  }
+}

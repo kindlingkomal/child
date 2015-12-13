@@ -23,6 +23,7 @@ gem 'carrierwave'
 gem 'kaminari'
 gem 'arel-helpers'
 gem 'geocoder'
+gem 'paloma'
 gem 'ratyrate'
 gem 'haml-rails'
 gem "rest-client"
