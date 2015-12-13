@@ -1,0 +1,48 @@
+- @page_title = "Profile"
+= render 'user/profile/nav_bar'
+/ Profile Page content
+.container-fluid.edt-pad
+  .row
+    .col-md-2
+      .row
+        = image_tag 'aviator.png'
+    .col-md-8.pflpad
+      .row
+        .col-md-12
+          %table.table.table-user-information
+            %tbody
+              %tr
+                %td
+                  = image_tag 'profile/name.png', class: 'hidden-xs'
+                %td 
+                  = @user.full_name
+              %tr
+                %td
+                  = image_tag 'profile/address.png'
+                %td 
+                  = @user.email
+              %tr
+                %td
+                  = image_tag 'profile/password.png'
+                %td *************
+              %tr
+                %td
+                  = image_tag 'profile/phone.png'
+                %td 
+                  = @user.phone_number
+              %tr
+                %td
+                  = image_tag 'profile/gender.png'
+                %td
+                  = @user.gender
+              %tr
+                %td
+                  = image_tag 'profile/address.png'
+                / %td #01, 2nd main, 3rd cross 4th sector, Hsr layout bangalore-560102
+                %td
+                  = @user.address
+    .col-md-2
+      .row
+        = link_to 'EDIT', user_profile_edit_path, class: "btn edt-btn fltrer"
+/ /.Profile Page content
+= render 'shared/footer'

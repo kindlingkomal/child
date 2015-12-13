@@ -7,6 +7,9 @@
             %button(type="button" class="close" data-dismiss="alert" aria-label="Close")
               %span(aria-hidden="true") &times;
             = msg
+    .row
+      %a{:href => "#"}
+        = image_tag 'pro-pic.png', style: 'profile-pic'            
     = f.text_field :full_name, class: "infln", placeholder: "FULL NAME", required: true
     = f.text_field :phone_number, class: "inph", placeholder: "PHONE NUMBER", required: true
     = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true

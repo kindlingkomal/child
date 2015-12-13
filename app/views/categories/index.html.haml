@@ -1,0 +1,28 @@
+- @page_title = "List"
+= render 'user/profile/nav_bar'
+/ page Content
+.container.lstpad
+  .row
+    .col-md-12
+      .row
+        %ul.list-inline
+          %li.lstxt List
+          %li.pull-right
+            %a.btn.btncnt{:href => "#"} Continue
+      .row
+        .table-responsive
+          %table.table.table-list
+            %tbody
+            - @categories.each do |category|
+              %tr
+                %td
+                  = image_tag category.image_url, style: "width:100%"
+                %td 
+                  = category.name
+                %td 
+                  Rs. #{category.price}/kg
+                %td
+                  %a{:href => "#"}
+                    = image_tag 'profile/add.png'
+/ /.page Content
+= render 'shared/footer'

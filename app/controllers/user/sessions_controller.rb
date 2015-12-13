@@ -1,4 +1,4 @@
-class Users::SessionsController < Devise::SessionsController
+class User::SessionsController < Devise::SessionsController
   def create
     redirect_to root_path if !request.xhr?
     user_params = params[:user]
@@ -6,6 +6,7 @@ class Users::SessionsController < Devise::SessionsController
     if @user && @user.valid_password?(user_params[:password])
       flash[:notice] = "Login successfully."
       sign_in(:user, @user)
+      render :js => "window.location = 'user/categories'"
     end
   end
 end

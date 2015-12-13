@@ -1,0 +1,39 @@
+%nav.navbar.navbar-default.navbar-fixed-top.topnav{:role => "navigation"}
+  .container.topnav
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to root_path, class: 'navbar-brand topnav' do
+        = image_tag 'logo-stv.png'
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to 'Rate card', user_categories_path
+        %li
+          %a{:href => "#"}
+            Summary
+            %span (2)
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"} Profile
+          %ul.dropdown-menu.profile-dropdown
+            %li
+              %a{:href => "#"}
+                %span>
+                  = image_tag 'carosol-indicator1.png', class: 'img-circle'
+                = @user.full_name
+            %li.divider
+            %li
+              %a{:href => "#"} Mange Pickups
+            %li.divider
+            %li
+              = link_to 'Settings', user_profile_path
+        %li
+          = link_to 'Sign Out', destroy_user_session_path, method: :delete
+        %li  
+          %p.notice= notice      
+    / /.navbar-collapse

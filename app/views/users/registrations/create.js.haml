@@ -1,5 +1,0 @@
-- if resource.errors.any?
-  $("#sign-log .modal-body .devise-logout-form").html("#{escape_javascript(render partial: "users/registrations/form", locals: {resource: resource, resource_name: resource_name})}");
-  $('#signupForm').parsley();
-- else
-  window.location.reload();

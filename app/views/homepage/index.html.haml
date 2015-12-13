@@ -10,36 +10,7 @@
         %li
           %a.btn{:href => "#"} BECOME A PARTNER
   / / Alert
-  .container.topnav
-    / Brand and toggle get grouped for better mobile display
-    .navbar-header
-      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand.topnav{:href => "#"}
-        = image_tag 'logo-stv.png', :alt => "STV-LOGO"
-    / Collect the nav links, forms, and other content for toggling
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{:href => "#"} Home
-        %li
-          %a{:href => "#"} About Us
-        %li
-          %a{:href => "#"} How it works
-        %li
-          %a{:href => "#"} Contact Us
-        %li
-          - if current_user
-            = link_to 'SIGN OUT', destroy_user_session_path, method: :delete, class: 'btn'
-          - else
-            %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN 
-        %li
-          %p.notice= notice
-
-    / /.navbar-collapse
+  = render 'shared/navigation'
 / /.Navigation
 / Header
 .intro-header
@@ -52,7 +23,7 @@
             %br>/
             and everyone's envited
           %p
-            This will chang your home,your city and lives of few others.
+            &nbsp;This will change your home,your city and lives of few others.
             %br/
             Partner with us in our moment towards the making of swacch Bharath
             %br/
@@ -63,7 +34,7 @@
               %a{:href => "#"}= image_tag "istore.png"
             %li
               %a{:href => "#"}
-                = image_tag 'gplay.png', :alt => "play-store"
+                = image_tag 'gplay.png'
 / Header
 / How It works
 .conatiner
@@ -88,31 +59,31 @@
     .row
       .col-md-5ths.col-xs-6
         %a{:href => "#"}
-          = image_tag 'cloths.png', :alt => "clothes", :style => "width:100%;", class: 'img-responsive'
+          = image_tag 'cloths.png', class: 'img-responsive'
           .bg-rate
             %h3 Cloths
             %h5 Rs 15/kg
       .col-md-5ths.col-xs-6.mob-pad
         %a{:href => "#"}
-          = image_tag 'bottles.png', :alt => "bottles", :style => "width:100%;", class: 'img-responsive'
+          = image_tag 'bottles.png', class: 'img-responsive'
           .bg-rate
             %h3 Glass Bottels
             %h5 Rs 50/kg
       .col-md-5ths.col-xs-6.mob-pad
         %a{:href => "#"}
-          = image_tag 'papper.png', :alt => "papper", :style => "width:100%;", class: 'img-responsive'
+          = image_tag 'papper.png', class: 'img-responsive'
           .bg-rate
             %h3 News Paper
             %h5 Rs 50/kg
       .col-md-5ths.col-xs-6.mob-pad
         %a{:href => "#"}
-          = image_tag 'books.png', :alt => "books", :style => "width:100%;", class: 'img-responsive'
+          = image_tag 'books.png', class: 'img-responsive'
           .bg-rate
             %h3 Old Books
             %h5 Rs 10/kg
       .col-md-5ths.col-xs-6.mob-pad
         %a{:href => "#"}
-          = image_tag 'iron.png', :alt => "iron", :style => "width:100%;", class: 'img-responsive'
+          = image_tag 'iron.png', class: 'img-responsive'
           .bg-rate
             %h3 Steel
             %h5 Rs 60/kg
@@ -126,87 +97,34 @@
     .row
       .col-md-12
         %h3 What our customer think about us
-      .col-lg-6.col-lg-offset-3{"data-wow-delay" => "0.2s"}
-        #quote-carousel.carosel1.carousel.slide{"data-ride" => "carousel"}
-          .carousel-inner.text-center
+      .col-md-8.col-md-offset-2
+        #myCarousel.carousel.slide.carosel1{"data-ride" => "carousel"}
+          .carousel-inner.text-center{:role => "listbox"}
             / Quote 1
             .item.active
               .row
                 .col-md-12.crtxt
                   .row
-                    = image_tag 'aviator.png', :alt => "slide1"
+                    = image_tag 'aviator.png'
                   %p Andrea Pierce
                   %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
             / Quote 2
             .item
-              .row
-                .col-md-12.crtxt
-                  .row
-                    = image_tag 'aviator.png', :alt => "slide2"
-                  %p Andrea Pierce
-                  %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
+              .col-md-12.crtxt
+                .row
+                  = image_tag 'aviator.png'
+                %p Andrea Pierce
+                %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
       / Slider Indicators
-      .col-md-8.col-md-offset-4
-        #quote-carousel.slide{"data-ride" => "carousel"}
-          %ol.carousel-indicators.caroselimgs
-            %li{"data-slide-to" => "1", "data-target" => "#quote-carousel"}
-              = image_tag 'carosol-indicator1.png', class: 'img-responsive'
-            %li{"data-slide-to" => "2", "data-target" => "#quote-carousel"}
-              = image_tag 'carosol-indicator2.png', class: 'img-responsive'
+    .col-md-8.col-md-offset-2
+      %ol.carousel-indicators{:style => ""}
+        %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+          = image_tag 'carosol-indicator1.png'
+        %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+          = image_tag 'carosol-indicator2.png'
 / / Slider
 / Footer
-%footer.fot
-  .container
-    .row
-      .col-lg-12.fot-pad
-        %ul.list-inline
-          %li
-            %a{:href => "#"}
-              = image_tag 'linkedin.png'
-          %li
-            %a{:href => "#"}
-              = image_tag 'twitter.png'
-          %li
-            %a{:href => "#"}
-              = image_tag 'fb.png', :alt => "facebook"
-          %li |
-          %li
-            %a{:href => "#"} Terms & Conditions
+= render 'shared/footer'
 / / Footer
 / pop up
-#sign-log.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog.popbox{:role => "document"}
-    .modal-content.brd0
-      .modal-header
-        %a.close{"aria-label" => "Close", "data-dismiss" => "modal", :href => "#", :type => "button"} &times;
-      .modal-body.txtctr
-        = image_tag 'logo-stv.png', :alt => "STV-logo"
-        / Log-in
-        .devise-login-form.txtctr
-          = render partial: 'users/sessions/form', error: nil
-        / / Sign up
-        .devise-logout-form.txtctr
-          = render partial: 'users/registrations/form'
-        .modal-footer.popfot
-          .signup
-            %span Already a User ?
-            %a.log{:href => "#"} Login
-            %span here
-          .login
-            %span New User ?
-            %a.sign{:href => "#"} Sign up
-            %span here
-
-:javascript
-  $(document).ready(function(){
-      $(".signup").hide();
-      $(".sign").click(function(){
-          $(".login").hide('slow');
-          $(".signup").show('slow');
-      });
-      $(".log").click(function(){
-          $(".login").show('slow');
-          $(".signup").hide('slow');
-      });
-      $(".notice" ).fadeOut(4000);
-  });
+= render 'shared/pop_up'
