@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.2.0"
+ruby "2.2.2"
 
 gem 'cancancan'
 gem 'activeadmin', '1.0.0.pre2' #, github: 'activeadmin'
