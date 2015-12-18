@@ -1,0 +1,63 @@
+.intro-header
+  .container
+    .row
+      .col-lg-12
+        .intro-message
+          %h1 Become a Part Of Our Team
+          %p
+            This will chang your home,your city and lives of few others.
+            %br
+            Partner with us in our moment towards the making of swacch Bharath
+            %br
+            = "-the Dream of out forefathers,greener environments,loveier homes."
+          %a.btn.btn-ap{data: {toggle: "modal", target: "#radhi-sign", dismiss: "modal"}} SIGN UP
+          %ul.list-inline
+            %li
+              = link_to "javascript:;" do
+                = image_tag "istore.png", alt: "istore"
+            %li
+              = link_to "javascript:;" do
+                = image_tag "gplay.png", alt:"play-store"
+
+.container
+  .col-md-12.pad2
+    .row
+      .col-md-4
+        .row
+          = image_tag "pickup.png"
+          %h4 Schedule Pickup
+      .col-md-4
+        .row
+          = image_tag "truck.png"
+          %h4 Get all your waste paper cloths and otherwaste items picked up
+      .col-md-4
+        .row
+          = image_tag "money.png"
+          %h4 Get Money in exchange!
+
+.col-md-12.bg-offer
+  .container
+    %h2.radh List of all products we carter
+    .row
+      = link_to "View Service", "javascript:;", class: "btn rtbtn"
+
+= render partial: "layouts/customer_talk"
+
+#radhi-sign.modal.fade{role: "dialog", tabindex: "-1", "aria-labelledby" => "myModallabel"}
+  .modal-dialog.popbox{role: "document"}
+    .modal-content.brd0
+      .modal-header
+:javascript
+  $(document).ready(function(){
+    $(".iual").hide();
+    $(".ind").click(function(){
+        $(".yard").hide('slow');
+        $(".iual").show('slow');
+    });
+    $(".yrd").click(function(){
+        $(".yard").show('slow');
+        $(".iual").hide('slow');
+        
+        
+    });
+  });

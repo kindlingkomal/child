@@ -6,7 +6,7 @@
         %li
           %p Want to Partner with ScrapToValue
         %li
-          %a.btn{:href => "#"} BECOME A PARTNER
+          %a.btn{:href => "/become-partner"} BECOME A PARTNER
 / Header
 .intro-header
   .container
@@ -87,35 +87,4 @@
         View Rate Card
 / /. Rate Card
 / Slider
-.container.pad3
-  .col-md-12
-    .row
-      .col-md-12
-        %h3 What our customer think about us
-      .col-lg-6.col-lg-offset-3{"data-wow-delay" => "0.2s"}
-        #quote-carousel.carosel1.carousel.slide{"data-ride" => "carousel"}
-          .carousel-inner.text-center
-            / Quote 1
-            .item.active
-              .row
-                .col-md-12.crtxt
-                  .row
-                    = image_tag 'aviator.png', :alt => "slide1"
-                  %p Andrea Pierce
-                  %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
-            / Quote 2
-            .item
-              .row
-                .col-md-12.crtxt
-                  .row
-                    = image_tag 'aviator.png', :alt => "slide2"
-                  %p Andrea Pierce
-                  %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
-      / Slider Indicators
-      .col-md-8.col-md-offset-4
-        #quote-carousel.slide{"data-ride" => "carousel"}
-          %ol.carousel-indicators.caroselimgs
-            %li{"data-slide-to" => "1", "data-target" => "#quote-carousel"}
-              = image_tag 'carosol-indicator1.png', class: 'img-responsive'
-            %li{"data-slide-to" => "2", "data-target" => "#quote-carousel"}
-              = image_tag 'carosol-indicator2.png', class: 'img-responsive'
+= render partial: "layouts/customer_talk"

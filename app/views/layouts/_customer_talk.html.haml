@@ -1,0 +1,26 @@
+.container.pad3
+  .col-md-12
+    .row
+      .col-md-12
+        %h3 What our customer think about us
+      .col-md-8.col-md-offset-2
+        #myCarousel.carousel.slide.carosel1{data: {ride: "carousel"}}
+          .carousel-inner.text-center{role: "listbox"}
+            .item.active
+              .row
+                .col-md-12.crtxt
+                  .row
+                    = image_tag "aviator.png", alt: "Slide1"
+                  %p Andrea Pierce
+                  %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
+            .item
+              .col-md-12.crtxt
+                .row= image_tag "aviator.png", alt: "Slider2"
+                %p Andrea Pierce
+                %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
+    .col-md-8.col-md-offset-2
+      %ol.carousel-indicators
+        %li.active{data: {target: "#myCarousel", "slide-to" => "0"}}
+          = image_tag "carosol-indicator1.png"
+        %li.active{data: {target: "#myCarousel", "slide-to" => "1"}}
+          = image_tag "carosol-indicator2.png"
