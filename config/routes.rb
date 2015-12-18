@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions'}
   root to: "homepage#index"
+  get :about, to: "homepage#about"
   get 'api', to: 'pages#doc'
 
   namespace :api, defaults: {format: :json} do

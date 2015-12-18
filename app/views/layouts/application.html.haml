@@ -6,7 +6,7 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
-    %title= @page_title || 'Home Page'
+    %title= @page_title || 'Ragpickers'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     %link{:href => "http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic", :rel => "stylesheet", :type => "text/css"}
@@ -18,15 +18,7 @@
   %body
     / Navigation
     %nav.navbar.navbar-default.navbar-fixed-top.topnav{:role => "navigation"}
-      / Alert
-      .alert.alert-info.alert-dismissable.mgs-bg
-        %a.panel-close.close.cls{"data-dismiss" => "alert"} ×
-        .container
-          %ul.list-inline
-            %li
-              %p Want to Partner with ScrapToValue
-            %li
-              %a.btn{:href => "#"} BECOME A PARTNER
+      = yield :top_flash
       / / Alert
       .container.topnav
         / Brand and toggle get grouped for better mobile display
@@ -36,15 +28,15 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand.topnav{:href => "#"}
+          %a.navbar-brand.topnav{:href => "/"}
             = image_tag 'logo-stv.png', :alt => "STV-LOGO"
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             %li
-              %a{:href => "#"} Home
+              %a{:href => "/"} Home
             %li
-              %a{:href => "#"} About Us
+              %a{:href => "/about"} About Us
             %li
               %a{:href => "#"} How it works
             %li
