@@ -57,17 +57,17 @@
             %ul.list-inline
               %li.pull-left
                 .radio
-                  = radio_button_tag :utype, 0, class: "ind"
-                  %label{for: "#utype_0"} INDIVIDUAL
-              %li.pull-left
+                  = radio_button_tag :utype, 0, false, class: "ind"
+                  %label{for: "utype_0"} INDIVIDUAL
+              %li.pull-right
                 .radio
-                  = radio_button_tag :utype, 1, class: "yrd"
-                  %label{for: "#utype_1"} YARD
+                  = radio_button_tag :utype, 1, true, class: "yrd"
+                  %label{for: "utype_1"} YARD
           .form-group.yard
             = text_field_tag :phone, "", class: "inph", placeholder: "PHONE NUMBER"
-            = text_field_tag :phone, "", class: "inad1", placeholder: "ADDRESS LINE 1"
-            = text_field_tag :phone, "", class: "inad2", placeholder: "ADDRESS LINE 2"
-            = text_field_tag :phone, "", class: "inad1", placeholder: "ZIPCODE"
+            = text_field_tag :address1, "", class: "inad1", placeholder: "ADDRESS LINE 1"
+            = text_field_tag :address2, "", class: "inad1", placeholder: "ADDRESS LINE 2"
+            = text_field_tag :zipcode, "", class: "inad1", placeholder: "ZIPCODE"
           .form-group.iual
             = text_field_tag :phone, "", class: "inph", placeholder: "PHONE NUMBER"
             = password_field_tag :password, "", class: "inad1", placeholder: "PASSWORD"
