@@ -4,6 +4,12 @@ class TimeSlotService
   end
 
   def self.format(num_sec)
-    "#{'%02d' % (num_sec / 3600)}:#{'%02d' % (num_sec % 3600 / 60)}"
+    if (hour = num_sec / 3600) <= 12
+      am_pm = 'AM'
+    else
+      hour -= 12
+      am_pm = 'PM'
+    end
+    "#{'%02d' % hour}:#{'%02d' % (num_sec % 3600 / 60)} #{am_pm}"
   end
 end

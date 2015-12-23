@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207093524) do
+ActiveRecord::Schema.define(version: 20151223140752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20151207093524) do
     t.datetime "updated_at"
   end
 
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "fk__active_admin_comments_author_id", using: :btree
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
@@ -176,10 +177,12 @@ ActiveRecord::Schema.define(version: 20151207093524) do
     t.boolean  "manual",                                  default: false
     t.string   "landmark"
     t.string   "payment_method",                          default: "COP"
+    t.integer  "time_slot_id"
   end
 
   add_index "pick_ups", ["customer_id"], name: "index_pick_ups_on_customer_id", using: :btree
   add_index "pick_ups", ["lat", "lon"], name: "index_pick_ups_on_lat_and_lon", using: :btree
+  add_index "pick_ups", ["time_slot_id"], name: "index_pick_ups_on_time_slot_id", using: :btree
   add_index "pick_ups", ["user_id"], name: "index_pick_ups_on_user_id", using: :btree
 
   create_table "pickup_users", force: :cascade do |t|
@@ -210,6 +213,8 @@ ActiveRecord::Schema.define(version: 20151207093524) do
   end
 
   add_index "pricing_zonals", ["category_id", "zonal_id"], name: "index_pricing_zonals_on_category_id_and_zonal_id", using: :btree
+  add_index "pricing_zonals", ["category_id"], name: "fk__pricing_zonals_category_id", using: :btree
+  add_index "pricing_zonals", ["zonal_id"], name: "fk__pricing_zonals_zonal_id", using: :btree
 
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id"
@@ -223,6 +228,8 @@ ActiveRecord::Schema.define(version: 20151207093524) do
   end
 
   add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+  add_index "rates", ["rateable_type", "rateable_id"], name: "fk__rates_rateable_id", using: :btree
+  add_index "rates", ["rater_id"], name: "fk__rates_rater_id", using: :btree
   add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
 
   create_table "rating_caches", force: :cascade do |t|
@@ -236,6 +243,7 @@ ActiveRecord::Schema.define(version: 20151207093524) do
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+  add_index "rating_caches", ["cacheable_type", "cacheable_id"], name: "fk__rating_caches_cacheable_id", using: :btree
 
   create_table "time_slots", force: :cascade do |t|
     t.integer  "start_hour",                 null: false
@@ -289,12 +297,24 @@ ActiveRecord::Schema.define(version: 20151207093524) do
 
   add_foreign_key "invitations", "users"
   add_foreign_key "invitations", "users", column: "invited_by_id"
+  add_foreign_key "invitations", "users", column: "invited_by_id", name: "fk_invitations_invited_by_id"
+  add_foreign_key "invitations", "users", name: "fk_invitations_user_id"
   add_foreign_key "line_items", "categories"
+  add_foreign_key "line_items", "categories", name: "fk_line_items_category_id"
   add_foreign_key "line_items", "pick_ups"
+  add_foreign_key "line_items", "pick_ups", name: "fk_line_items_pick_up_id"
   add_foreign_key "notifying_pickups", "pick_ups"
   add_foreign_key "notifying_pickups", "users", column: "ragpicker_id"
   add_foreign_key "pick_ups", "customers"
+  add_foreign_key "pick_ups", "customers", name: "fk_pick_ups_customer_id"
+  add_foreign_key "pick_ups", "time_slots"
   add_foreign_key "pick_ups", "users"
+  add_foreign_key "pick_ups", "users", name: "fk_pick_ups_user_id"
   add_foreign_key "pickup_users", "pick_ups"
+  add_foreign_key "pickup_users", "pick_ups", name: "fk_pickup_users_pick_up_id"
   add_foreign_key "pickup_users", "users"
+  add_foreign_key "pickup_users", "users", name: "fk_pickup_users_user_id"
+  add_foreign_key "pricing_zonals", "categories", name: "fk_pricing_zonals_category_id"
+  add_foreign_key "pricing_zonals", "zonals", name: "fk_pricing_zonals_zonal_id"
+  add_foreign_key "rates", "users", column: "rater_id", name: "fk_rates_rater_id"
 end

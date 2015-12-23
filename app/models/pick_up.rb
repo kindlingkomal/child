@@ -9,12 +9,13 @@ class PickUp < ActiveRecord::Base
     canceled: 'canceled',
     expired: 'expired'
   }
-  attr_accessor :date, :time_slot_id
+  attr_accessor :date
 
   validates :address, :city, :start_time, :end_time, :category_ids,
     presence: true, if: proc { |o| o.customer_id.nil? }
   validates :user, presence: {if: Proc.new { |pk| !pk.manual?}}
 
+  belongs_to :time_slot
   belongs_to :user
   belongs_to :ragpicker, class_name: 'User'
   belongs_to :customer
