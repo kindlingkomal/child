@@ -25,7 +25,7 @@ class Api::User::ProfileController < Api::UserController
     if @result.errors.any?
       render json: {error: {code: 4000, message: @result.errors.full_messages.join(', ')}}, status: 405
     else
-      render json: {success: true}
+      render json: @result, serializer: UserDetailSerializer
     end
   end
 
