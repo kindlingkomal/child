@@ -52,7 +52,7 @@ ActiveAdmin.register PickUp do
     end
   end
 
-  filter :status, as: :select, collection: PickupUser::STATUSES.values
+  filter :status, as: :select, collection: PickupUser::STATUSES.values.map{|s| [s.capitalize, s]}
 
   form do |f|
     f.inputs do
