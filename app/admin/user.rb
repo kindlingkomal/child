@@ -38,7 +38,7 @@ ActiveAdmin.register User, as: 'User' do
       f.input :city
       f.input :pincode
       f.input :password unless f.object.id?
-      f.input :password_confirmation unless f.object.id?
+      f.input :password_confirmation, required: true unless f.object.id?
     end
     f.actions
   end
