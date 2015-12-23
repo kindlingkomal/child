@@ -26,6 +26,8 @@ gem 'ratyrate'
 gem 'haml-rails'
 gem "rest-client"
 gem 'twilio-ruby'
+gem 'phonelib'
+
 group :staging, :production do
   gem 'rails_12factor'
 end

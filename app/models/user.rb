@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   validates :full_name, presence: true
   validates :authentication_token, uniqueness: true, allow_blank: true
-  validates :phone_number, uniqueness: true, presence: true
+  validates :phone_number, uniqueness: true, presence: true, phone: true
 
   has_many :pick_ups, dependent: :destroy
   has_many :pickup_users, dependent: :destroy
