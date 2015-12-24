@@ -19,73 +19,12 @@
     %nav.navbar.navbar-default.navbar-fixed-top.topnav{:role => "navigation"}
       = yield :top_flash
       / / Alert
-      .container.topnav
-        / Brand and toggle get grouped for better mobile display
-        .navbar-header
-          %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand.topnav{:href => "/"}
-            = image_tag 'logo-stv.png', :alt => "STV-LOGO"
-        / Collect the nav links, forms, and other content for toggling
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %ul.nav.navbar-nav.navbar-right
-            %li
-              %a{:href => "/"} Home
-            %li
-              %a{:href => "/about"} About Us
-            %li
-              %a{:href => "#"} How it works
-            %li
-              %a{:href => "#"} Contact Us
-            %li
-              - if current_user
-                = link_to 'SIGN OUT', destroy_user_session_path, method: :delete, class: 'btn'
-              - else
-                %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN
-            %li
-              %p.notice= notice
+      = render 'shared/navigation'
+
     = yield
     = insert_paloma_hook
     / Footer
     = render 'shared/footer'
     / / Footer
     / pop up
-    #sign-log.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-      .modal-dialog.popbox{:role => "document"}
-        .modal-content.brd0
-          .modal-header
-            %a.close{"aria-label" => "Close", "data-dismiss" => "modal", :href => "#", :type => "button"} &times;
-          .modal-body.txtctr
-            = image_tag 'logo-stv.png', :alt => "STV-logo"
-            / Log-in
-            .devise-login-form.txtctr
-              = render partial: 'user/sessions/form', error: nil
-            / / Sign up
-            .devise-logout-form.txtctr
-              = render partial: 'user/registrations/form'
-            .modal-footer.popfot
-              .signup
-                %span Already a User ?
-                %a.log{:href => "#"} Login
-                %span here
-              .login
-                %span New User ?
-                %a.sign{:href => "#"} Sign up
-                %span here
-
-:javascript
-  $(document).ready(function(){
-      $(".signup").hide();
-      $(".sign").click(function(){
-          $(".login").hide('slow');
-          $(".signup").show('slow');
-      });
-      $(".log").click(function(){
-          $(".login").show('slow');
-          $(".signup").hide('slow');
-      });
-      $(".notice" ).fadeOut(4000);
-  });
+    = render 'shared/login_signup'
