@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   include TokenAuthenticatable
 
-  validates :full_name, presence: true
+  validates :full_name, presence: true, length: { maximum: 26 }
   validates :authentication_token, uniqueness: true, allow_blank: true
   validates :phone_number, uniqueness: true, presence: true, phone: true
 
