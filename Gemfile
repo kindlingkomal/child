@@ -33,6 +33,7 @@ group :staging, :production do
 end
 
 group :development, :test do
+  gem 'letter_opener'
   gem 'quiet_assets'
   gem 'figaro'
   gem 'spring'
