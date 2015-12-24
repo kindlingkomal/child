@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { registrations: 'user/registrations', sessions: 'user/sessions'}
   root to: "homepage#index"
-  
-  get 'about-us', to: 'homepage#about'
+
+  #get 'about-us', to: 'homepage#about'
   get 'terms-conditions', to: 'homepage#terms'
-  
-  
+
+
   namespace :user do
     get '/profile', to: 'profile#show'
     get 'profile/edit',to: 'profile#edit'
@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   get 'user/doc', to: 'pages#doc'
   get 'ragpicker/doc', to: 'pages#ragpicker'
+
+  get :about_us, to: "homepage#about"
+  get "become-partner", to: "homepage#become_partner"
+
   get 'api', to: 'pages#doc'
 
   namespace :api, defaults: {format: :json} do

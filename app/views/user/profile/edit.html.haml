@@ -15,32 +15,32 @@
                 %tr
                   %td
                     = image_tag 'profile/name.png', class: 'hidden-xs'
-                  %td 
+                  %td
                     = f.input :full_name, label: false
                 %tr
                   %td
                     = image_tag 'profile/address.png'
-                  %td 
+                  %td
                     = f.input :email, label: false
                 %tr
                   %td
                     = image_tag 'profile/password.png'
-                  %td 
-                    = f.input :current_password, input_html: { placeholder: 'Current password', required: true}, label: false  
+                  %td
+                    = f.input :current_password, input_html: { placeholder: 'Current password', required: true}, label: false
                 %tr
                   %td
                     = image_tag 'profile/password.png'
-                  %td 
+                  %td
                     = f.input :password, placeholder: 'New password', input_html: { minlength: 8, maxlength: 20 }, label: false
                 %tr
                   %td
                     = image_tag 'profile/password.png'
-                  %td 
-                    = f.input :password_confirmation, placeholder: 'Confirm password', label: false  
+                  %td
+                    = f.input :password_confirmation, placeholder: 'Confirm password', label: false
                 %tr
                   %td
                     = image_tag 'profile/phone.png'
-                  %td 
+                  %td
                     = f.input :phone_number, label: false
                 %tr
                   %td
@@ -59,4 +59,3 @@
                   %td
                     = f.submit 'EDIT', class: 'btn btn-default'
 / /.page Content
-= render 'shared/footer'

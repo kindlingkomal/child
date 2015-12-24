@@ -1,6 +1,4 @@
-/ Navigation
-%nav.navbar.navbar-default.navbar-fixed-top.topnav{:role => "navigation"}
-  / Alert
+= content_for :top_flash do
   .alert.alert-info.alert-dismissable.mgs-bg
     %a.panel-close.close.cls{"data-dismiss" => "alert"} ×
     .container
@@ -8,10 +6,7 @@
         %li
           %p Want to Partner with ScrapToValue
         %li
-          %a.btn{:href => "#"} BECOME A PARTNER
-  / / Alert
-  = render 'shared/navigation'
-/ /.Navigation
+          %a.btn{:href => "/become-partner"} BECOME A PARTNER
 / Header
 .intro-header
   .container
@@ -92,39 +87,4 @@
         View Rate Card
 / /. Rate Card
 / Slider
-.container.pad3
-  .col-md-12
-    .row
-      .col-md-12
-        %h3 What our customer think about us
-      .col-md-8.col-md-offset-2
-        #myCarousel.carousel.slide.carosel1{"data-ride" => "carousel"}
-          .carousel-inner.text-center{:role => "listbox"}
-            / Quote 1
-            .item.active
-              .row
-                .col-md-12.crtxt
-                  .row
-                    = image_tag 'aviator.png'
-                  %p Andrea Pierce
-                  %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
-            / Quote 2
-            .item
-              .col-md-12.crtxt
-                .row
-                  = image_tag 'aviator.png'
-                %p Andrea Pierce
-                %p Et harum qiudem rerum facilis est et expedita distictio.Nams impedit
-      / Slider Indicators
-    .col-md-8.col-md-offset-2
-      %ol.carousel-indicators{:style => ""}
-        %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
-          = image_tag 'carosol-indicator1.png'
-        %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
-          = image_tag 'carosol-indicator2.png'
-/ / Slider
-/ Footer
-= render 'shared/footer'
-/ / Footer
-/ pop up
-= render 'shared/pop_up'
+= render partial: "layouts/customer_talk"

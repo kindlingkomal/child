@@ -1,0 +1,89 @@
+.intro-header
+  .container
+    .row
+      .col-lg-12
+        .intro-message
+          %h1 Become a Part Of Our Team
+          %p
+            This will chang your home,your city and lives of few others.
+            %br
+            Partner with us in our moment towards the making of swacch Bharath
+            %br
+            = "-the Dream of out forefathers,greener environments,loveier homes."
+          %a.btn.btn-ap{data: {toggle: "modal", target: "#radhi-sign", dismiss: "modal"}} SIGN UP
+          %ul.list-inline
+            %li
+              = link_to "javascript:;" do
+                = image_tag "istore.png", alt: "istore"
+            %li
+              = link_to "javascript:;" do
+                = image_tag "gplay.png", alt:"play-store"
+
+.container
+  .col-md-12.pad2
+    .row
+      .col-md-4
+        .row
+          = image_tag "pickup.png"
+          %h4 Schedule Pickup
+      .col-md-4
+        .row
+          = image_tag "truck.png"
+          %h4 Get all your waste paper cloths and otherwaste items picked up
+      .col-md-4
+        .row
+          = image_tag "money.png"
+          %h4 Get Money in exchange!
+
+.col-md-12.bg-offer
+  .container
+    %h2.radh List of all products we carter
+    .row
+      = link_to "View Service", "javascript:;", class: "btn rtbtn"
+
+= render partial: "layouts/customer_talk"
+
+#radhi-sign.modal.fade{role: "dialog", tabindex: "-1", "aria-labelledby" => "myModallabel"}
+  .modal-dialog.popbox{role: "document"}
+    .modal-content.brd0
+      .modal-header
+        = link_to "javascript:;", class: "close", data: {dismiss: "modal", arial_label: "Close"} do
+          &times;
+      .modal-body.textcrt
+        = image_tag "logo-stv.png"
+        = form_tag do
+          .form-group
+            = text_field_tag :name, "", class: "infln", placeholder: "FULL NAME"
+            %ul.list-inline
+              %li.pull-left
+                .radio
+                  = radio_button_tag :utype, 0, false, class: "ind"
+                  %label{for: "utype_0"} INDIVIDUAL
+              %li.pull-right
+                .radio
+                  = radio_button_tag :utype, 1, true, class: "yrd"
+                  %label{for: "utype_1"} YARD
+          .form-group.yard
+            = text_field_tag :phone, "", class: "inph", placeholder: "PHONE NUMBER"
+            = text_field_tag :address1, "", class: "inad1", placeholder: "ADDRESS LINE 1"
+            = text_field_tag :address2, "", class: "inad1", placeholder: "ADDRESS LINE 2"
+            = text_field_tag :zipcode, "", class: "inad1", placeholder: "ZIPCODE"
+          .form-group.iual
+            = text_field_tag :phone, "", class: "inph", placeholder: "PHONE NUMBER"
+            = password_field_tag :password, "", class: "inad1", placeholder: "PASSWORD"
+          = link_to "SIGN UP", "javascript", class: "btn popbtn"
+        .modal-footer.popfot
+:javascript
+  $(document).ready(function(){
+    $(".iual").hide();
+    $(".ind").click(function(){
+        $(".yard").hide('slow');
+        $(".iual").show('slow');
+    });
+    $(".yrd").click(function(){
+        $(".yard").show('slow');
+        $(".iual").hide('slow');
+        
+        
+    });
+  });

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.2.0"
+ruby "2.2.2"
 
 gem 'cancancan'
 gem 'simple_form'
@@ -28,11 +28,14 @@ gem 'ratyrate'
 gem 'haml-rails'
 gem "rest-client"
 gem 'twilio-ruby'
+gem 'phonelib'
+
 group :staging, :production do
   gem 'rails_12factor'
 end
 
 group :development, :test do
+  gem 'letter_opener'
   gem 'quiet_assets'
   gem 'figaro'
   gem 'spring'

@@ -1,5 +1,11 @@
 ActiveAdmin.register Category do
 
+  filter :name
+  filter :price
+  filter :image
+  filter :created_at
+  filter :updated_at
+
   form do |f|
     f.inputs do
       f.input :name

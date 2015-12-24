@@ -14,12 +14,12 @@
               %tr
                 %td
                   = image_tag 'profile/name.png', class: 'hidden-xs'
-                %td 
+                %td
                   = @user.full_name
               %tr
                 %td
                   = image_tag 'profile/address.png'
-                %td 
+                %td
                   = @user.email
               %tr
                 %td
@@ -28,7 +28,7 @@
               %tr
                 %td
                   = image_tag 'profile/phone.png'
-                %td 
+                %td
                   = @user.phone_number
               %tr
                 %td
@@ -45,4 +45,3 @@
       .row
         = link_to 'EDIT', user_profile_edit_path, class: "btn edt-btn fltrer"
 / /.Profile Page content
-= render 'shared/footer'

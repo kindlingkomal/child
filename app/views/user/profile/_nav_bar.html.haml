@@ -25,7 +25,7 @@
               %a{:href => "#"}
                 %span>
                   = image_tag 'carosol-indicator1.png', class: 'img-circle'
-                = @user.full_name
+                = @user.try(:full_name)
             %li.divider
             %li
               %a{:href => "#"} Mange Pickups

@@ -52,7 +52,7 @@ ActiveAdmin.register PickUp do
     end
   end
 
-  filter :status, as: :select, collection: PickupUser::STATUSES.values
+  filter :status, as: :select, collection: PickupUser::STATUSES.values.map{|s| [s.capitalize, s]}
 
   form do |f|
     f.inputs do
@@ -61,7 +61,7 @@ ActiveAdmin.register PickUp do
       f.input :city
       f.input :landmark
       f.input :date, as: :datepicker
-      f.input :time_slot_id, collection: TimeSlotService.options_for_select, include_blank: true
+      f.input :time_slot, collection: TimeSlotService.options_for_select, include_blank: true
     end
     actions
   end
