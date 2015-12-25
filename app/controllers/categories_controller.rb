@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
+  layout 'customer'
+
   def index
   	@user = current_user
-    @categories = Category.all	
+    @categories = Category.all
   end
 end
