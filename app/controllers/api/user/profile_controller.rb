@@ -7,7 +7,7 @@ class Api::User::ProfileController < Api::UserController
   #   @mobile.owner = current_user
   #   @mobile.enabled = true
   #   if @mobile.save
-  #     render json: {message: 'Register user device successfully.'}, status: 200
+  #     render json: {msg: 'Register user device successfully.'}, status: 200
   #     return
   #   else
   #     render json: @mobile.errors, status: 406
@@ -23,7 +23,7 @@ class Api::User::ProfileController < Api::UserController
   def update
     @result = @service.update(params)
     if @result.errors.any?
-      render json: {error: {code: 4000, message: @result.errors.full_messages.join(', ')}}, status: 405
+      render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
     else
       render json: @result, serializer: UserDetailSerializer
     end
@@ -33,7 +33,7 @@ class Api::User::ProfileController < Api::UserController
     @user = current_user
     @user.gcm_registration = params[:device_token]
     if !@user.save
-      render json: {error: {code: 4000, message: @user.errors.full_messages.join(', ')}}, status: 405
+      render json: {error: {code: 4000, msg: @user.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}
     end
@@ -43,7 +43,7 @@ class Api::User::ProfileController < Api::UserController
     @user = current_user
     @user.gcm_registration = nil
     if !@user.save
-      render json: {error: {code: 4000, message: @user.errors.full_messages.join(', ')}}, status: 405
+      render json: {error: {code: 4000, msg: @user.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}
     end
