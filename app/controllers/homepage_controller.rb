@@ -9,4 +9,8 @@ class HomepageController < ApplicationController
 
   def terms
   end
+
+  def become_partner
+    render 'become_partner', layout: 'picker'
+  end
 end
