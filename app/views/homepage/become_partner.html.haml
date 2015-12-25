@@ -10,7 +10,8 @@
             Partner with us in our moment towards the making of swacch Bharath
             %br
             = "-the Dream of out forefathers,greener environments,loveier homes."
-          %a.btn.btn-ap{data: {toggle: "modal", target: "#radhi-sign", dismiss: "modal"}} SIGN UP
+          - unless user_signed_in?
+            %a.btn.btn-ap{data: {toggle: "modal", target: "#radhi-sign", dismiss: "modal"}} SIGN UP
           %ul.list-inline
             %li
               = link_to "javascript:;" do
@@ -49,33 +50,17 @@
       .modal-header
         = link_to "javascript:;", class: "close", data: {dismiss: "modal", arial_label: "Close"} do
           &times;
-      .modal-body.textcrt
+      .modal-body.txtctr
         = image_tag "logo-stv.png"
-        = form_tag do
-          .form-group
-            = text_field_tag :name, "", class: "infln", placeholder: "FULL NAME"
-            %ul.list-inline
-              %li.pull-left
-                .radio
-                  = radio_button_tag :utype, 0, false, class: "ind"
-                  %label{for: "utype_0"} INDIVIDUAL
-              %li.pull-right
-                .radio
-                  = radio_button_tag :utype, 1, true, class: "yrd"
-                  %label{for: "utype_1"} YARD
-          .form-group.yard
-            = text_field_tag :phone, "", class: "inph", placeholder: "PHONE NUMBER"
-            = text_field_tag :address1, "", class: "inad1", placeholder: "ADDRESS LINE 1"
-            = text_field_tag :address2, "", class: "inad1", placeholder: "ADDRESS LINE 2"
-            = text_field_tag :zipcode, "", class: "inad1", placeholder: "ZIPCODE"
-          .form-group.iual
-            = text_field_tag :phone, "", class: "inph", placeholder: "PHONE NUMBER"
-            = password_field_tag :password, "", class: "inad1", placeholder: "PASSWORD"
-          = link_to "SIGN UP", "javascript", class: "btn popbtn"
+        .devise-signup-form-partner.txtctr
+          = render 'picker/registrations/form', resource_name: :user
+
         .modal-footer.popfot
+
 :javascript
   $(document).ready(function(){
-    $(".iual").hide();
+    $(".form-group.yard").hide();
+    //$(".form-group.iual").hide();
     $(".ind").click(function(){
         $(".yard").hide('slow');
         $(".iual").show('slow');
@@ -83,7 +68,5 @@
     $(".yrd").click(function(){
         $(".yard").show('slow');
         $(".iual").hide('slow');
-        
-        
     });
   });

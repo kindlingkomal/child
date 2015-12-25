@@ -1,0 +1,24 @@
+= form_for resource, as: resource_name, url: picker_user_registration_path(resource_name), remote: true, :html => {:class => 'signup', 'data-parsley-validate'=> true, id: 'signupForm'} do |f|
+  .form-group
+    - if resource.errors.any?
+      #error_explanation
+        = render 'shared/alert_errors', resource: resource
+
+    = f.text_field :full_name, class: "infln", placeholder: "FULL NAME", required: true
+    %ul.list-inline
+      %li.pull-left
+        .radio
+          = radio_button_tag :utype, 0, true, class: "ind"
+          %label{for: "utype_0"} INDIVIDUAL
+      %li.pull-right
+        .radio
+          = radio_button_tag :utype, 1, false, class: "yrd"
+          %label{for: "utype_1"} YARD
+    .form-group.yard
+      =# f.text_field :phone_number, class: "inph", placeholder: "PHONE NUMBER"
+      = f.text_field :address, class: "inad1", placeholder: "ADDRESS LINE 1"
+      = f.text_field :pincode, class: "inad1", placeholder: "PIN CODE"
+    .form-group.iual
+      = f.text_field :phone_number, class: "inph", placeholder: "PHONE NUMBER", required: true
+      = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true
+    = f.submit 'SIGN UP', class: "btn popbtn"
