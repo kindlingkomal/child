@@ -15,26 +15,21 @@
         .tab-sign
           .col-md-12
             .row
-              %form.signin
-                .form-group.lsrmg
-                  %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
-                    %input.inph{:placeholder => "PHONE NUMBER", :type => "number"}
-                      %input.inpw{:placeholder => "PASSWORD", :type => "password"}
-                        %a.btn.btn-sl.tab2{:href => "#"} SIGN UP
-              %form.login
-                .form-group.lsrmg
-                  %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
-                    %input.inpw{:placeholder => "PASSWORD", :type => "password"}
-                      %a.pull-right.frgpw{:href => "#"} Forget Password?
-                      %a.btn.btn-sl.tab2{:href => "#"} LOG IN
+              .devise-login-form.txtctr
+                = form_for resource, as: resource_name, url: session_path(resource_name), remote: true, html: {:class => 'login2', 'data-parsley-validate'=> true, id: 'signinForm',method: :post } do |f|
+                  = render 'user/sessions/fields', f: f, error: nil
+              .devise-logout-form.txtctr
+                = form_for resource, as: resource_name, url: registration_path(resource_name), remote: true, :html => {:class => 'signup2', 'data-parsley-validate'=> true, id: 'signupForm'} do |f|
+                  = render 'user/registrations/fields', f: f
+
               .modal-footer.popfot
-                .signin
+                .signup2
                   %span Already a User ?
-                  %a.log{:href => "#"} Login
+                  %a.login-a{:href => "#"} Login
                   %span here
-                .login
+                .login2
                   %span New User ?
-                  %a.sign{:href => "#"} Sign in
+                  %a.signup-a{:href => "#"} Sign up
                   %span here
         / 2.Address
         .tab-add

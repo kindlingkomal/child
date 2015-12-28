@@ -1,0 +1,10 @@
+.form-group
+  - if error
+    .alert.alert-danger
+      %button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+        %span(aria-hidden="true") &times;
+      = error
+  = f.text_field :phone_number, class: "infln", placeholder: "PHONE NUMBER", required: true
+  = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true
+  %a.pull-right.frgpw{:href => "#"} Forget Password?
+  = f.submit 'LOG IN', class: "btn popbtn"
