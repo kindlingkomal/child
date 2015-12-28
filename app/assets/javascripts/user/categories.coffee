@@ -8,3 +8,9 @@ CategoriesController::index = ->
       $(this).closest('.checkbox.category').removeClass('unchecked').addClass 'checked'
     else
       $(this).closest('.checkbox.category').removeClass('checked').addClass 'unchecked'
+
+  $('.rate-card-continue').click ->
+    if $('input[name="category_ids[]"]:checked').length > 0
+      location.href = $(this).attr('data-url') + '?' + $('input[name="category_ids[]"]').serialize()
+    else
+      alert 'Please select categories'
