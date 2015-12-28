@@ -17,7 +17,7 @@
         var nodays = [];
         var name_of_month_full = [];
         initDates();
-        initSlider(todayDate);
+        //initSlider(todayDate);
 
 
         function initSlider(d){
@@ -32,14 +32,13 @@
             curr_selected_month = d.getMonth()+1;
             curr_selected_year = d.getFullYear();
 
-
             $("#dateslider").html("");
             manageNext(day,date,month,year);
 
 			$countItemrendered = 0;
         }
 
-        function initDates(){
+    function initDates(){
         wdays[0] = 'non';
         wdays[1] = 'Sun';
         wdays[2] = 'Mon';
@@ -77,24 +76,8 @@
         nodays[11] = '30';
         nodays[12] = '31';
 
-        }
-    $(document).ready(function(){
-        $("#datepicker").change(function(){
-            console.log($("#datepicker").val() +'============');
-            var selectedDate = $("#datepicker").val();
-            var dated = selectedDate.split('/');
-            console.log(dated);
-            var seletedMonth = dated[0];
-            var seletedDate = dated[1];
-            var seletedYear = dated[2];
-            var DateNew = new Date(dated[2]+'-'+dated[0]+'-'+dated[1]);
+    }
 
-            initSlider(DateNew);
-        });
-
-
-
-    });
 
     function manageNext(Sday,Sdate,Smonth,Syear){
 		$countItemrendered = 0;
