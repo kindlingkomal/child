@@ -1,0 +1,88 @@
+.container.lst2pad
+  .row
+    / Tabs
+    .list-nav
+      %ul.list-inline
+        %li.clrbk
+          %a{:href => "#"} 1.Sign-up
+        %li
+          %a{:href => "#"} 2.Address
+        %li
+          %a{:href => "#"} 3.Timings
+    .col-md-12
+      .row
+        / 1.Sign in
+        .tab-sign
+          .col-md-12
+            .row
+              %form.signin
+                .form-group.lsrmg
+                  %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
+                    %input.inph{:placeholder => "PHONE NUMBER", :type => "number"}
+                      %input.inpw{:placeholder => "PASSWORD", :type => "password"}
+                        %a.btn.btn-sl.tab2{:href => "#"} SIGN UP
+              %form.login
+                .form-group.lsrmg
+                  %input.infln{:placeholder => "FULL NAME", :type => "textbox"}
+                    %input.inpw{:placeholder => "PASSWORD", :type => "password"}
+                      %a.pull-right.frgpw{:href => "#"} Forget Password?
+                      %a.btn.btn-sl.tab2{:href => "#"} LOG IN
+              .modal-footer.popfot
+                .signin
+                  %span Already a User ?
+                  %a.log{:href => "#"} Login
+                  %span here
+                .login
+                  %span New User ?
+                  %a.sign{:href => "#"} Sign in
+                  %span here
+        / 2.Address
+        .tab-add
+          .col-md-12
+            .row
+              %form
+                .form-group.lsrmg
+                  %input.inad{:placeholder => "Address line 1", :type => "text"}
+                    %input.inad1{:placeholder => "Address line 2", :type => "text"}
+                      %input.inad1{:placeholder => "Zip code", :type => "number"}
+                        %input.inad1{:placeholder => "Land mark", :type => "text"}
+                          %a.btn.btn-sl.tab3{:href => "#"} CONTINUE
+        / 3.Time
+        .tab-time
+          .col-md-12
+            .row
+              .datepicker-wrapper
+                .container-fluid
+                  .row{:style => ""}
+                    .col-md-1.col-lg-1.col-sm-1.col-xs-1.prev_date_slider.datebg{:onclick => "prevSlide_date_paginator()"}
+                      = image_tag 'previous.png', class: 'pull-left img-responsive datearw'
+                    .col-md-10.col-sm-10.col-xs-10.col-lg-10.datepad
+                      %center
+                        #dateslider.time
+                    .col-md-1.col-sm-1.col-xs-1.col-lg-1.datebg{:onclick => "nextSlide_date_paginator()"}
+                      = image_tag 'next.png', class: 'pull-right img-responsive datearw'
+              .col-md-12.tmepad
+                .col-md-4
+                  .radio
+                    %input#inlineRadio1{:checked => "", :name => "radioInline", :type => "radio", :value => "option1"}
+                      %label{:for => "inlineRadio1"} 9AM-10.00AM
+                .col-md-4
+                  .radio
+                    %input#inlineRadio2{:name => "radioInline", :type => "radio", :value => "option2"}
+                      %label{:for => "inlineRadio2"} 1PM-2.00PM
+                .col-md-4
+                  .radio
+                    %input#inlineRadio3{:name => "radioInline", :type => "radio", :value => "option3"}
+                      %label{:for => "inlineRadio3"} 4.30PM-5.30PM
+              .col-md-12.tmepad
+                .col-md-4
+                  .radio
+                    %input#inlineRadio4{:name => "radioInline", :type => "radio", :value => "option4"}
+                      %label{:for => "inlineRadio4"} 10.30AM-11.30AM
+                .col-md-4
+                  .radio
+                    %input#inlineRadio5{:name => "radioInline", :type => "radio", :value => "option5"}
+                      %label{:for => "inlineRadio5"} 3.00PM-4.00PM
+                .col-md-4
+              .col-md-12.pktxt
+                %a.btn{:href => "#"} BOOK PICKUP

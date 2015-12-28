@@ -8,3 +8,7 @@ span.checkbox.category {
     .fa-minus-square-o { display: none; }
   }
 }
+
+input[type=submit].popbtn:hover, a.btncnt:hover {
+  color: #A8A8A8;
+}

@@ -14,7 +14,8 @@
 //= require jquery_ujs
 // require turbolinks
 //= require bootstrap
+//= require datepickpaginator
 //= require paloma
 //= require ./parsleyjs/parsley.min
-//= require user/categories
 //= require_directory .
+//= require_directory ./user
