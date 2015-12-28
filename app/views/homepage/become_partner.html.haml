@@ -56,17 +56,3 @@
           = render 'picker/registrations/form', resource_name: :user
 
         .modal-footer.popfot
-
-:javascript
-  $(document).ready(function(){
-    $(".form-group.yard").hide();
-    //$(".form-group.iual").hide();
-    $(".ind").click(function(){
-        $(".yard").hide('slow');
-        $(".iual").show('slow');
-    });
-    $(".yrd").click(function(){
-        $(".yard").show('slow');
-        $(".iual").hide('slow');
-    });
-  });

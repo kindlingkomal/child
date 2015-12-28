@@ -21,7 +21,8 @@ private
   end
 
   def sign_up_params
-    params.require(:user).permit(:full_name, :phone_number, :email, :password, :password_confirmation, :pincode, :address)
+    params.require(:user).permit(:full_name, :phone_number, :email, :password,
+      :password_confirmation, :pincode, :address, :address2, :is_yard)
   end
 
   def account_update_params

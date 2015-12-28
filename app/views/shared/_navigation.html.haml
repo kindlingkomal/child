@@ -19,11 +19,11 @@
         %a.scrollto{:name => "pad2"} How it works
       %li
         %a{:href => "#"} Contact Us
-      %li
-        - if current_user
-          = link_to 'SIGN OUT', destroy_user_session_path, method: :delete, class: 'btn'
-        - else
-          %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN 
+      - unless local_assigns[:picker]
+        %li
+          - if current_user
+            = link_to 'SIGN OUT', destroy_user_session_path, method: :delete, class: 'btn'
+          - else
+            %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN 
       %li
         %p.notice= notice
-    / /.navbar-collapse

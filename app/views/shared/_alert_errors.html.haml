@@ -1,5 +1,7 @@
 .alert.alert-danger
-  - resource.errors.full_messages.each do |msg|
+  - unless resource.errors.blank?
     %button(type="button" class="close" data-dismiss="alert" aria-label="Close")
       %span(aria-hidden="true") &times;
-    = msg
+    - resource.errors.full_messages.each do |msg|
+      %br
+      = msg

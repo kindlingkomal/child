@@ -1,6 +1,7 @@
 <% if resource.errors.any? %>
   $(".devise-signup-form-partner").html("<%= j(render 'picker/registrations/form', resource: resource, resource_name: resource_name) %>");
   $('#signupForm').parsley();
+  sign_up_ragpicker_js();
 <% else %>
   window.location.reload();
 <% end %>
