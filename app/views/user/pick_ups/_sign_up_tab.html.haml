@@ -1,0 +1,18 @@
+.col-md-12
+  .row#sign-log
+    .devise-login-form.txtctr{after_signin_path: request.url}
+      = render 'sign_up_tab_login', resource: resource, resource_name: :user, error: nil
+
+    .devise-signup-form.txtctr
+      = form_for resource, as: resource_name, url: registration_path(resource_name), remote: true, :html => {:class => 'signup2', 'data-parsley-validate'=> true, id: 'signupForm'} do |f|
+        = render 'user/registrations/fields', f: f
+
+    .modal-footer.popfot
+      .signup2
+        %span Already a User ?
+        %a.login-a{:href => "#"} Login
+        %span here
+      .login2
+        %span New User ?
+        %a.signup-a{:href => "#"} Sign up
+        %span here

@@ -3,34 +3,20 @@
     / Tabs
     .list-nav
       %ul.list-inline
-        %li.clrbk
-          %a{:href => "#"} 1.Sign-up
+        - i = 0
+        - unless user_signed_in?
+          %li.clrbk
+            %a{:href => "#"} #{i += 1}.Sign-up
+        %li{ class: ('clrbk' if user_signed_in?) }
+          %a{:href => "#"} #{i += 1}.Address
         %li
-          %a{:href => "#"} 2.Address
-        %li
-          %a{:href => "#"} 3.Timings
+          %a{:href => "#"} #{i += 1}.Timings
     .col-md-12
       .row
-        / 1.Sign in
-        .tab-sign
-          .col-md-12
-            .row
-              .devise-login-form.txtctr
-                = form_for resource, as: resource_name, url: session_path(resource_name), remote: true, html: {:class => 'login2', 'data-parsley-validate'=> true, id: 'signinForm',method: :post } do |f|
-                  = render 'user/sessions/fields', f: f, error: nil
-              .devise-logout-form.txtctr
-                = form_for resource, as: resource_name, url: registration_path(resource_name), remote: true, :html => {:class => 'signup2', 'data-parsley-validate'=> true, id: 'signupForm'} do |f|
-                  = render 'user/registrations/fields', f: f
-
-              .modal-footer.popfot
-                .signup2
-                  %span Already a User ?
-                  %a.login-a{:href => "#"} Login
-                  %span here
-                .login2
-                  %span New User ?
-                  %a.signup-a{:href => "#"} Sign up
-                  %span here
+        - unless user_signed_in?
+          / 1.Sign in
+          .tab-sign
+            = render 'sign_up_tab'
         / 2.Address
         .tab-add
           .col-md-12

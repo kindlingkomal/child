@@ -6,7 +6,8 @@ class User::SessionsController < Devise::SessionsController
     if @user && @user.valid_password?(user_params[:password])
       flash[:notice] = "Login successfully."
       sign_in(:user, @user)
-      render :js => "window.location = 'user/categories'"
+      path = params[:after_signin_path].presence
+      render :js => "window.location = '#{path ? path : user_categories_url}'"
     end
   end
 end

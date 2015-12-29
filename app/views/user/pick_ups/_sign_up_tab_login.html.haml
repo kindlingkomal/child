@@ -1,0 +1,2 @@
+= form_for resource, as: resource_name, url: session_path(resource_name), remote: true, html: {:class => 'login2', 'data-parsley-validate'=> true, id: 'signinForm',method: :post } do |f|
+  = render 'user/sessions/fields', f: f, error: error

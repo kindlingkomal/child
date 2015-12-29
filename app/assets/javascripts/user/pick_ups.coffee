@@ -5,7 +5,9 @@ PickUpsController::new = ->
   initSlider todayDate
 
   $('.tab-sign .login').hide()
-  $('.tab-add').hide()
+  if $('.tab-sign').length > 0
+    $('.tab-add').hide()
+
   $('.tab-time').hide()
   $('.login2').hide()
 
@@ -30,3 +32,7 @@ PickUpsController::new = ->
     $('.list-nav > ul > li:nth-child(3)').addClass 'clrbk'
     $('.list-nav > ul > li:nth-child(3)>a').css 'color', '#fff'
     $('.tab-sign').hide()
+
+  $('.devise-login-form').on 'submit', 'form.login2', ->
+    path = $(this).closest('.devise-login-form').attr 'after_signin_path'
+    $(this).append $('<input type="hidden" name="after_signin_path" />').val(path)
