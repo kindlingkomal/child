@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228074340) do
+ActiveRecord::Schema.define(version: 20151230042220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 20151228074340) do
     t.string   "landmark"
     t.string   "payment_method",                          default: "COP"
     t.integer  "time_slot_id"
+    t.date     "date"
   end
 
   add_index "pick_ups", ["customer_id"], name: "index_pick_ups_on_customer_id", using: :btree

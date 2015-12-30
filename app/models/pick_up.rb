@@ -9,11 +9,10 @@ class PickUp < ActiveRecord::Base
     canceled: 'canceled',
     expired: 'expired'
   }
-  attr_accessor :date
-
   validates :address, :city, :start_time, :end_time, :category_ids,
     presence: true, if: proc { |o| o.customer_id.nil? }
   validates :user, presence: {if: Proc.new { |pk| !pk.manual?}}
+  validates :time_slot_id, uniqueness: {scope: [:user_id, :date]}
 
   belongs_to :time_slot
   belongs_to :user
@@ -50,10 +49,6 @@ class PickUp < ActiveRecord::Base
   # def ragpicker
   #   accepted_users.order("accepted_at DESC").first.user rescue nil
   # end
-
-  def date
-    @date ||= start_time.blank? ?  nil : start_time.beginning_of_day.strftime("%Y-%m-%d")
-  end
 
   def pick_time
     "#{start_time.strftime('%I:%M %p')} - #{end_time.strftime('%I:%M %p')}" rescue nil
