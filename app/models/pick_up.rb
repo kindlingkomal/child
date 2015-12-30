@@ -12,7 +12,8 @@ class PickUp < ActiveRecord::Base
   validates :address, :city, :start_time, :end_time, :category_ids,
     presence: true, if: proc { |o| o.customer_id.nil? }
   validates :user, presence: {if: Proc.new { |pk| !pk.manual?}}
-  validates :time_slot_id, uniqueness: {scope: [:user_id, :date]}
+  validates :date, presence: true
+  validates :time_slot_id, presence: true, uniqueness: {scope: [:user_id, :date]}
 
   belongs_to :time_slot
   belongs_to :user
@@ -24,7 +25,7 @@ class PickUp < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
   has_and_belongs_to_many :categories
 
-  before_validation :set_default_subscription, :set_time
+  before_validation :set_default_subscription, :set_time, :set_time_slot_id, :set_date
 
   scope :pending,  -> { where(status: STATUSES[:pending]).where('pick_ups.start_time > ?', Time.now.utc) }
   scope :accepted, -> { where.not(accepted_at: nil).where(canceled_at: nil) }
@@ -81,6 +82,20 @@ private
       timeslot = TimeSlot.find time_slot_id
       self.start_time = start_date + timeslot.start_hour.seconds
       self.end_time = start_date + timeslot.end_hour.seconds
+    end
+  end
+
+  def set_time_slot_id
+    unless time_slot_id?
+      opts = TimeSlotService.options_for_select
+      opt = opts.select{|o| pick_time  == o[0]}.first
+      self.time_slot_id = opt ? opt[1] : nil
+    end
+  end
+
+  def set_date
+    if !date? && start_time?
+      self.date = start_time.to_date
     end
   end
 end
