@@ -170,14 +170,14 @@
 		selectDate();
 	}
 
-    function selectDate(){
-
+  function selectDate(){
+    $("input[name='pick_up[date]']").val(curr_selected_year + '-' + curr_selected_month + '-' + curr_selected_date);
 		console.log(curr_selected_date+" "+wdays[curr_selected_day]+" "+curr_selected_month+" "+curr_selected_year);
 		$('.dateInSlider').css('border','none');
 		console.log(curr_selected_date+"date"+name_of_month_full[curr_selected_month]+"dateSlider");
 		$("#"+curr_selected_date+"date"+name_of_month_full[curr_selected_month]+"dateSlider").css("border-bottom","2px solid black");
 
-    }
+  }
 
     function nextSlide_date_paginator(){
         day++;

@@ -417,7 +417,7 @@ color: #010101;
 .pktxt{
     text-align: center;
 }
-.pktxt > a {
+.pktxt > a, .btn-book-pickup {
     background: black;
     width: 50%;
    padding-top: 16px;
@@ -433,7 +433,7 @@ color: #010101;
 .pktxt > a:hover{
     color: #e6e6e6;
 }
-
+.btn-book-pickup {padding-top: 0;}
 .radio {
     padding-left: 20px;
 }

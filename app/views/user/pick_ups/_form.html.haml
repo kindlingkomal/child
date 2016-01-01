@@ -1,0 +1,37 @@
+= form_for [:user, @pick_up], :html => {:class => 'new-pickup', id: 'pickupForm'} do |f|
+
+  .col-md-12.tab-add
+    .row
+      .form-group.lsrmg
+        = f.text_field :address, class: "inad", placeholder: "Address line 1"
+        = f.text_field :city, class: "inad1", placeholder: "City"
+        = f.text_field :pincode, class: "inad1", placeholder: "Pin code"
+        = f.text_field :landmark, class: "inad1", placeholder: "Land mark"
+        %a.btn.btn-sl.tab3{:href => "#"} CONTINUE
+
+  .col-md-12.tab-time
+    = f.hidden_field :date
+    .hide
+      - @category_ids.each do |cat|
+        = f.check_box :category_ids, {checked: true, multiple: true}, cat, nil
+    .row
+      .datepicker-wrapper
+        .container-fluid
+          .row{:style => ""}
+            .col-md-1.col-lg-1.col-sm-1.col-xs-1.prev_date_slider.datebg{:onclick => "prevSlide_date_paginator()"}
+              = image_tag 'previous.png', class: 'pull-left img-responsive datearw'
+            .col-md-10.col-sm-10.col-xs-10.col-lg-10.datepad
+              %center
+                #dateslider.time
+            .col-md-1.col-sm-1.col-xs-1.col-lg-1.datebg{:onclick => "nextSlide_date_paginator()"}
+              = image_tag 'next.png', class: 'pull-right img-responsive datearw'
+      .col-md-12.tmepad
+        - TimeSlotService.options_for_select.each_with_index do |slot, index|
+          .col-md-4
+            .radio
+              = f.radio_button :time_slot_id, slot[1], id: "inlineRadio#{index}", checked: (index == 0)
+              %label{for: "inlineRadio#{index}"}
+                = slot[0]
+
+      .col-md-12.pktxt
+        = f.submit 'BOOK PICKUP', class: 'btn-book-pickup'

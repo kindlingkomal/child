@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'terms-conditions', to: 'homepage#terms'
 
   namespace :user do
-    resources :pick_ups, only: [:new]
+    resources :pick_ups, only: [:new, :create] do
+      get :summary, on: :member
+    end
     get '/profile', to: 'profile#show'
     get 'profile/edit',to: 'profile#edit'
     patch 'profile', to: 'profile#update'

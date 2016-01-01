@@ -20,16 +20,4 @@
             %span New User ?
             %a.sign{:href => "#"} Sign up
             %span here
-:javascript
-  $(document).ready(function(){
-      $(".signup").hide();
-      $(".sign").click(function(){
-          $(".login").hide('slow');
-          $(".signup").show('slow');
-      });
-      $(".log").click(function(){
-          $(".login").show('slow');
-          $(".signup").hide('slow');
-      });
-      $(".notice" ).fadeOut(4000);
-  });
+

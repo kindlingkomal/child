@@ -3,7 +3,7 @@ class User::SessionsController < Devise::SessionsController
     redirect_to root_path if !request.xhr?
     user_params = params[:user]
     @user = User.find_by_phone_number(user_params[:phone_number])
-    if @user && @user.valid_password?(user_params[:password])
+    if @user && @user.user? && @user.valid_password?(user_params[:password])
       flash[:notice] = "Login successfully."
       sign_in(:user, @user)
       path = params[:after_signin_path].presence
