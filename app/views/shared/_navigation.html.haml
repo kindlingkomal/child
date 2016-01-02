@@ -26,4 +26,4 @@
           - else
             %a.btn{"data-dismiss" => "model", "data-target" => "#sign-log", "data-toggle" => "modal", :href => "#"} SIGN IN 
       %li
-        %p.notice= notice
+        %p.notice= notice || flash[:error]
