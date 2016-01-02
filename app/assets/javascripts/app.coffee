@@ -46,3 +46,29 @@ global.new_pick_up_js = ->
   $('.devise-login-form').on 'submit', 'form.login2', ->
     path = $(this).closest('.devise-login-form').attr 'after_signin_path'
     $(this).append $('<input type="hidden" name="after_signin_path" />').val(path)
+
+global.manage_pick_ups_js = ->
+  $('.show-more').hide()
+  $('.show-more-h').hide()
+  $('.his-con').hide()
+  $('.more').click ->
+    $('.' + $(this).attr('data-more')).toggle 'slow'
+    $(this).text (i, v) ->
+      if v == 'MORE' then 'LESS' else 'MORE'
+
+  $('.more-h').click ->
+    $('.' + $(this).attr('data-more')).toggle 'slow'
+    $(this).text (i, v) ->
+      if v == 'More' then 'LESS' else 'More'
+
+  $('.history').click ->
+    $('.up-con').hide 'slow'
+    $('.upcoming').removeClass 'active1'
+    $('.his-con').show 'slow'
+    $('.history').addClass 'active1'
+
+  $('.upcoming').click ->
+    $('.up-con').show 'slow'
+    $('.history').removeClass 'active1'
+    $('.upcoming').addClass 'active1'
+    $('.his-con').hide 'slow'

@@ -1,6 +1,6 @@
 class User::PickUpsController < User::BaseController
   layout 'customer'
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!, only: [:create, :manage]
   before_action :init_service
   load_resource only: [:summary]
   authorize_resource
@@ -25,6 +25,14 @@ class User::PickUpsController < User::BaseController
   def summary
     @selected_category_ids = session[:selected_category_ids]
     @categories = @pick_up ? @pick_up.categories : Category.where(id: @selected_category_ids).order(:name)
+  end
+
+  def manage
+    @upcoming_pick_ups = current_user.pick_ups.
+      where(status: [PickUp::STATUSES[:accepted], PickUp::STATUSES[:pending]]).
+      where("start_time > ?", Time.now)
+    @history_pick_ups = current_user.pick_ups.
+      where(status: [PickUp::STATUSES[:done], PickUp::STATUSES[:canceled]])
   end
 
 private

@@ -1,0 +1,17 @@
+.container.hppad
+  .row
+    .col-md-12.hpbk
+      .row
+        .col-md-6.col-sm-6.col-xs-6
+          .row
+            %a.upcoming.active1.txthp{:href => "#"} UPCOMING
+        .col-md-6.col-sm-6.col-xs-6
+          .row
+            %a.history.txthp{:href => "#"} HISTORY
+    / Up coming
+    .col-md-12.up-con.compad
+      = render 'upcoming_manage_tab', upcoming_pick_ups: @upcoming_pick_ups
+
+    / History
+    .col-md-12.his-con.compad
+      = render 'history_manage_tab', history_pick_ups: @history_pick_ups

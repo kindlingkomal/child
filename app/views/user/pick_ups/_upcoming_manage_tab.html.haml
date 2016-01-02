@@ -1,0 +1,29 @@
+- month = nil
+- upcoming_pick_ups.each_with_index do |pickup, index|
+  - start_time = pickup.start_time
+  - new_month = start_time.strftime("%B")
+  .row
+    - if new_month != month
+      - month = new_month
+      %h4.fw4= new_month
+    .col-md-6.padlft
+      %ul.list-inline
+        %li= start_time.strftime("#{start_time.day.ordinalize} %B, %A")
+        %li= pickup.pick_time
+    .col-md-6.txtrgt
+      %ul.list-inline
+        %li
+          %a.btn.more{href: "#", 'data-more'=>"show-more#{index}"} MORE
+        %li
+          %a.btn{href: "#"} RESCHEDULE
+    .col-md-12.intxt.show-more{class: "show-more#{index}"}
+      .row
+        %div
+          %p payment:
+          %p= pickup.payment_method
+        %div
+          %p Material
+          %ol
+            - pickup.categories.each do |cat|
+              %li= cat.name
+        /%a.pull-right{"data-dismiss" => "model", "data-target" => "#areyousure", "data-toggle" => "modal", :href => "#"} Cancel

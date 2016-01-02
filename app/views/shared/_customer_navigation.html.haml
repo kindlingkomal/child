@@ -17,22 +17,23 @@
         %li
           = link_to summary_user_pick_ups_path do
             Summary
-            %span.num_categories_selected (#{@selected_category_ids.size})
-        %li.dropdown
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"} Profile
-          %ul.dropdown-menu.profile-dropdown
-            %li
-              %a{:href => "#"}
-                %span>
-                  = image_tag 'carosol-indicator1.png', class: 'img-circle'
-                = @user.try(:full_name)
-            %li.divider
-            %li
-              %a{:href => "#"} Mange Pickups
-            %li.divider
-            %li
-              = link_to 'Settings', user_profile_path
+            %span.num_categories_selected (#{@selected_category_ids.try(:size) || 0})
         - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"} Profile
+            %ul.dropdown-menu.profile-dropdown
+              %li
+                %a{:href => "#"}
+                  %span>
+                    = image_tag 'carosol-indicator1.png', class: 'img-circle'
+                  = current_user.try(:full_name)
+              %li.divider
+              %li
+                = link_to 'Mange Pickups', manage_user_pick_ups_path
+              %li.divider
+              %li
+                = link_to 'Settings', user_profile_path
+
           %li
             = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn'
 

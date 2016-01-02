@@ -5,12 +5,9 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.user?
       can :manage, :all
-      cannot :update, PickUp do |pickup|
-        pickup.status != "pending"
-      end
     elsif user.ragpicker?
       can :manage, :all
-      cannot [:new, :create], PickUp
+      cannot [:new, :create, :manage], PickUp
     else
       cannot :read, :all
       can [:new, :summary], PickUp

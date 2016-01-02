@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   namespace :user do
     resources :pick_ups, only: [:new, :create] do
       get :summary, on: :member
-      get :summary, on: :collection
+      collection do
+        get :summary, :manage
+      end
     end
     get '/profile', to: 'profile#show'
     get 'profile/edit',to: 'profile#edit'
