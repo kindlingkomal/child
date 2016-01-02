@@ -21,7 +21,7 @@
                   %td
                     = image_tag 'profile/address.png'
                   %td
-                    = f.input :email, label: false
+                    = f.input :email, label: false, placeholder: 'Email'
                 %tr
                   %td
                     = image_tag 'profile/password.png'
@@ -52,10 +52,9 @@
                     = image_tag 'profile/address.png'
                   / %td #01, 2nd main, 3rd cross 4th sector, Hsr layout bangalore-560102
                   %td
-                    = f.input :address, label: false
+                    = f.input :address, label: false, placeholder: 'Address'
                 %tr
                   %td
                   / %td #01, 2nd main, 3rd cross 4th sector, Hsr layout bangalore-560102
                   %td
-                    = f.submit 'EDIT', class: 'btn btn-default'
-/ /.page Content
+                    = f.submit 'UPDATE', class: 'btn btn-default'
