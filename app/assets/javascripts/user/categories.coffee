@@ -14,3 +14,5 @@ CategoriesController::index = ->
       location.href = $(this).attr('data-url') + '?' + $('input[name="category_ids[]"]').serialize()
     else
       alert 'Please select categories'
+
+  $('input.check_boxes:checked').trigger('change')

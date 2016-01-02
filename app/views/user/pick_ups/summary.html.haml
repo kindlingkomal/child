@@ -4,7 +4,7 @@
       .bgblk
         %h4
           Summery
-          %span (2)
+          %span (#{@categories.count})
       .col-md-12.intxt{:style => "padding-top:20px; padding-left: 40px;"}
         .row
           %div
@@ -13,8 +13,7 @@
           %div
             %p Material
             %ol
-              %li Plastic
-              %li Glass Bottles
-              %li Milk
+              - @categories.each do |cat|
+                %li= cat.name
       .sumtxt
-        %a.btn.btn-sl{:href => "#"} DONE
+        = link_to 'DONE', user_categories_path, class: 'btn btn-sl'

@@ -15,9 +15,9 @@
         %li
           = link_to 'Rate card', user_categories_path
         %li
-          %a{:href => "#"}
+          = link_to summary_user_pick_ups_path do
             Summary
-            %span.num_categories_selected (0)
+            %span.num_categories_selected (#{@selected_category_ids.size})
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"} Profile
           %ul.dropdown-menu.profile-dropdown

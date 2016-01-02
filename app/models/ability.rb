@@ -13,7 +13,7 @@ class Ability
       cannot [:new, :create], PickUp
     else
       cannot :read, :all
-      can :new, PickUp
+      can [:new, :summary], PickUp
     end
   end
 end

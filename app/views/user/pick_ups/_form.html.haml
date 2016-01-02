@@ -12,7 +12,7 @@
   .col-md-12.tab-time
     = f.hidden_field :date
     .hide
-      - @category_ids.each do |cat|
+      - @selected_category_ids.each do |cat|
         = f.check_box :category_ids, {checked: true, multiple: true}, cat, nil
     .row
       .datepicker-wrapper

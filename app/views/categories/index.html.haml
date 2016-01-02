@@ -23,7 +23,7 @@
                 %td
                   %span.checkbox.category.unchecked
                     %label
-                      %input.check_boxes{name: "category_ids[]", type: "checkbox", value: category.id}
+                      %input.check_boxes{name: "category_ids[]", type: "checkbox", value: category.id, checked: @selected_category_ids.include?(category.id.to_s)}
                       %i.fa.fa-plus-square-o.unchecked
                       %i.fa.fa-minus-square-o.checked
 
