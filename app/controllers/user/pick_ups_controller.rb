@@ -1,8 +1,8 @@
 class User::PickUpsController < User::BaseController
   layout 'customer'
-  before_action :authenticate_user!, only: [:create, :manage]
+  before_action :authenticate_user!, only: [:create, :manage, :reschedule]
   before_action :init_service
-  load_resource only: [:summary]
+  load_resource only: [:summary, :reschedule, :book]
   authorize_resource
 
   def new
@@ -18,6 +18,7 @@ class User::PickUpsController < User::BaseController
     if @pick_up.errors.any?
       render :new
     else
+      session.delete(:selected_category_ids)
       redirect_to summary_user_pick_up_path(@pick_up)
     end
   end
@@ -33,6 +34,19 @@ class User::PickUpsController < User::BaseController
       where("start_time > ?", Time.now)
     @history_pick_ups = current_user.pick_ups.
       where(status: [PickUp::STATUSES[:done], PickUp::STATUSES[:canceled]])
+  end
+
+  def book
+    pick_up_params = params.require(:pick_up).permit(:date, :time_slot_id)
+    @pick_up.update(pick_up_params)
+    if @pick_up.errors.any?
+      render :reschedule
+    else
+      redirect_to summary_user_pick_up_path(@pick_up)
+    end
+  end
+
+  def reschedule
   end
 
 private

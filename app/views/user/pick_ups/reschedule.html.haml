@@ -1,0 +1,28 @@
+.container.lst2pad
+  .row
+    .col-md-12
+      = form_for [:user, @pick_up], url: book_user_pick_up_path(@pick_up), :html => {:class => 'reschedule-pickup', id: 'pickupForm'} do |f|
+
+        .col-md-12.tab-time
+          = f.hidden_field :date
+          .row
+            .datepicker-wrapper
+              .container-fluid
+                .row{:style => ""}
+                  .col-md-1.col-lg-1.col-sm-1.col-xs-1.prev_date_slider.datebg{:onclick => "prevSlide_date_paginator()"}
+                    = image_tag 'previous.png', class: 'pull-left img-responsive datearw'
+                  .col-md-10.col-sm-10.col-xs-10.col-lg-10.datepad
+                    %center
+                      #dateslider.time
+                  .col-md-1.col-sm-1.col-xs-1.col-lg-1.datebg{:onclick => "nextSlide_date_paginator()"}
+                    = image_tag 'next.png', class: 'pull-right img-responsive datearw'
+            .col-md-12.tmepad
+              - TimeSlotService.options_for_select.each_with_index do |slot, index|
+                .col-md-4
+                  .radio
+                    = f.radio_button :time_slot_id, slot[1], id: "inlineRadio#{index}", checked: (index == 0)
+                    %label{for: "inlineRadio#{index}"}
+                      = slot[0]
+
+            .col-md-12.pktxt
+              = f.submit 'BOOK PICKUP', class: 'btn-book-pickup'

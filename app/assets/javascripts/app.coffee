@@ -31,21 +31,25 @@ global.new_pick_up_js = ->
 
   $('.tab2').click ->
     $('.tab-add').show()
-    $('.list-nav > ul > li:nth-child(2)').addClass 'clrbk'
-    $('.list-nav > ul > li:nth-child(2)>a').css 'color', '#fff'
+    $('.list-nav > ul > li:nth-child(1)').addClass 'clrbk'
+    $('.list-nav > ul > li:nth-child(1)>a').css 'color', '#fff'
     $('.tab-time').hide()
     $('.tab-sign').hide()
 
   $('.tab3').click ->
     $('.tab-add').hide()
     $('.tab-time').show()
-    $('.list-nav > ul > li:nth-child(3)').addClass 'clrbk'
-    $('.list-nav > ul > li:nth-child(3)>a').css 'color', '#fff'
+    $('.list-nav > ul > li:nth-child(2)').addClass 'clrbk'
+    $('.list-nav > ul > li:nth-child(2)>a').css 'color', '#fff'
     $('.tab-sign').hide()
 
   $('.devise-login-form').on 'submit', 'form.login2', ->
     path = $(this).closest('.devise-login-form').attr 'after_signin_path'
     $(this).append $('<input type="hidden" name="after_signin_path" />').val(path)
+
+global.reschedule_pick_up_js = ->
+  todayDate = new Date()
+  initSlider todayDate
 
 global.manage_pick_ups_js = ->
   $('.show-more').hide()

@@ -8,7 +8,10 @@ Rails.application.routes.draw do
 
   namespace :user do
     resources :pick_ups, only: [:new, :create] do
-      get :summary, on: :member
+      member do
+        get :summary, :reschedule
+        patch :book
+      end
       collection do
         get :summary, :manage
       end

@@ -49,7 +49,6 @@ class Api::User::PickUpsController < Api::UserController
     end
   end
 
-
   def cancel
     result = @service.cancel(params)
     if result.errors.any?
