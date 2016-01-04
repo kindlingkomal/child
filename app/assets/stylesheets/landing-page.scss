@@ -22,7 +22,7 @@ body, h1,h2,h3,h4,h5,h6 {
     padding-bottom: 70px;
     text-align: center;
     color: #f8f8f8;
-    background: url(/assets/gb.png) no-repeat center center;
+    background: asset_url('gb.png') no-repeat center center;
     background-size: cover;
     height: 620px;
 }
@@ -717,7 +717,7 @@ color: #010101;
     font-weight: 100;
 }
 .inad{
-    background: url('/assets/location.png') no-repeat right;
+    background: asset_url('location.png') no-repeat right;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
