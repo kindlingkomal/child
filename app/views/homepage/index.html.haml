@@ -52,39 +52,15 @@
 .col-md-12.bg-offer
   .container
     .row
-      .col-md-5ths.col-xs-6
-        %a{:href => "#"}
-          = image_tag 'cloths.png', class: 'img-responsive'
+      - Category.where(status: 1).order(position: :asc).each_with_index do |cat, index|
+        .col-md-5ths.col-xs-6{class: "#{'mob-pad' if index != 0}"}
+          = image_tag cat.image.url(:thumbnail), class: 'img-responsive thumbnail-one'
           .bg-rate
-            %h3 Cloths
-            %h5 Rs 15/kg
-      .col-md-5ths.col-xs-6.mob-pad
-        %a{:href => "#"}
-          = image_tag 'bottles.png', class: 'img-responsive'
-          .bg-rate
-            %h3 Glass Bottels
-            %h5 Rs 50/kg
-      .col-md-5ths.col-xs-6.mob-pad
-        %a{:href => "#"}
-          = image_tag 'papper.png', class: 'img-responsive'
-          .bg-rate
-            %h3 News Paper
-            %h5 Rs 50/kg
-      .col-md-5ths.col-xs-6.mob-pad
-        %a{:href => "#"}
-          = image_tag 'books.png', class: 'img-responsive'
-          .bg-rate
-            %h3 Old Books
-            %h5 Rs 10/kg
-      .col-md-5ths.col-xs-6.mob-pad
-        %a{:href => "#"}
-          = image_tag 'iron.png', class: 'img-responsive'
-          .bg-rate
-            %h3 Steel
-            %h5 Rs 60/kg
+            %h3= cat.name
+            %h5 Rs #{cat.price.to_i}/kg
+
     .row
-      %a.btn.rtbtn{:href => "#"}
-        View Rate Card
-/ /. Rate Card
+      = link_to 'View Rate Card', user_categories_path, class: 'btn rtbtn'
+
 / Slider
 = render partial: "layouts/customer_talk"
