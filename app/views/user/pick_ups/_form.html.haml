@@ -3,6 +3,9 @@
   .col-md-12.tab-add
     .row
       .form-group.lsrmg
+        - if @pick_up.errors.any?
+          #error_explanation
+            = render 'shared/alert_errors', resource: @pick_up
         = f.text_field :address, class: "inad", placeholder: "Address line 1"
         = f.text_field :city, class: "inad1", placeholder: "City"
         = f.text_field :pincode, class: "inad1", placeholder: "Pin code"
