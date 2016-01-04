@@ -5,7 +5,7 @@
   .row
     .col-md-2
       .row
-        = image_tag 'aviator.png'
+        = image_tag @user.avatar.url(:thumbnail) || 'aviator.png', class: 'choose_user_avatar img-circle'
     = simple_form_for @user, url: user_profile_path, html: {'data-parsley-validate'=> true}, method: :patch do |f|
       .col-md-8.pflpad
         .row
@@ -57,4 +57,5 @@
                   %td
                   / %td #01, 2nd main, 3rd cross 4th sector, Hsr layout bangalore-560102
                   %td
+                    .hide= f.input :avatar, as: :file
                     = f.submit 'UPDATE', class: 'btn btn-default'

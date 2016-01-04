@@ -5,7 +5,7 @@
   .row
     .col-md-2
       .row
-        = image_tag 'aviator.png'
+        = image_tag @user.avatar.url(:thumbnail) || 'aviator.png', class: 'img-circle'
     .col-md-8.pflpad
       .row
         .col-md-12

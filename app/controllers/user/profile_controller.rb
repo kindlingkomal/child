@@ -9,7 +9,7 @@ class User::ProfileController < ApplicationController
 
   def update
     if !user_params[:current_password].blank? && !user_params[:password].blank?
-      @user.update_with_password(user_params)    
+      @user.update_with_password(user_params)
     else
       user_param_dup = user_params.dup
       user_param_dup.delete(:current_password)
@@ -27,12 +27,13 @@ class User::ProfileController < ApplicationController
     end
   end
 
-  private 
+  private
   def get_user
   	@user = current_user
   end
 
   def user_params
-    params.require(:user).permit(:full_name, :phone_number, :email, :address, :current_password, :password, :password_confirmation, :gender)    
-  end	
+    params.require(:user).permit(:full_name, :phone_number, :email, :address, :avatar,
+      :current_password, :password, :password_confirmation, :gender)
+  end
 end
