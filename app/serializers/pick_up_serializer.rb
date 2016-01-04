@@ -7,7 +7,7 @@ class PickUpSerializer < ActiveModel::Serializer
   has_many :line_items
 
   def category_set
-    Category.where(id: object.category_set).map {|cat|
+    object.categories.map {|cat|
       CategorySerializer.new(cat).attributes
     }
   end

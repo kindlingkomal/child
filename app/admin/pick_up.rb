@@ -97,7 +97,7 @@ ActiveAdmin.register PickUp do
       end
       #row :total
       row "Categories" do |obj|
-        Category.where(id: obj.category_set).pluck('name').join(', ')
+        obj.categories.pluck('name').join(', ')
       end
     end
   end
