@@ -7,7 +7,7 @@ class Ability
       can :manage, :all
     elsif user.ragpicker?
       can :manage, :all
-      cannot [:new, :create, :manage, :reschedule, :book], PickUp
+      cannot [:new, :create, :manage, :reschedule, :book, :cancel], PickUp
     else
       cannot :read, :all
       can [:new, :summary], PickUp

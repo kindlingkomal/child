@@ -26,4 +26,4 @@
           %ol
             - pickup.categories.each do |cat|
               %li= cat.name
-        /%a.pull-right{"data-dismiss" => "model", "data-target" => "#areyousure", "data-toggle" => "modal", :href => "#"} Cancel
+        = link_to 'Cancel', cancel_user_pick_up_path(pickup), method: :post, :data => { :confirm => "Are you sure?" }, class: 'pull-right'

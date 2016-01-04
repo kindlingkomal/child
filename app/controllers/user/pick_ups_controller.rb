@@ -16,6 +16,7 @@ class User::PickUpsController < User::BaseController
     @pick_up = @service.add(params)
     # puts @pick_up.errors.inspect
     if @pick_up.errors.any?
+      @selected_category_ids = session[:selected_category_ids]
       render :new
     else
       session.delete(:selected_category_ids)
@@ -34,6 +35,11 @@ class User::PickUpsController < User::BaseController
       where("start_time > ?", Time.now)
     @history_pick_ups = current_user.pick_ups.
       where(status: [PickUp::STATUSES[:done], PickUp::STATUSES[:canceled]])
+  end
+
+  def cancel
+    result = @service.cancel(params)
+    redirect_to manage_user_pick_ups_path
   end
 
   def book

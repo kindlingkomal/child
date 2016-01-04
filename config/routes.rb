@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :pick_ups, only: [:new, :create] do
       member do
         get :summary, :reschedule
+        post :cancel
         patch :book
       end
       collection do
