@@ -1,10 +1,20 @@
 ActiveAdmin.register Category do
+  permit_params :name, :price, :image
+
+  index do
+    selectable_column
+    # id_column
+    column :name
+    column :price
+    column :image do |obj|
+      image_tag obj.image.url(:thumbnail), class: 'thumbnail-img'
+    end
+    column :created_at
+    actions
+  end
 
   filter :name
   filter :price
-  filter :image
-  filter :created_at
-  filter :updated_at
 
   form do |f|
     f.inputs do
@@ -16,13 +26,14 @@ ActiveAdmin.register Category do
     actions
   end
 
-permit_params do
-  [
-    :name,
-    :price,
-    :image,
-  ]
-end
-
+  show do
+    attributes_table do
+      row :name
+      row :price
+      row 'Image' do |obj|
+        image_tag obj.image.url(:thumbnail), class: 'thumbnail-img'
+      end
+    end
+  end
 
 end
