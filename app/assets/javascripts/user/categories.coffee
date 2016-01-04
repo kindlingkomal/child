@@ -16,3 +16,8 @@ CategoriesController::index = ->
       alert 'Please select categories'
 
   $('input.check_boxes:checked').trigger('change')
+
+  $('.pickup_summary').click (e)->
+    if $('input[name="category_ids[]"]:checked').length > 0
+      e.preventDefault()
+      location.href = $(this).attr('href') + '?' + $('input[name="category_ids[]"]').serialize()

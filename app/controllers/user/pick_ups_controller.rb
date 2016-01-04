@@ -25,7 +25,12 @@ class User::PickUpsController < User::BaseController
   end
 
   def summary
-    @selected_category_ids = session[:selected_category_ids]
+    if params[:category_ids].nil?
+      @selected_category_ids = session[:selected_category_ids]
+    else
+      @selected_category_ids = params[:category_ids]
+      session[:selected_category_ids] = @selected_category_ids
+    end
     @categories = @pick_up ? @pick_up.categories : Category.where(id: @selected_category_ids).order(:name)
   end
 

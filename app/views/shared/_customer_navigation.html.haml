@@ -15,7 +15,7 @@
         %li
           = link_to 'Rate card', user_categories_path
         %li
-          = link_to summary_user_pick_ups_path do
+          = link_to summary_user_pick_ups_path, class: 'pickup_summary' do
             Summary
             %span.num_categories_selected (#{@selected_category_ids.try(:size) || 0})
         - if user_signed_in?
