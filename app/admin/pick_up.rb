@@ -1,4 +1,5 @@
 ActiveAdmin.register PickUp do
+  config.sort_order = 'created_at_desc'
   menu label: 'Allocations'
   actions :index, :show, :edit, :update
   permit_params :address, :city, :landmark, :start_time, :end_time,

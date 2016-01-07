@@ -24,6 +24,7 @@ class User::PickupService < BaseService
   def reschedule params
     pick_up = current_user.pick_ups.find params[:id]
     pick_up_param = process_pickup_param(params)
+    pick_up.created_at = Time.now
     pick_up.update_attributes(pick_up_param)
     pick_up
   end
