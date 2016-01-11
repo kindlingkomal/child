@@ -47,7 +47,8 @@ class Api::Picker::SessionsController < Api::PickerController
 private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :avatar,
-      :full_name, :phone_number, :gender, :address, :city, :notified, :pincode, :lat, :lon)
+      :full_name, :phone_number, :gender, :address, :city, :notified, :pincode,
+      :lat, :lon, :yard_number)
   end
 
 end

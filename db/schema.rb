@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104081528) do
+ActiveRecord::Schema.define(version: 20160111033601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -279,6 +279,7 @@ ActiveRecord::Schema.define(version: 20160104081528) do
     t.string   "gcm_registration"
     t.string   "address2"
     t.boolean  "is_yard",                default: false
+    t.string   "yard_number"
   end
 
   add_index "users", ["gcm_registration"], name: "index_users_on_gcm_registration", using: :btree
