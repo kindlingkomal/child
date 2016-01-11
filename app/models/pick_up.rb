@@ -24,6 +24,7 @@ class PickUp < ActiveRecord::Base
   has_many :rate_list, dependent: :destroy, class_name: 'Rate'
   has_many :rejected_users, dependent: :destroy
   has_many :line_items, dependent: :destroy
+  has_many :notifying_pickups, dependent: :destroy
   has_and_belongs_to_many :categories
 
   before_validation :set_default_subscription, :set_time, :set_time_slot_id, :set_date
