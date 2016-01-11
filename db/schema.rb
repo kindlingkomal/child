@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111071826) do
+ActiveRecord::Schema.define(version: 20160111100115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,6 +180,7 @@ ActiveRecord::Schema.define(version: 20160111071826) do
     t.string   "payment_method",                          default: "COP"
     t.integer  "time_slot_id"
     t.date     "date"
+    t.boolean  "has_ratings",                             default: false
   end
 
   add_index "pick_ups", ["customer_id"], name: "index_pick_ups_on_customer_id", using: :btree
