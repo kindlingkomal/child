@@ -22,7 +22,7 @@ gem 'kaminari'
 gem 'arel-helpers'
 gem 'geocoder'
 gem 'paloma'
-gem 'ratyrate'
+gem 'ratyrate', '1.2.2.alpha'
 gem 'haml-rails'
 gem "rest-client"
 gem 'twilio-ruby'

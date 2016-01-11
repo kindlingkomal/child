@@ -21,6 +21,7 @@ class PickUp < ActiveRecord::Base
   belongs_to :customer
   has_many :pickup_users, dependent: :destroy
   has_many :accepted_users, dependent: :destroy
+  has_many :rate_list, dependent: :destroy, class_name: 'Rate'
   has_many :rejected_users, dependent: :destroy
   has_many :line_items, dependent: :destroy
   has_and_belongs_to_many :categories

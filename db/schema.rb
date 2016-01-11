@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111033601) do
+ActiveRecord::Schema.define(version: 20160111071826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -225,8 +225,10 @@ ActiveRecord::Schema.define(version: 20160111033601) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
+    t.integer  "pick_up_id"
   end
 
+  add_index "rates", ["pick_up_id"], name: "index_rates_on_pick_up_id", using: :btree
   add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
   add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
 
@@ -306,4 +308,5 @@ ActiveRecord::Schema.define(version: 20160111033601) do
   add_foreign_key "pick_ups", "users"
   add_foreign_key "pickup_users", "pick_ups"
   add_foreign_key "pickup_users", "users"
+  add_foreign_key "rates", "pick_ups"
 end
