@@ -4,12 +4,17 @@ class Api::UsersController < Api::ApiController
 
   def create
     @user = User.new user_params
-    # @user.inactive = true
+    @user.inactive = true
     if @user.save
       if (@invitation = Invitation.find_by(phone_number: @user.phone_number))
         @invitation.update(user: @user, accepted_at: @user.created_at)
       end
-      render json: @user
+      raw = NumberTokenGenerator.instance.generate_unique_code(User, :otp)
+      @user.update(otp: raw)
+      SmsService.send_otp @user.phone_number, @user.otp
+      render json: @user, meta: {
+        otp: @user.otp
+      }
     else
       handle_errors_create
     end

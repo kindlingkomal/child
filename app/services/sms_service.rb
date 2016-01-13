@@ -11,7 +11,14 @@ class SmsService
   end
 
   def self.send_reset_pwd(phone, pwd)
-    message = "Your STV password: #{pwd}"
+    send_message(phone, "Your STV password: #{pwd}")
+  end
+
+  def self.send_otp(phone, otp)
+    send_message(phone, "Your OTP from STV: #{otp}")
+  end
+
+  def self.send_message(phone, message)
     phone = "+#{phone[2..-1]}" if phone.index('00') == 0
     rt = false
     begin
@@ -23,7 +30,6 @@ class SmsService
     end
 
     return rt
-
   end
 
 end
