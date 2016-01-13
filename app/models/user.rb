@@ -36,6 +36,13 @@ class User < ActiveRecord::Base
     User.ragpicker.near([lat, lon], 5, :units => :km)
   end
 
+  def activate_and_invalidate_authentication_token
+    if encrypted_password?
+      invalidate_authentication_token!
+      update(inactive: false, otp: nil)
+    end
+  end
+
 private
   # override a method in gem devise
   def email_required?

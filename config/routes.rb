@@ -52,6 +52,7 @@ Rails.application.routes.draw do
 
     get '/user/categories', to: 'categories#index'
     get '/user/time_slots', to: 'time_slots#index'
+    get 'user/verify_otp', to: 'users#verify_otp'
     post '/user/friends/invite', to: 'users#invite'
     post '/user/signup', to: 'users#create'
     post '/user/resendpwd', to: 'authentication#resendpwd'
