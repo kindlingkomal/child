@@ -77,20 +77,19 @@ Rails.application.routes.draw do
         end
       end
 
+      get '/verify_otp', to: 'sessions#verify_otp'
       get '/profile', to: 'profile#show'
       put '/profile', to: 'profile#update'
 
       post '/device/register', to: 'profile#device'
       post '/signup', to: 'sessions#create'
       post '/signin', to: 'sessions#signin'
-
       post '/rates', to: 'rates#create'
 
     end
 
     get '/picker/categories', to: 'categories#index'
     get '/picker/time_slots', to: 'time_slots#index'
-
     #post '/picker/signup', to: 'users#create'
     #post '/picker/signin', to: 'authentication#create'
     get '/picker/logout', to: 'authentication#logout'
