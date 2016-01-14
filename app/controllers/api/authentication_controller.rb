@@ -43,7 +43,7 @@ class Api::AuthenticationController < Api::ApiController
 protected
   def login_user(user)
     unless user.user?
-      render json: {error: {code: "20001", msg: "role invalid"}}, status: 403 and return
+      render json: {error: {code: "20001", msg: "Phone number or password is incorrect"}}, status: 403 and return
     end
     user.last_sign_in_at = Time.now
     user.invalidate_authentication_token
