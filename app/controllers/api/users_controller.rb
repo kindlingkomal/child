@@ -26,7 +26,7 @@ class Api::UsersController < Api::ApiController
       @user.activate_and_invalidate_authentication_token
       render json: {status: true, authentication_token: @user.authentication_token}
     else
-      render json: {status: false}, status: 403
+      render json: {error: {code: 20009, msg: 'Your OTP is invalid'}}, status: 405
     end
   end
 
