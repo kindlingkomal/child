@@ -1,6 +1,6 @@
 class Api::Picker::SessionsController < Api::PickerController
-  skip_before_action :authenticate_user_from_token!, :require_picker!, only: [:create, :signin, :verify_otp]
-  before_action :authenticate_user!, except: [:create, :signin, :verify_otp]
+  skip_before_action :authenticate_user_from_token!, :require_picker!, only: [:create, :verify_otp]
+  before_action :authenticate_user!, except: [:create, :verify_otp]
 
   def create
     @user = User.new user_params
@@ -27,28 +27,28 @@ class Api::Picker::SessionsController < Api::PickerController
     end
   end
 
-  def signin
-    user = User.ragpickers.find_for_database_authentication(
-      phone_number: params[:phone_number].try(:downcase)
-    )
-    if user && user.valid_password?(params[:password])
-      user.last_sign_in_at = Time.now
-      user.invalidate_authentication_token
-      user.save
-      render json: user, serializer: UserDetailSerializer
-    else
-      user = User.find_for_database_authentication(
-        phone_number: params[:phone_number].try(:downcase)
-      )
-      if user.nil?
-        render json: {error: {code: 10000, msg: "User not registered"}}, status: 403
-      elsif !user.valid_password?(params[:password])
-        render json: {error: {code: 10001, msg: "Invalid password"}}, status: 403
-      else
-        render json: {error: {code: 90000, msg: "Bad credentials"}}, status: 403
-      end
-    end
-  end
+  #def signin
+  #  user = User.ragpickers.find_for_database_authentication(
+  #    phone_number: params[:phone_number].try(:downcase)
+  #  )
+  #  if user && user.valid_password?(params[:password])
+  #    user.last_sign_in_at = Time.now
+  #    user.invalidate_authentication_token
+  #    user.save
+  #    render json: user, serializer: UserDetailSerializer
+  #  else
+  #    user = User.find_for_database_authentication(
+  #      phone_number: params[:phone_number].try(:downcase)
+  #    )
+  #    if user.nil?
+  #      render json: {error: {code: 10000, msg: "User not registered"}}, status: 403
+  #    elsif !user.valid_password?(params[:password])
+  #      render json: {error: {code: 10001, msg: "Invalid password"}}, status: 403
+  #    else
+  #      render json: {error: {code: 90000, msg: "Bad credentials"}}, status: 403
+  #    end
+  #  end
+  #end
 
   def verify_otp
     otp = params[:otp].presence

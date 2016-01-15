@@ -83,7 +83,8 @@ Rails.application.routes.draw do
 
       post '/device/register', to: 'profile#device'
       post '/signup', to: 'sessions#create'
-      post '/signin', to: 'sessions#signin'
+      #post '/signin', to: 'sessions#signin'
+      post '/signin', to: 'authentication#create'
       post '/rates', to: 'rates#create'
 
     end
