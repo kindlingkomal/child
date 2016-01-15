@@ -61,7 +61,7 @@ ActiveAdmin.register PickUp do
       f.input :address
       f.input :city
       f.input :landmark
-      f.input :date, as: :datepicker
+      f.input :date, as: :string, input_html: {class: 'datepicker2'}
       f.input :time_slot, collection: TimeSlotService.options_for_select, include_blank: true
     end
     actions
@@ -101,5 +101,15 @@ ActiveAdmin.register PickUp do
         obj.categories.pluck('name').join(', ')
       end
     end
+  end
+
+  collection_action :time_slots, method: :get do
+    date = params[:date].to_date
+    @timeslots = TimeSlot.all.map {|slot|
+      if date + slot.start_hour.seconds > Time.zone.now
+        ["#{TimeSlotService.format slot.start_hour} - #{TimeSlotService.format slot.end_hour}", slot.id]
+      end
+    }.compact
+    render 'time_slots.js'
   end
 end

@@ -84,6 +84,9 @@ private
       timeslot = TimeSlot.find time_slot_id
       self.start_time = start_date + timeslot.start_hour.seconds
       self.end_time = start_date + timeslot.end_hour.seconds
+    else
+      self.date = nil
+      self.time_slot_id = nil
     end
   end
 
