@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :pick_ups, dependent: :destroy
   has_many :pickup_users, dependent: :destroy
   has_many :invitations, dependent: :destroy, foreign_key: :invited_by_id
+  has_many :user_invitations, dependent: :destroy, class_name: 'Invitation'
   has_many :notifying_pickups, dependent: :destroy, foreign_key: :ragpicker_id
   has_many :accepted_pick_ups, class_name: 'PickUp', foreign_key: :ragpicker_id
 
