@@ -14,6 +14,7 @@ ActiveAdmin.register PickUp do
     column :pincode
     column :city
     column :address
+    column :landmark
     column :subscription
     column "Pick Date" do |obj|
       obj.start_time.strftime('%a %d %b') rescue nil
@@ -73,6 +74,7 @@ ActiveAdmin.register PickUp do
         obj.payment_method
       end
       row :city
+      row :landmark
       row :pincode
       row :address
       row "Pick Date" do |obj|
