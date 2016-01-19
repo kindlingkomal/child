@@ -52,7 +52,7 @@
 .col-md-12.bg-offer
   .container
     .row
-      - Category.where(status: 1).order(position: :asc).each_with_index do |cat, index|
+      - @categories.each_with_index do |cat, index|
         .col-md-5ths.col-xs-6{class: "#{'mob-pad' if index != 0}"}
           = image_tag cat.image.url(:thumbnail), class: 'img-responsive thumbnail-one'
           .bg-rate
