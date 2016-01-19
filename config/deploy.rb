@@ -41,7 +41,9 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :puma_threads,    [1, 1]
 set :puma_workers,    1
 
-# Don't change these unless you know what you're doing
+set :bundle_binstubs, nil
+set :rvm_type, :user
+set :rvm_ruby_version, 'ruby-2.3.0@stv'
 set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
