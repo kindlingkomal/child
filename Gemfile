@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.2.2"
+ruby "2.3.0"
 
 gem 'cancancan'
 gem 'simple_form'
@@ -40,6 +40,15 @@ group :development, :test do
   gem 'pry-rails'
   gem 'web-console', '~> 2.0'
   gem 'rspec-rails', require: false
+end
+
+group :development do
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+  gem 'capistrano3-delayed-job', require: false
 end
 
 group :test do
