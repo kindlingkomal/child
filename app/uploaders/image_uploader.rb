@@ -35,7 +35,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :thumbnail do
-    process :scale => [90, 90]
+    process :scale => [250, 250]
   end
 
 end
