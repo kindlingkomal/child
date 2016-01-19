@@ -59,32 +59,7 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
-namespace :puma do
-  desc 'Create Directories for Puma Pids and Socket'
-  task :make_dirs do
-    on roles(:app) do
-      execute "mkdir #{shared_path}/tmp/sockets -p"
-      execute "mkdir #{shared_path}/tmp/pids -p"
-    end
-  end
-end
-
 namespace :deploy do
-  #desc 'Initial Deploy'
-  #task :initial do
-  #  on roles(:app) do
-  #    before 'deploy:restart', 'puma:start'
-  #    invoke 'deploy'
-  #  end
-  #end
-
-  task :stop_delayed_job do
-    invoke 'delayed_job:stop'
-  end
-
-  task :start_delayed_job do
-    invoke 'delayed_job:start'
-  end
 
   desc 'Restart application'
   task :restart do
@@ -93,9 +68,7 @@ namespace :deploy do
     end
   end
 
-  after :finishing,    :stop_delayed_job
   after :finishing,    :compile_assets
   after :finishing,    :cleanup
   after :finishing,    :restart
-  after :finishing,    :start_delayed_job
 end
