@@ -11,11 +11,11 @@ class SmsService
   end
 
   def self.send_reset_pwd(phone, pwd)
-    send_message(phone, "Your STV password: #{pwd}")
+    send_message(phone, "Your ScrapJoe password: #{pwd}")
   end
 
   def self.send_otp(phone, otp)
-    send_message(phone, "Your OTP from STV: #{otp}")
+    send_message(phone, "Your OTP from ScrapJoe: #{otp}")
   end
 
   def self.send_message(phone, message)
