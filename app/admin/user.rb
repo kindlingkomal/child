@@ -9,7 +9,7 @@ ActiveAdmin.register User, as: 'User' do
 
   controller do
     def scoped_collection
-      super.user
+      super.user.active
     end
   end
 

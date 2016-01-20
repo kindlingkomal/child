@@ -9,7 +9,7 @@ ActiveAdmin.register User, as: 'Ragpicker' do
 
   controller do
     def scoped_collection
-      super.ragpicker
+      super.ragpicker.active
     end
   end
 
