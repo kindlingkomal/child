@@ -5,6 +5,12 @@ ActiveAdmin.register PickUp do
   permit_params :address, :city, :landmark, :start_time, :end_time,
     :date, :time_slot_id, :payment_method
 
+  controller do
+    def scoped_collection
+      super.includes(:user, :ragpicker)
+    end
+  end
+
   index do
     # selectable_column
     column :id
@@ -28,12 +34,7 @@ ActiveAdmin.register PickUp do
     column :canceled_at do |obj|
       obj.start_time.canceled_at('%d/%m/%Y %H:%M') rescue nil
     end
-    # column :proceeded_at
-    #column :category_set do |obj|
-    #  obj.categories.pluck('name').join(', ')
-    #end
-    # column :lat
-    # column :lon
+
     column "Customer" do |obj|
       obj.customer_name rescue nil
     end
@@ -41,20 +42,21 @@ ActiveAdmin.register PickUp do
       obj.ragpicker_name rescue nil
     end
 
-    # column :total
-    # column :customer_id
-
     actions do |pick_up|
+
       if pick_up.status == PickUp::STATUSES[:pending] && pick_up.start_time.utc > Time.now.utc
-        except_ids = NotifyingPickup.where(pick_up_id: pick_up.id).pluck(:ragpicker_id).uniq
-        if User.ragpicker.where("gcm_registration IS NOT NULL").where.not(id: except_ids).count > 0
-          link_to 'Process', admin_notifying_ragpickers_path(pickup_id: pick_up.id), class: 'member_link'
+        if User.ragpicker.active.count > 0
+          process = link_to 'Process', admin_notifying_ragpickers_path(pickup_id: pick_up.id), class: 'member_link'
         end
       end
+      cancel = link_to 'Cancel', cancel_admin_pick_up_path(pick_up), method: :post,
+        class: 'member_link' if authorized?(:cancel, pick_up)
+
+      raw "#{process} #{cancel}"
     end
   end
 
-  filter :status, as: :select, collection: PickupUser::STATUSES.values.map{|s| [s.capitalize, s]}
+  filter :status, as: :select, collection: PickupUser::STATUSES.values.map{|s| [s.capitalize, s]}.unshift(['Pending', 'pending'])
 
   form do |f|
     f.inputs do
@@ -113,5 +115,14 @@ ActiveAdmin.register PickUp do
       end
     }.compact
     render 'time_slots.js'
+  end
+
+  member_action :cancel, method: :post do
+    resource.canceled_at = Time.now
+    resource.status = PickUp::STATUSES[:canceled]
+    if resource.save
+      redirect_to collection_path, alert: 'The pickup was canceled successfully' and return
+    end
+    redirect_to collection_path
   end
 end
