@@ -7,7 +7,7 @@ ActiveAdmin.register PickUp do
 
   index do
     # selectable_column
-    # column :title
+    column :id
     column 'Payment' do |obj|
       obj.payment_method
     end
