@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   reverse_geocoded_by :lat, :lon
 
   scope :ragpickers, -> {where(role: 1)}
+  scope :active, -> { where(inactive: false) }
 
   def active?
    !inactive

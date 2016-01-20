@@ -4,10 +4,9 @@ ActiveAdmin.register User, as: 'NotifyingRagpicker' do
 
   controller do
     def scoped_collection
-      except_ids = params[:pickup_id].blank? ? [] :
-        NotifyingPickup.where(pick_up_id: params[:pickup_id]).pluck(:ragpicker_id).uniq
-
-      super.ragpicker.where("gcm_registration IS NOT NULL").where.not(id: except_ids)
+      # except_ids = params[:pickup_id].blank? ? [] : NotifyingPickup.where(pick_up_id: params[:pickup_id]).pluck(:ragpicker_id).uniq
+      # super.ragpicker.where("gcm_registration IS NOT NULL").where.not(id: except_ids)
+      super.ragpicker.active
     end
   end
 
