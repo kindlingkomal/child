@@ -91,6 +91,9 @@ class Api::Picker::PickUpsController < Api::PickerController
   end
 
   def accept
+    if NotifyingPickup.where(pick_up_id: params[:id], ragpicker_id: @current_user.id).count == 0
+      render json: {error: {code: 4001, msg: "This pickup was not assigned by Admin"}}, status: 405 and return
+    end
     @result = @service.accept(params)
     if @result.errors.any?
       render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
