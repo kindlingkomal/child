@@ -59,6 +59,7 @@ ActiveAdmin.register PickUp do
   filter :status, as: :select, collection: PickupUser::STATUSES.values.map{|s| [s.capitalize, s]}.unshift(['Pending', 'pending'])
 
   form do |f|
+    f.semantic_errors
     f.inputs do
       f.input :payment_method, as: :radio, collection: ['COP', 'NGO'], label: 'Payment'
       f.input :address

@@ -14,6 +14,7 @@ class PickUp < ActiveRecord::Base
   validates :user, presence: {if: Proc.new { |pk| !pk.manual?}}
   validates :date, presence: true
   validates :time_slot_id, presence: true, uniqueness: {scope: [:user_id, :date]}
+  validate :check_start_time
 
   belongs_to :time_slot
   belongs_to :user
@@ -101,6 +102,12 @@ private
   def set_date
     if !date? && start_time?
       self.date = start_time.to_date
+    end
+  end
+
+  def check_start_time
+    if %w(pending accepted).include?(status) && start_time < Time.zone.now
+      errors.add(:base, "Start time cannot be in the past")
     end
   end
 end
