@@ -70,6 +70,16 @@ class GcmService
     push_to_registration_ids(reg_ids, options)
   end
 
+  def cancel_pickup_by_admin(pickup)
+    options = pickup_activity_data(pickup, 'canceled')
+    reg_ids = []
+    reg_ids << pickup.user.gcm_registration if pickup.user.gcm_registration?
+    if (ragpicker = pickup.ragpicker).present?
+      reg_ids << ragpicker.gcm_registration if ragpicker.gcm_registration?
+    end
+    push_to_registration_ids(reg_ids, options)
+  end
+
   def proceed_pickup(pickup)
     options = pickup_activity_data(pickup, 'proceeded')
     user = pickup.user
