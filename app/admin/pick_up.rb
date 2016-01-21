@@ -121,7 +121,7 @@ ActiveAdmin.register PickUp do
     resource.canceled_at = Time.now
     resource.status = PickUp::STATUSES[:canceled]
     if resource.save
-      GcmService.new(nil).cancel_pickup_by_admin(resource)
+      GcmService.new(nil).delay.cancel_pickup_by_admin(resource)
       redirect_to collection_path, alert: 'The pickup was canceled successfully' and return
     end
     redirect_to collection_path

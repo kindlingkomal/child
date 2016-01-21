@@ -17,8 +17,7 @@ class GcmService
     })
     Rails.logger.debug(options.inspect)
     response = @gcm.send(reg_ids, options)
-    # Rails.logger.info(response)
-    Rails.logger.info(response.inspect)
+    puts(response.inspect)
     response
   end
 
@@ -99,8 +98,8 @@ private
           address: pickup.address
         },
         user: {
-          id: @current_user.id,
-          name: @current_user.full_name,
+          id: @current_user.try(:id),
+          name: @current_user.try(:full_name) || 'Admin',
         }
       },
       collapse_key: 'demo1',
