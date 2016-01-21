@@ -50,7 +50,7 @@ ActiveAdmin.register PickUp do
         end
       end
       cancel = link_to 'Cancel', cancel_admin_pick_up_path(pick_up), method: :post,
-        class: 'member_link' if authorized?(:cancel, pick_up)
+        class: 'member_link', data: {confirm: 'Are you sure you want to cancel this?' } if authorized?(:cancel, pick_up)
 
       raw "#{process} #{cancel}"
     end
