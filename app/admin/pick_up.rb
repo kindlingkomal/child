@@ -42,6 +42,11 @@ ActiveAdmin.register PickUp do
       obj.ragpicker_name rescue nil
     end
 
+    column 'Rejected by' do |obj|
+      obj.pickup_users.where(status: 'rejected').joins(:user).distinct.
+        select('users.full_name AS full_name').map(&:full_name).join(', ')
+    end
+
     actions do |pick_up|
 
       if pick_up.status == PickUp::STATUSES[:pending] && pick_up.start_time.utc > Time.now.utc
@@ -56,7 +61,7 @@ ActiveAdmin.register PickUp do
     end
   end
 
-  filter :status, as: :select, collection: PickupUser::STATUSES.values.map{|s| [s.capitalize, s]}.unshift(['Pending', 'pending'])
+  filter :with_status_by_partners_in, label: 'Status', as: :select, collection: PickupUser::STATUSES.values.map{|s| [s.capitalize, s]}.unshift(['Pending', 'pending'])
 
   form do |f|
     f.semantic_errors

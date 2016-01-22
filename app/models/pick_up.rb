@@ -35,6 +35,18 @@ class PickUp < ActiveRecord::Base
 
   accepts_nested_attributes_for :customer, :line_items
 
+  ransacker :with_status_by_partners, formatter: proc { |selected|
+      if selected == PickupUser::STATUSES[:rejected]
+        pickup_ids = PickupUser.where(status: selected).map(&:pick_up_id)
+        results = PickUp.where('pick_ups.status=? OR pick_ups.id IN (?)', selected, pickup_ids).map(&:id)
+      else
+        results = PickUp.where(status: selected).map(&:id)
+      end
+      results = results.present? ? results : nil
+    }, splat_params: true do |parent|
+    parent.table[:id]
+  end
+
   def manual?
     manual
   end
