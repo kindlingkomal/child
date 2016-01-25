@@ -95,7 +95,9 @@ class Api::Picker::PickUpsController < Api::PickerController
       render json: {error: {code: 4001, msg: "This pickup was not assigned by Admin"}}, status: 405 and return
     end
     @result = @service.accept(params)
-    if @result.errors.any?
+    if @result.nil?
+      render json: {error: {code: 4002, msg: "This pickup was accepted by other partner"}}, status: 405
+    elsif @result.errors.any?
       render json: {error: {code: 4000, msg: @result.errors.full_messages.join(', ')}}, status: 405
     else
       render json: {success: true}

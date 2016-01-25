@@ -39,7 +39,8 @@ class Picker::PickupService < BaseService
   end
 
   def accept params
-    pick_up = PickUp.pending.find params[:id]
+    pick_up = PickUp.pending.find_by id: params[:id]
+    return nil if pick_up.nil?
     pick_user = PickupUser.find_by({
       user_id: current_user.id,
       pick_up_id: pick_up.id
