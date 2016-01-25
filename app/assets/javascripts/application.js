@@ -17,5 +17,6 @@
 //= require datepickpaginator
 //= require paloma
 //= require ./parsleyjs/parsley.min
+//= require jquery.mask
 //= require_directory .
 //= require_directory ./user

@@ -1,6 +1,7 @@
 <% if !current_user %>
   $("#sign-log .devise-login-form").html(" <%= j(render 'user/pick_ups/sign_up_tab_login', resource: (@user||User.new), resource_name: :user, error: 'Phone or password is invalid') %> ");
-  $('#signinForm').parsley();	  
+  $('#signinForm').parsley();
+  toggle_sign_up_in_form_for_user_js();
 <% else %>
   window.location.reload();
 <% end %>

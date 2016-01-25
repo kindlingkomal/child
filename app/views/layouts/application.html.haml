@@ -16,14 +16,6 @@
 
 :javascript
   $(document).ready(function(){
-    $(".signup").hide();
-    $(".sign").click(function(){
-        $(".login").hide('slow');
-        $(".signup").show('slow');
-    });
-    $(".log").click(function(){
-        $(".login").show('slow');
-        $(".signup").hide('slow');
-    });
+    toggle_sign_up_in_form_for_user_js();
     $(".notice" ).fadeOut(4000);
   });

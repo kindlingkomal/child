@@ -1,5 +1,16 @@
 global = exports ? this
 
+global.toggle_sign_up_in_form_for_user_js = ->
+  $('input.phone_number').mask('0000000000')
+  $(".signup2").hide()
+  $(".sign").click ->
+    $(".login2").hide 'slow'
+    $(".signup2").show 'slow'
+
+  $(".log").click ->
+    $(".login2").show 'slow'
+    $(".signup2").hide 'slow'
+
 global.sign_up_ragpicker_js = ->
   $('.radio input').change ->
     if $('.radio .yrd').is(':checked')
