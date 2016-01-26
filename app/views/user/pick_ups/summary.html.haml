@@ -4,7 +4,7 @@
       .bgblk
         %h4
           Summary
-          %span (#{@categories.count})
+          %span (#{@selected_categories.count})
       .col-md-12.intxt{:style => "padding-top:20px; padding-left: 40px;"}
         .row
           %div
@@ -13,7 +13,7 @@
           %div
             %p Material
             %ol
-              - @categories.each do |cat|
+              - @selected_categories.each do |cat|
                 %li= cat.name
       .sumtxt
         = link_to 'DONE', user_categories_path, class: 'btn btn-sl'

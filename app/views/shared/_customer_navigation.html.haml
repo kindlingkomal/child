@@ -17,7 +17,7 @@
         %li
           = link_to summary_user_pick_ups_path, class: 'pickup_summary' do
             Summary
-            %span.num_categories_selected (#{@selected_category_ids.try(:size) || 0})
+            %span.num_categories_selected (#{(@selected_category_ids || @selected_categories).try(:size) || 0})
         - if user_signed_in?
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"} Profile
