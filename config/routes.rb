@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { registrations: 'user/registrations', sessions: 'user/sessions'}
   root to: "homepage#index"
+
   get 'terms-conditions', to: 'homepage#terms'
 
   namespace :user do
@@ -98,6 +99,8 @@ Rails.application.routes.draw do
     post '/picker/resendpwd', to: 'authentication#resendpwd'
 
   end
+
+  get '*path', to: "homepage#index"
 
   #namespace :api, :defaults => {:format => :json} do
   #  resources :users, only: [:create] do
