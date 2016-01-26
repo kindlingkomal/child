@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113063813) do
+ActiveRecord::Schema.define(version: 20160126160440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,6 +245,29 @@ ActiveRecord::Schema.define(version: 20160113063813) do
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "pincode"
+    t.string   "city"
+    t.string   "address"
+    t.integer  "frequency"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "category_set",   default: [],              array: true
+    t.float    "lat"
+    t.float    "lon"
+    t.integer  "user_id"
+    t.string   "landmark"
+    t.string   "payment_method"
+    t.integer  "time_slot_id"
+    t.date     "date"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "subscriptions", ["lat", "lon"], name: "index_subscriptions_on_lat_and_lon", using: :btree
+  add_index "subscriptions", ["time_slot_id"], name: "index_subscriptions_on_time_slot_id", using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
   create_table "time_slots", force: :cascade do |t|
     t.integer  "start_hour",                 null: false
     t.integer  "end_hour",                   null: false
@@ -311,4 +334,6 @@ ActiveRecord::Schema.define(version: 20160113063813) do
   add_foreign_key "pickup_users", "pick_ups"
   add_foreign_key "pickup_users", "users"
   add_foreign_key "rates", "pick_ups"
+  add_foreign_key "subscriptions", "time_slots"
+  add_foreign_key "subscriptions", "users"
 end
