@@ -32,8 +32,8 @@
         - TimeSlotService.options_for_select.each_with_index do |slot, index|
           .col-md-4
             .radio
-              = f.radio_button :time_slot_id, slot[1], id: "inlineRadio#{index}", checked: (index == 0)
-              %label{for: "inlineRadio#{index}"}
+              %label
+                = f.radio_button :time_slot_id, slot[1], id: "inlineRadio#{index}", checked: (index == 0)
                 = slot[0]
 
       .col-md-12.pktxt

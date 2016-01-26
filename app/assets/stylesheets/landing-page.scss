@@ -434,6 +434,7 @@ color: #010101;
     color: #e6e6e6;
 }
 .btn-book-pickup {padding-top: 0;}
+/*
 .radio {
     padding-left: 20px;
 }
@@ -479,6 +480,7 @@ color: #010101;
     -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
     transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
 }
+
 .radio input[type="radio"] {
     opacity: 0;
     z-index: 1;
@@ -499,9 +501,12 @@ color: #010101;
 .radio input[type="radio"]:disabled + label::before {
     cursor: not-allowed;
 }
+
 .radio.radio-inline {
     margin-top: 0;
 }
+*/
+
 .clrbk{
     background-color: black;
     color: #fff;
@@ -949,6 +954,7 @@ input[type=number]::-webkit-outer-spin-button {
     width : 0;
     height: 0;
 }
+/*
 textarea:hover,
 input:hover,
 textarea:active,
@@ -962,3 +968,4 @@ button:hover
     outline:0px !important;
     -webkit-appearance:none;
 }
+*/
