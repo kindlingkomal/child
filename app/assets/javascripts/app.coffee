@@ -87,3 +87,12 @@ global.manage_pick_ups_js = ->
     $('.history').removeClass 'active1'
     $('.upcoming').addClass 'active1'
     $('.his-con').hide 'slow'
+
+global.updateImagePreview = (fileElement, previewElement) ->
+  fileReader = new FileReader()
+  files = fileElement[0].files
+  if files
+    fileReader.onload = (event) ->
+      previewElement.attr 'src', event.target.result
+
+    fileReader.readAsDataURL files[0]
