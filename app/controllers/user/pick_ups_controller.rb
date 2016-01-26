@@ -31,7 +31,7 @@ class User::PickUpsController < User::BaseController
       @selected_category_ids = params[:category_ids]
       session[:selected_category_ids] = @selected_category_ids
     end
-    @selected_categories = @pick_up ? @pick_up.categories : Category.where(id: @selected_category_ids).order(:name)
+    @selected_categories = @pick_up ? @pick_up.categories.order(:name) : Category.where(id: @selected_category_ids).order(:name)
   end
 
   def manage
