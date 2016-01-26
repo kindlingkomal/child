@@ -3,13 +3,14 @@
     / Tabs
     .list-nav
       %ul.list-inline
+        - li_css = user_signed_in? ? 'col2' : 'col3'
         - i = 0
         - unless user_signed_in?
-          %li.clrbk
+          %li.clrbk{ class: li_css }
             %a{:href => "#"} #{i += 1}.Sign-up
-        %li{ class: ('clrbk' if user_signed_in?) }
+        %li{ class: (user_signed_in? ? 'clrbk col2' : 'col3') }
           %a{:href => "#"} #{i += 1}.Address
-        %li
+        %li{ class: li_css }
           %a{:href => "#"} #{i += 1}.Timings
     .col-md-12
       .row

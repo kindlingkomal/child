@@ -374,13 +374,14 @@ body, h1,h2,h3,h4,h5,h6 {
 }
 .list-nav > ul > li{
     height: 40px;
-    width: 32.9%;
     text-align: center;
     font-size: 18px;
     border-left: 1px solid #fff;
     padding-top: 6px;
     color: #010101;
     font-weight: 400;
+    &.col2{ width: 49.8%; }
+    &.col3{ width: 32.9%; }
 }
 .list-nav > ul > li:nth-child(2)> a{
 color: #010101;
