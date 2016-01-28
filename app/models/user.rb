@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   validates :full_name, presence: true, length: { maximum: 26 }
   validates :authentication_token, uniqueness: true, allow_blank: true
-  validates :phone_number, presence: true, phone: true, uniqueness: true
+  validates :phone_number, presence: true, uniqueness: true, format: { with: /\A([0]|\+91)?[789]\d{9}\z/ }
 
   has_many :pick_ups, dependent: :destroy
   has_many :pickup_users, dependent: :destroy
