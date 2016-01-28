@@ -25,5 +25,7 @@
           %p Material
           %ol
             - pickup.categories.each do |cat|
-              %li= cat.name
+              %li
+                %span.col-one= cat.name
+                %span Rs. #{cat.price}/kg
         = link_to 'Cancel', cancel_user_pick_up_path(pickup), method: :post, :data => { :confirm => "Are you sure?" }, class: 'pull-right'
