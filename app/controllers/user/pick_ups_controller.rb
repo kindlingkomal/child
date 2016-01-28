@@ -37,9 +37,9 @@ class User::PickUpsController < User::BaseController
   def manage
     @upcoming_pick_ups = current_user.pick_ups.
       where(status: [PickUp::STATUSES[:accepted], PickUp::STATUSES[:pending]]).
-      where("start_time > ?", Time.now)
+      where("start_time > ?", Time.now).order(start_time: :asc)
     @history_pick_ups = current_user.pick_ups.
-      where(status: [PickUp::STATUSES[:done], PickUp::STATUSES[:canceled]])
+      where(status: [PickUp::STATUSES[:done], PickUp::STATUSES[:canceled]]).order(start_time: :asc)
   end
 
   def cancel
