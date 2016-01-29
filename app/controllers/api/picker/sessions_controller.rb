@@ -18,7 +18,12 @@ class Api::Picker::SessionsController < Api::PickerController
       }
     else
       code, msg =
-        if User.find_by(phone_number: user_params[:phone_number])
+        if user1 = User.find_by(phone_number: user_params[:phone_number])
+          if user1.otp? && user1.ragpicker?
+            render json: user1, meta: {
+              otp: user1.otp
+            } and return
+          end
           [10100, 'Request submitted for this phone number before']
         else
           [90002, @user.errors.full_messages.join('. ')]
