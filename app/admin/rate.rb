@@ -10,6 +10,9 @@ ActiveAdmin.register Rate, as: 'Rated Orders' do
 
 
   index do
+    column 'Pickup Id' do |obj|
+      obj.pick_up.id
+    end
     column 'Payment' do |obj|
       obj.pick_up.payment_method
     end
@@ -32,7 +35,7 @@ ActiveAdmin.register Rate, as: 'Rated Orders' do
       obj.pick_up.pick_time
     end
 
-    column 'score', :stars
+    column 'Score', :stars
 
     column :comment
 
