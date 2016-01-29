@@ -31,8 +31,13 @@ ActiveAdmin.register PickUp do
     column :accepted_at do |obj|
       obj.start_time.accepted_at('%d/%m/%Y %H:%M') rescue nil
     end
-    column :canceled_at do |obj|
-      obj.start_time.canceled_at('%d/%m/%Y %H:%M') rescue nil
+    column 'Cancelled By' do |obj|
+      if (pickup_users = obj.pickup_users.where(status: 'canceled')).count > 0
+        pickup_users.joins(:user).distinct.
+          select('users.full_name AS full_name').map(&:full_name).join(', ')
+      elsif obj.canceled_by_admin
+        'admin'
+      end
     end
 
     column "Customer" do |obj|
@@ -95,10 +100,18 @@ ActiveAdmin.register PickUp do
       row :accepted_at do |obj|
         obj.start_time.accepted_at('%d/%m/%Y %H:%M') rescue nil
       end
-      row :canceled_at do |obj|
-        obj.start_time.canceled_at('%d/%m/%Y %H:%M') rescue nil
+      row 'Cancelled By' do |obj|
+        if (pickup_users = obj.pickup_users.where(status: 'canceled')).count > 0
+          pickup_users.joins(:user).distinct.
+            select('users.full_name AS full_name').map(&:full_name).join(', ')
+        elsif obj.canceled_by_admin
+          'admin'
+        end
       end
-
+      row 'Rejected by' do |obj|
+        obj.pickup_users.where(status: 'rejected').joins(:user).distinct.
+          select('users.full_name AS full_name').map(&:full_name).join(', ')
+      end
       row :lat
       row :lon
       row "Customer" do |obj|
@@ -127,6 +140,7 @@ ActiveAdmin.register PickUp do
   member_action :cancel, method: :post do
     resource.canceled_at = Time.now
     resource.status = PickUp::STATUSES[:canceled]
+    resource.canceled_by_admin = true
     if resource.save
       GcmService.new(nil).delay.cancel_pickup_by_admin(resource)
       redirect_to collection_path, alert: 'The pickup was canceled successfully' and return

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113063813) do
+ActiveRecord::Schema.define(version: 20160129162745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,24 +163,25 @@ ActiveRecord::Schema.define(version: 20160113063813) do
     t.datetime "accepted_at"
     t.datetime "canceled_at"
     t.datetime "proceeded_at"
-    t.text     "category_set",                            default: [],                 array: true
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
+    t.text     "category_set",                               default: [],                 array: true
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
     t.float    "lat"
     t.float    "lon"
     t.integer  "user_id"
-    t.decimal  "total",          precision: 10, scale: 2, default: 0.0
+    t.decimal  "total",             precision: 10, scale: 2, default: 0.0
     t.integer  "customer_id"
     t.integer  "order_id"
     t.integer  "ragpicker_id"
     t.string   "code"
     t.string   "status"
-    t.boolean  "manual",                                  default: false
+    t.boolean  "manual",                                     default: false
     t.string   "landmark"
-    t.string   "payment_method",                          default: "COP"
+    t.string   "payment_method",                             default: "COP"
     t.integer  "time_slot_id"
     t.date     "date"
-    t.boolean  "has_ratings",                             default: false
+    t.boolean  "has_ratings",                                default: false
+    t.boolean  "canceled_by_admin",                          default: false
   end
 
   add_index "pick_ups", ["customer_id"], name: "index_pick_ups_on_customer_id", using: :btree
@@ -196,9 +197,10 @@ ActiveRecord::Schema.define(version: 20160113063813) do
     t.datetime "canceled_at"
     t.datetime "rejected_at"
     t.datetime "accepted_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "status"
+    t.boolean  "is_owner",    default: false
   end
 
   add_index "pickup_users", ["pick_up_id"], name: "index_pickup_users_on_pick_up_id", using: :btree
