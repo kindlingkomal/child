@@ -2,7 +2,8 @@ class SmsService
 
   def self.send(to, message)
     raw = RestClient.post ENV['SMS_API_URL'], to: to, message: message
-    Rails.logger.info(raw.inspect)
+    puts "sms::debug::"
+    puts(raw.inspect)
     JSON.parse raw
   end
 
@@ -30,6 +31,12 @@ class SmsService
     end
 
     return rt
+  end
+
+  def self.send_invitation(invitation)
+    phone = invitation.phone_number
+    message = "Hey #{invitation.name}, I just used ScrapJoe app. It is awesome, Try it. It is on Google Play Store. #{invitation.invited_by.full_name}"
+    send_message(phone, message)
   end
 
 end
