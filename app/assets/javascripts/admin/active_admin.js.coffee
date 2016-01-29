@@ -10,4 +10,7 @@ $(()->
 
   $(".datepicker2").change ->
     $.get '/admin/pick_ups/time_slots.js?date=' + $(this).val()
+
+  $('form#session_new input#admin_user_email').change ->
+    $('form#session_new input#admin_user_password').val ''
 )

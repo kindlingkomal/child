@@ -11,6 +11,9 @@ global.toggle_sign_up_in_form_for_user_js = ->
     $(".login2").show 'slow'
     $(".signup2").hide 'slow'
 
+  $('.login2 input#user_phone_number').change ->
+    $('.login2 input#user_password').val ''
+
 global.sign_up_ragpicker_js = ->
   $('.radio input').change ->
     if $('.radio .yrd').is(':checked')
