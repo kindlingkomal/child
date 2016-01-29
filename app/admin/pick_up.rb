@@ -61,6 +61,7 @@ ActiveAdmin.register PickUp do
     end
   end
 
+  filter :id
   filter :with_status_by_partners_in, label: 'Status', as: :select, collection: PickupUser::STATUSES.values.map{|s| [s.capitalize, s]}.unshift(['Pending', 'pending'])
 
   form do |f|
