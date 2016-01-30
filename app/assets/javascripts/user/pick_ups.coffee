@@ -6,5 +6,5 @@ PickUpsController::new = PickUpsController::create = ->
 PickUpsController::manage = ->
   manage_pick_ups_js()
 
-PickUpsController::reschedule = ->
+PickUpsController::reschedule = PickUpsController::book = ->
   reschedule_pick_up_js()
