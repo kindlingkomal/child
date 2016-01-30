@@ -21,6 +21,12 @@ ActiveAdmin.register User, as: 'Ragpicker' do
     column :full_name
     column :city
     column :pincode
+    column 'Accepted Count' do |obj|
+      obj.pickup_users.where(status: PickupUser::STATUSES[:accepted]).count
+    end
+    column 'Rejected Count' do |obj|
+      obj.pickup_users.where(status: PickupUser::STATUSES[:rejected]).count
+    end
     actions
   end
 
