@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 private
   # override a method in gem devise
   def email_required?
-    !user?
+    !(user? || ragpicker?)
   end
 
   def set_default
