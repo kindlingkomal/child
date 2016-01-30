@@ -18,5 +18,6 @@
 //= require paloma
 //= require ./parsleyjs/parsley.min
 //= require jquery.mask
+//= require jquery.remotipart
 //= require_directory .
 //= require_directory ./user
