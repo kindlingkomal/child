@@ -1,5 +1,5 @@
 <% if !user_signed_in? %>
-  <% alert = @user.active? ? 'Phone or password is invalid' : 'Please verify your phone number' %>
+  <% alert = (@user.nil? or @user.active?) ? 'Phone or password is invalid' : 'Please verify your phone number' %>
   $("#sign-log .devise-login-form").html(" <%= j(render 'user/pick_ups/sign_up_tab_login', resource: (@user||User.new), resource_name: :user, error: alert) %> ");
   $('#signinForm').parsley();
   toggle_sign_up_in_form_for_user_js();
