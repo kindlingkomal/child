@@ -7,7 +7,7 @@
         - i = 0
         - unless user_signed_in?
           %li.clrbk{ class: li_css }
-            %a{:href => "#"} #{i += 1}.Sign-up
+            %a{:href => "#"} #{i += 1}.Sign-In
         %li{ class: (user_signed_in? ? 'clrbk col2' : 'col3') }
           %a{:href => "#"} #{i += 1}.Address
         %li{ class: li_css }

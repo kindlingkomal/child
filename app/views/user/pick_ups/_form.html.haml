@@ -7,8 +7,11 @@
           #error_explanation
             = render 'shared/alert_errors', resource: @pick_up
         = f.text_field :address, class: "inad", placeholder: "Address line 1"
+        %span.mandatory-span *
         = f.text_field :city, class: "inad1", placeholder: "City"
+        %span.mandatory-span *
         = f.text_field :pincode, class: "inad1", placeholder: "Pin code"
+        %span.mandatory-span *
         = f.text_field :landmark, class: "inad1", placeholder: "Land mark"
         %a.btn.btn-sl.tab3{:href => "#"} CONTINUE
 
