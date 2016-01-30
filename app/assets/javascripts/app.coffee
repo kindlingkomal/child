@@ -1,7 +1,7 @@
 global = exports ? this
 
 global.toggle_sign_up_in_form_for_user_js = ->
-  $('input.phone_number').mask('0000000000')
+  $('input.phone_number').mask('+910000000000', {'translation': {9: {pattern: /9/, fallback: '9'}}})
   $(".signup2").hide()
   $(".sign").click ->
     $(".login2").hide 'slow'
@@ -27,6 +27,7 @@ global.sign_up_ragpicker_js = ->
 global.new_pick_up_js = ->
   todayDate = new Date()
   initSlider todayDate
+  $('input.phone_number').mask('+910000000000', {'translation': {9: {pattern: /9/, fallback: '9'}}})
 
   $('.tab-sign .login').hide()
   if $('.tab-sign').length > 0

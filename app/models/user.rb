@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :accepted_pick_ups, class_name: 'PickUp', foreign_key: :ragpicker_id
 
   before_validation :set_default_role, :if => :new_record?
+  before_validation :set_default
   before_destroy :remove_ratings
 
   mount_uploader :avatar, AvatarUploader
@@ -48,7 +49,11 @@ class User < ActiveRecord::Base
 private
   # override a method in gem devise
   def email_required?
-    false
+    !user?
+  end
+
+  def set_default
+    self.phone_number = '+91' + phone_number if phone_number.index('+') != 0
   end
 
   def set_default_role
