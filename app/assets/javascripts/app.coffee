@@ -2,17 +2,26 @@ global = exports ? this
 
 global.toggle_sign_up_in_form_for_user_js = ->
   $('input.phone_number').mask('+910000000000', {'translation': {9: {pattern: /9/, fallback: '9'}}})
+  $('.devise-new-password-form').hide()
   $(".signup2").hide()
   $(".sign").click ->
     $(".login2").hide 'slow'
     $(".signup2").show 'slow'
+    $('.devise-new-password-form').hide()
 
   $(".log").click ->
     $(".login2").show 'slow'
     $(".signup2").hide 'slow'
+    $('.devise-new-password-form').hide()
 
   $('.login2 input#user_phone_number').change ->
     $('.login2 input#user_password').val ''
+
+  $('.forget-password-link').click ->
+    $(".login2").hide 'slow'
+    $(".signup2").hide 'slow'
+    $('.devise-new-password-form').show 'slow'
+    $('.modal-footer .signup2').show 'slow'
 
 global.sign_up_ragpicker_js = ->
   $('.radio input').change ->

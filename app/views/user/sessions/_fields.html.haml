@@ -7,5 +7,5 @@
   = f.text_field :phone_number, class: "infln phone_number1", placeholder: "PHONE NUMBER", required: true
   = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true, 'data-parsley-minlength' => "6"
   = f.text_field :otp, value: '', class: 'infln', placeholder: 'OTP' if f.object.otp?
-  %a.pull-right.frgpw{:href => "#"} Forget Password?
+  %a.pull-right.frgpw.forget-password-link{:href => "#"} Forget Password?
   = f.submit 'SIGN IN', class: "btn popbtn"
