@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160129162745) do
+ActiveRecord::Schema.define(version: 20160131130953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,10 +182,13 @@ ActiveRecord::Schema.define(version: 20160129162745) do
     t.date     "date"
     t.boolean  "has_ratings",                                default: false
     t.boolean  "canceled_by_admin",                          default: false
+    t.integer  "subscription_id"
+    t.integer  "frequency"
   end
 
   add_index "pick_ups", ["customer_id"], name: "index_pick_ups_on_customer_id", using: :btree
   add_index "pick_ups", ["lat", "lon"], name: "index_pick_ups_on_lat_and_lon", using: :btree
+  add_index "pick_ups", ["subscription_id"], name: "index_pick_ups_on_subscription_id", using: :btree
   add_index "pick_ups", ["time_slot_id"], name: "index_pick_ups_on_time_slot_id", using: :btree
   add_index "pick_ups", ["user_id"], name: "index_pick_ups_on_user_id", using: :btree
 
@@ -265,6 +267,7 @@ ActiveRecord::Schema.define(version: 20160129162745) do
     t.date     "date"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.datetime "canceled_at"
   end
 
   add_index "subscriptions", ["lat", "lon"], name: "index_subscriptions_on_lat_and_lon", using: :btree
@@ -332,6 +335,7 @@ ActiveRecord::Schema.define(version: 20160129162745) do
   add_foreign_key "notifying_pickups", "pick_ups"
   add_foreign_key "notifying_pickups", "users", column: "ragpicker_id"
   add_foreign_key "pick_ups", "customers"
+  add_foreign_key "pick_ups", "subscriptions"
   add_foreign_key "pick_ups", "time_slots"
   add_foreign_key "pick_ups", "users"
   add_foreign_key "pickup_users", "pick_ups"

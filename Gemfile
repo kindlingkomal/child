@@ -28,6 +28,7 @@ gem 'ratyrate', '1.2.2.alpha'
 gem 'haml-rails'
 gem 'remotipart'
 gem "rest-client"
+gem 'simple_enum', github: 'lwe/simple_enum'
 gem 'twilio-ruby'
 gem 'phonelib'
 

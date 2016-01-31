@@ -1,6 +1,7 @@
 class Subscription < ActiveRecord::Base
   enum frequency: [:no, :daily, :weekly, :monthly]
 
+  validates :pincode, length: { is: 6 }, format: {with: /\d{6}/}
   validates :address, :city, :start_time, :end_time, :category_set, presence: true
   validates :user, presence: true
   validates :date, presence: true

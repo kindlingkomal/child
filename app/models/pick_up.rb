@@ -1,7 +1,8 @@
 class PickUp < ActiveRecord::Base
   include ArelHelpers::ArelTable
   include ArelHelpers::JoinAssociation
-  enum subscription: [:no, :daily, :weekly, :monthly]
+  enum subscription: [:no, :daily, :weekly, :monthly] # will remove
+  as_enum :frequency, [:no, :daily, :weekly, :monthly], prefix: true, source: 'frequency'
   STATUSES = {
     pending: 'pending',
     accepted: 'accepted',
@@ -29,7 +30,8 @@ class PickUp < ActiveRecord::Base
   has_many :notifying_pickups, dependent: :destroy
   has_and_belongs_to_many :categories
 
-  before_validation :set_default_subscription, :set_time, :set_time_slot_id, :set_date
+  before_validation :set_default_frequency, :set_time, :set_time_slot_id, :set_date
+  after_create :create_subscription
 
   scope :pending,  -> { where(status: STATUSES[:pending]).where('pick_ups.start_time > ?', Time.now.utc) }
   scope :accepted, -> { where.not(accepted_at: nil).where(canceled_at: nil) }
@@ -63,6 +65,10 @@ class PickUp < ActiveRecord::Base
     proceeded_at.nil? && canceled_at.nil? && start_time.utc > Time.now.utc
   end
 
+  def can_update_subscription?(subscription)
+    date == subscription.date && time_slot_id == subscription.time_slot_id
+  end
+
   # def ragpicker
   #   accepted_users.order("accepted_at DESC").first.user rescue nil
   # end
@@ -88,8 +94,10 @@ class PickUp < ActiveRecord::Base
   end
 
 private
-  def set_default_subscription
+  def set_default_frequency
+    self.frequency ||= subscription
     self.subscription ||= :no
+    self.frequency ||= :no
   end
 
   def set_time
@@ -121,6 +129,16 @@ private
   def check_start_time
     if %w(pending accepted).include?(status) && start_time < Time.zone.now
       errors.add(:base, "Start time cannot be in the past")
+    end
+  end
+
+  def create_subscription
+    if user_id? && !manual && status == PickUp::STATUSES[:pending] && start_time > Time.zone.now
+      sub = Subscription.create(pincode: pincode, city: city, address: address,
+        start_time: start_time, end_time: end_time, lat: lat, lon: lon, frequency: frequency,
+        user_id: user_id, landmark: landmark, payment_method: payment_method, date: date,
+        time_slot_id: time_slot_id, category_set: category_ids)
+      update(subscription_id: sub.id) if sub.errors.blank?
     end
   end
 end

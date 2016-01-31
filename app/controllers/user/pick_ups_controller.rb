@@ -48,13 +48,11 @@ class User::PickUpsController < User::BaseController
   end
 
   def book
-    pick_up_params = params.require(:pick_up).permit(:date, :time_slot_id)
-    @pick_up.created_at = Time.now
-    @pick_up.update(pick_up_params)
-    if @pick_up.errors.any?
-      render :reschedule
-    else
+    @pick_up = @service.reschedule params
+    if @pick_up.errors.blank?
       redirect_to summary_user_pick_up_path(@pick_up)
+    else
+      render :reschedule
     end
   end
 
