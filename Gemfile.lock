@@ -399,6 +399,7 @@ GEM
       i18n
       polyamorous (~> 1.2)
     ratyrate (1.2.2.alpha)
+    remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -522,6 +523,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails_12factor
   ratyrate (= 1.2.2.alpha)
+  remotipart
   rest-client
   rspec-rails
   simple_form

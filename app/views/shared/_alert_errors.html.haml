@@ -3,5 +3,6 @@
     %button(type="button" class="close" data-dismiss="alert" aria-label="Close")
       %span(aria-hidden="true") &times;
     - resource.errors.full_messages.each do |msg|
-      %br
       = msg
+      - if resource.errors.size > 1
+        %br

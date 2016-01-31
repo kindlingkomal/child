@@ -1,13 +1,13 @@
 class User::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
-
+    resource.inactive = true
     resource.save
     if resource.persisted?
-      if resource.active_for_authentication?
-        flash[:notice] = "Welcome! You have signed up successfully."
-        sign_up(resource_name, resource)
-      end
+      flash[:notice] = "Welcome! You have signed up successfully."
+      raw = NumberTokenGenerator.instance.generate_unique_code(User, :otp)
+      resource.update(otp: raw)
+      SmsService.send_otp resource.phone_number, resource.otp
     else
       clean_up_passwords resource
       set_minimum_password_length
@@ -16,7 +16,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:full_name, :phone_number, :email, :password, :password_confirmation)
+    params.require(:user).permit(:full_name, :phone_number, :email, :password, :avatar)
   end
 
   def account_update_params

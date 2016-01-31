@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, :controllers => { registrations: 'user/registrations', sessions: 'user/sessions'}
+  devise_for :users, :controllers => {
+    registrations: 'user/registrations',
+    sessions: 'user/sessions',
+    passwords: 'user/passwords' }
+
   root to: "homepage#index"
 
   get 'terms-conditions', to: 'homepage#terms'

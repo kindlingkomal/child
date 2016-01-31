@@ -48,6 +48,7 @@ class Api::UsersController < Api::ApiController
     if User.where(phone_number: phone_number).count == 0
       @invitation = @current_user.invitations.
         create(phone_number: phone_number, name: name)
+      SmsService.send_invitation(@invitation) rescue nil if @invitation.errors.blank?
       render json: {success: true}
     else
       render json: {error: {code: 20011, msg: 'Phone number had already registered'}}, status: 405
@@ -62,7 +63,12 @@ private
 
   def handle_errors_create
     code, msg =
-      if User.find_by(phone_number: user_params[:phone_number])
+      if user1 = User.find_by(phone_number: user_params[:phone_number])
+        if user1.otp?
+          render json: user1, meta: {
+            otp: user1.otp
+          } and return
+        end
         [10100, 'Request submitted for this phone number before']
       else
         [90002, @user.errors.full_messages.join('. ')]

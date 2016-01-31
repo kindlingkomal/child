@@ -1,6 +1,8 @@
 .container.lst2pad
   .row
     .col-md-12
+      - if @pick_up.errors.any?
+        = render 'shared/alert_errors', resource: @pick_up
       = form_for [:user, @pick_up], url: book_user_pick_up_path(@pick_up), :html => {:class => 'reschedule-pickup', id: 'pickupForm'} do |f|
 
         .col-md-12.tab-time

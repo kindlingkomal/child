@@ -11,10 +11,10 @@
       %div(style="display: block; margin: 5px;")
         = f.fields_for :pricing_zonals, pz do |fp|
           = fp.hidden_field :category_id, value: pz.category_id
-          %div(style="display: inline-block; width: 100px;")
+          %div(style="display: inline-block; width: 150px;")
             = pz.category.name
           %div(style="display: inline-block; width: 100px;")
-            = fp.number_field :price
+            = fp.number_field :price, min: 0
           %div(style="color: red;")= fp.object.errors.full_messages.join(', ')
 
     - Category.where("id NOT IN (?)", category_ids).each do |cat|
@@ -22,8 +22,8 @@
       %div(style="display: block; margin: 5px;")
         = f.fields_for :pricing_zonals, pricing do |fp|
           = fp.hidden_field :category_id, value: cat.id
-          %div(style="display: inline-block; width: 100px;")
+          %div(style="display: inline-block; width: 150px;")
             = cat.name
           %div(style="display: inline-block; width: 100px;")
-            = fp.number_field :price
+            = fp.number_field :price, min: 0
   = f.submit

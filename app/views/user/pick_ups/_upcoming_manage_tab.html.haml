@@ -13,7 +13,7 @@
     .col-md-6.txtrgt
       %ul.list-inline
         %li
-          %a.btn.more{href: "#", 'data-more'=>"show-more#{index}"} MORE
+          %a.btn.more{href: "javascript:void(0);", 'data-more'=>"show-more#{index}"} MORE
         %li
           = link_to 'RESCHEDULE', reschedule_user_pick_up_path(pickup), class: 'btn'
     .col-md-12.intxt.show-more{class: "show-more#{index}"}
@@ -25,5 +25,7 @@
           %p Material
           %ol
             - pickup.categories.each do |cat|
-              %li= cat.name
+              %li
+                %span.col-one= cat.name
+                %span Rs. #{cat.price}/kg
         = link_to 'Cancel', cancel_user_pick_up_path(pickup), method: :post, :data => { :confirm => "Are you sure?" }, class: 'pull-right'

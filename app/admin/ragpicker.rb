@@ -21,6 +21,12 @@ ActiveAdmin.register User, as: 'Ragpicker' do
     column :full_name
     column :city
     column :pincode
+    column 'Accepted Count' do |obj|
+      obj.pickup_users.where(status: PickupUser::STATUSES[:accepted]).count
+    end
+    column 'Rejected Count' do |obj|
+      obj.pickup_users.where(status: PickupUser::STATUSES[:rejected]).count
+    end
     actions
   end
 
@@ -48,5 +54,21 @@ ActiveAdmin.register User, as: 'Ragpicker' do
 
   show do
     attributes_table :email, :full_name, :phone_number, :city, :pincode
+    ragpicker.ragpicker_rates.order(:created_at).each do |rate|
+      panel 'Rating' do
+        attributes_table_for rate do
+          row 'DATE' do |o|
+            o.created_at.strftime('%B %d, %Y')
+          end
+          row 'RATER' do |o|
+            o.rater.full_name
+          end
+          row :score do |o|
+            o.stars
+          end
+          row :comment
+        end
+      end
+    end
   end
 end

@@ -23,7 +23,8 @@
             Partner with us in our moment towards the making of swacch Bharath
             %br/
             the Dream of out forefathers,greener environments,loveier homes.
-          = link_to 'Book Appointment',  user_categories_path, class: 'btn btn-ap'
+          - if current_user.nil? || current_user.user?
+            = link_to 'Book Appointment',  user_categories_path, class: 'btn btn-ap'
           %ul.list-inline
             %li
               %a{:href => "#"}= image_tag "istore.png"
@@ -58,9 +59,6 @@
           .bg-rate
             %h3= cat.name
             %h5 Rs #{cat.price.to_i}/kg
-
-    .row
-      = link_to 'View Rate Card', user_categories_path, class: 'btn rtbtn'
-
-/ Slider
-= render partial: "layouts/customer_talk"
+    - if current_user.nil? || current_user.user?
+      .row
+        = link_to 'View Rate Card', user_categories_path, class: 'btn rtbtn'

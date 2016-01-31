@@ -8,15 +8,7 @@ class User::ProfileController < ApplicationController
   end
 
   def update
-    if !user_params[:current_password].blank? && !user_params[:password].blank?
-      @user.update_with_password(user_params)
-    else
-      user_param_dup = user_params.dup
-      user_param_dup.delete(:current_password)
-      user_param_dup.delete(:password)
-      user_param_dup.delete(:password_confirmation)
-      @user.update_attributes(user_param_dup)
-    end
+    @user.update_with_password(user_params)
 
     if @user.errors.blank?
       flash[:notice] = "Updated your profile successfully."

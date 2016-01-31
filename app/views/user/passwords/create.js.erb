@@ -1,0 +1,5 @@
+<% if resource.errors.any? %>
+  $("#sign-log .modal-body .devise-new-password-form").html("<%= j(render 'user/passwords/new', resource: resource) %>");
+<% else %>
+  window.location.reload();
+<% end %>

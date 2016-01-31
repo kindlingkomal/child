@@ -26,6 +26,7 @@ gem 'geocoder'
 gem 'paloma'
 gem 'ratyrate', '1.2.2.alpha'
 gem 'haml-rails'
+gem 'remotipart'
 gem "rest-client"
 gem 'twilio-ruby'
 gem 'phonelib'

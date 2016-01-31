@@ -12,8 +12,9 @@ class PickUp < ActiveRecord::Base
   validates :address, :city, :start_time, :end_time, :category_ids,
     presence: true, if: proc { |o| o.customer_id.nil? }
   validates :user, presence: {if: Proc.new { |pk| !pk.manual?}}
+  validates :pincode, length: { is: 6 }, format: {with: /\d{6}/}
   validates :date, presence: true
-  validates :time_slot_id, presence: true, uniqueness: {scope: [:user_id, :date]}
+  validates :time_slot_id, presence: true, uniqueness: {scope: [:user_id, :date]}, if: Proc.new { |pk| !pk.manual?}
   validate :check_start_time
 
   belongs_to :time_slot

@@ -4,7 +4,8 @@
       %button(type="button" class="close" data-dismiss="alert" aria-label="Close")
         %span(aria-hidden="true") &times;
       = error
-  = f.text_field :phone_number, class: "infln phone_number", placeholder: "PHONE NUMBER", required: true
+  = f.text_field :phone_number, class: "infln phone_number1", placeholder: "PHONE NUMBER", required: true
   = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true, 'data-parsley-minlength' => "6"
-  %a.pull-right.frgpw{:href => "#"} Forget Password?
+  = f.text_field :otp, value: '', class: 'infln', placeholder: 'OTP' if f.object.otp?
+  %a.pull-right.frgpw.forget-password-link{:href => "#"} Forget Password?
   = f.submit 'SIGN IN', class: "btn popbtn"

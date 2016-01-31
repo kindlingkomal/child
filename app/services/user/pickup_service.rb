@@ -14,6 +14,12 @@ class User::PickupService < BaseService
     pick_up.canceled_at = Time.now
     pick_up.status = PickUp::STATUSES[:canceled]
     # pick_up.reason = params[:reason]
+    pick_user = PickupUser.find_or_create_by({
+      user_id: current_user.id,
+      pick_up_id: pick_up.id,
+      status: PickupUser::STATUSES[:canceled],
+      is_owner: true
+    })
     if pick_up.save
       gcm_service = GcmService.new(current_user)
       gcm_service.delay.cancel_pickup(pick_up)
