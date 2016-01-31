@@ -4,7 +4,7 @@ class Zonal < ActiveRecord::Base
 
   validates :zipcode, presence: true, uniqueness: true
 
-  accepts_nested_attributes_for :pricing_zonals, :allow_destroy => true
+  accepts_nested_attributes_for :pricing_zonals, :allow_destroy => true, reject_if: proc { |a| a[:price].blank? }
 
   def name
     zipcode
