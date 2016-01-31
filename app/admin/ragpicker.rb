@@ -54,5 +54,21 @@ ActiveAdmin.register User, as: 'Ragpicker' do
 
   show do
     attributes_table :email, :full_name, :phone_number, :city, :pincode
+    ragpicker.ragpicker_rates.order(:created_at).each do |rate|
+      panel 'Rating' do
+        attributes_table_for rate do
+          row 'DATE' do |o|
+            o.created_at.strftime('%B %d, %Y')
+          end
+          row 'RATER' do |o|
+            o.rater.full_name
+          end
+          row :score do |o|
+            o.stars
+          end
+          row :comment
+        end
+      end
+    end
   end
 end
