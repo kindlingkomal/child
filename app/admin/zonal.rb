@@ -2,6 +2,19 @@ ActiveAdmin.register Zonal do
   menu label: 'Geo'
   form partial: 'form'
 
+  index do
+    column :zipcode
+    column :lat
+    column :lon
+    column :address
+    actions
+  end
+
+  filter :zipcode
+  filter :lat
+  filter :lon
+  filter :address
+
   show do
     attributes_table do
       row :zipcode
