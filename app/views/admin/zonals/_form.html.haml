@@ -3,6 +3,7 @@
     = f.input :zipcode
     = f.input :lat
     = f.input :lon
+    = f.input :city, as: :select, collection: ['Kolkata', 'Bengaluru', 'Mumbai']
     = f.input :address
   = f.inputs "Pricing" do
     - category_ids = [-1]

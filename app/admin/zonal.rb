@@ -6,10 +6,12 @@ ActiveAdmin.register Zonal do
     column :zipcode
     column :lat
     column :lon
+    column :city
     column :address
     actions
   end
 
+  filter :city, as: :select, collection: ['Kolkata', 'Bengaluru', 'Mumbai']
   filter :zipcode
   filter :lat
   filter :lon
@@ -20,6 +22,7 @@ ActiveAdmin.register Zonal do
       row :zipcode
       row :lat
       row :lon
+      row :city
       row :address
       row "Pricing" do
         zonal.pricing_zonals.map {|c| [c.category.name, c.price].join(': ') }.join(' | ')
@@ -32,6 +35,7 @@ permit_params do
     :zipcode,
     :lat,
     :lon,
+    :city,
     :address,
     pricing_zonals_attributes: [
       :id,
