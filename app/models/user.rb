@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def phone_number_with_contry_code
+    format_phone_number(phone_number)
+  end
 private
   # override a method in gem devise
   def email_required?
@@ -53,11 +56,8 @@ private
   end
 
   def set_default
-    if self.role == '1'
-      str = phone_number
-      str = "+#{str}" if str.index('91') == 0
-      str = "+91#{str}" if str.index("+91") != 0
-      self.phone_number = str
+    if self.role == 1
+      self.phone_number = format_phone_number(phone_number)
     end
   end
 
@@ -67,5 +67,12 @@ private
 
   def remove_ratings
     self.ratings_given.destroy_all
+  end
+
+  def format_phone_number(number)
+    str = number
+    str = "+#{str}" if str.index('91') == 0
+    str = "+91#{str}" if str.index("+91") != 0
+    str
   end
 end
