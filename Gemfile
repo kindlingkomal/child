@@ -52,6 +52,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
   gem 'capistrano3-delayed-job', require: false
+  gem "rails-erd"
 end
 
 group :test do
