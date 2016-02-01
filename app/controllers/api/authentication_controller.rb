@@ -24,7 +24,7 @@ class Api::AuthenticationController < Api::ApiController
 
   def resendpwd
     user = User.find_by({
-      phone_number: params[:phone_number].to_s.strip
+      phone_number: format_phone_number
     })
     if user
       password = Time.now.to_i.to_s(16)
@@ -53,11 +53,7 @@ protected
   end
 
   def authenticated_user
-    phone_number = params[:phone_number].try(:downcase)
-    phone_number = "+#{phone_number}" if phone_number.index('91') == 0
-    phone_number = "+91#{phone_number}" if phone_number.index("+91") != 0
-
-    user = User.find_for_database_authentication(phone_number: phone_number)
+    user = User.find_for_database_authentication(phone_number: format_phone_number)
     user if user && user.valid_password?(params[:password])
   end
 
@@ -76,5 +72,12 @@ protected
 
   def not_active
     render json: {error: {code: 90001, msg: "Your account is not activated yet."}}, status: 403
+  end
+
+  def format_phone_number
+    phone_number = params[:phone_number].try(:downcase)
+    phone_number = "+#{phone_number}" if phone_number.index('91') == 0
+    phone_number = "+91#{phone_number}" if phone_number.index("+91") != 0
+    phone_number
   end
 end
