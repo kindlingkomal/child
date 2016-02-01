@@ -6,7 +6,8 @@ global.toggle_sign_up_in_form_for_user_js = ->
   $('img.choose_user_avatar').click ->
     $('#user_avatar[type=file]').trigger('click')
 
-  $('input.phone_number').mask('+910000000000', {'translation': {9: {pattern: /9/, fallback: '9'}}})
+  # $('input.phone_number').mask('+910000000000', {'translation': {9: {pattern: /9/, fallback: '9'}}})
+
   $('.devise-new-password-form').hide()
   $(".signup2").hide()
   $(".sign").click ->

@@ -53,10 +53,12 @@ private
   end
 
   def set_default
-    str = phone_number
-    str = "+#{str}" if str.index('91') == 0
-    str = "+91#{str}" if str.index("+91") != 0
-    self.phone_number = str
+    if self.role == '1'
+      str = phone_number
+      str = "+#{str}" if str.index('91') == 0
+      str = "+91#{str}" if str.index("+91") != 0
+      self.phone_number = str
+    end
   end
 
   def set_default_role
