@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def phone_number_with_contry_code
+  def phone_number_with_country_code
     format_phone_number(phone_number)
   end
 private
