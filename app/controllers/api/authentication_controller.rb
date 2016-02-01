@@ -53,9 +53,11 @@ protected
   end
 
   def authenticated_user
-    user = User.find_for_database_authentication(
-      phone_number: params[:phone_number].try(:downcase)
-    )
+    phone_number = params[:phone_number].try(:downcase)
+    phone_number = "+#{phone_number}" if phone_number.index('91') == 0
+    phone_number = "+91#{phone_number}" if phone_number.index("+91") != 0
+
+    user = User.find_for_database_authentication(phone_number: phone_number)
     user if user && user.valid_password?(params[:password])
   end
 
