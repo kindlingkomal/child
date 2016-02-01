@@ -24,7 +24,7 @@ class Api::AuthenticationController < Api::ApiController
 
   def resendpwd
     user = User.find_by({
-      phone_number: format_phone_number
+      phone_number: params[:phone_number].to_s.strip
     })
     if user
       password = Time.now.to_i.to_s(16)
