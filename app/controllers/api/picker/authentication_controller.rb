@@ -12,4 +12,8 @@ protected
     render json: user, meta: { show_token: true }, serializer: UserDetailSerializer
   end
 
+  def authenticated_user
+    user = User.find_for_database_authentication(phone_number: format_phone_number)
+    user if user && user.valid_password?(params[:password])
+  end
 end
