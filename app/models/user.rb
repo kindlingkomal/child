@@ -58,7 +58,7 @@ private
   end
 
   def set_default
-    if self.role == 1
+    if self.ragpicker?
       self.phone_number = format_phone_number(phone_number)
     end
   end
@@ -73,7 +73,6 @@ private
 
   def format_phone_number(number)
     str = number
-    str = "+#{str}" if str.index('91') == 0
     str = "+91#{str}" if str.index("+91") != 0
     str
   end
