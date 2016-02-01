@@ -11,6 +11,8 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :time_slot
 
+  has_many :pick_ups, dependent: :destroy
+  
   before_validation :set_default_frequency, :set_time
 
 private

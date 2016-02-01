@@ -22,6 +22,7 @@ class PickUp < ActiveRecord::Base
   belongs_to :user
   belongs_to :ragpicker, class_name: 'User'
   belongs_to :customer
+
   has_many :pickup_users, dependent: :destroy
   has_many :accepted_users, dependent: :destroy
   has_many :rate_list, dependent: :destroy, class_name: 'Rate'
