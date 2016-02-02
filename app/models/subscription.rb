@@ -1,7 +1,7 @@
 class Subscription < ActiveRecord::Base
   enum frequency: [:no, :daily, :weekly, :monthly]
 
-  validates :pincode, length: { is: 6 }, format: {with: /\d{6}/}
+  validates :pincode, length: { is: 6 }, format: {with: /\d{6}/}, allow_nil: true
   validates :address, :city, :start_time, :end_time, :category_set, presence: true
   validates :user, presence: true
   validates :date, presence: true
@@ -12,8 +12,19 @@ class Subscription < ActiveRecord::Base
   belongs_to :time_slot
 
   has_many :pick_ups, dependent: :destroy
-  
+
   before_validation :set_default_frequency, :set_time
+
+  scope :active, -> {where(canceled_at: nil)}
+
+  def create_pickup
+    unless no?
+      PickUp.create(subscription_id: id, pincode: pincode, city: city, address: address,
+        lat: lat, lon: lon, frequency: frequency, status: PickUp::STATUSES[:pending],
+        user_id: user_id, landmark: landmark, payment_method: payment_method, date: date,
+        time_slot_id: time_slot_id, category_ids: category_set)
+    end
+  end
 
 private
 
