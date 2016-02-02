@@ -48,9 +48,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def phone_number_with_country_code
-    format_phone_number(phone_number)
-  end
 private
   # override a method in gem devise
   def email_required?
@@ -58,9 +55,7 @@ private
   end
 
   def set_default
-    if self.ragpicker?
-      self.phone_number = format_phone_number(phone_number)
-    end
+    self.phone_number = phone_number.try(:strip)
   end
 
   def set_default_role
@@ -71,9 +66,4 @@ private
     self.ratings_given.destroy_all
   end
 
-  def format_phone_number(number)
-    str = number
-    str = "+91#{str}" if str.index("+91") != 0
-    str
-  end
 end

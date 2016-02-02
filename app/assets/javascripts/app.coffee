@@ -6,7 +6,7 @@ global.toggle_sign_up_in_form_for_user_js = ->
   $('img.choose_user_avatar').click ->
     $('#user_avatar[type=file]').trigger('click')
 
-  # $('input.phone_number').mask('+910000000000', {'translation': {9: {pattern: /9/, fallback: '9'}}})
+  $('input.phone_number').mask('0000000000')
 
   $('.devise-new-password-form').hide()
   $(".signup2").hide()
@@ -42,7 +42,7 @@ global.sign_up_ragpicker_js = ->
 global.new_pick_up_js = ->
   todayDate = new Date()
   initSlider todayDate
-  $('input.phone_number').mask('+910000000000', {'translation': {9: {pattern: /9/, fallback: '9'}}})
+  $('input.phone_number').mask('0000000000')
 
   $('.tab-sign .login').hide()
   if $('.tab-sign').length > 0

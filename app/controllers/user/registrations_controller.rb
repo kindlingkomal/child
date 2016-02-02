@@ -7,7 +7,7 @@ class User::RegistrationsController < Devise::RegistrationsController
       flash[:notice] = "Welcome! You have signed up successfully."
       raw = NumberTokenGenerator.instance.generate_unique_code(User, :otp)
       resource.update(otp: raw)
-      SmsService.send_otp resource.phone_number_with_country_code, resource.otp
+      SmsService.send_otp resource.phone_number, resource.otp
     else
       clean_up_passwords resource
       set_minimum_password_length

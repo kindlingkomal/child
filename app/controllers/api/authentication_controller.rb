@@ -74,10 +74,4 @@ protected
     render json: {error: {code: 90001, msg: "Your account is not activated yet."}}, status: 403
   end
 
-  def format_phone_number
-    phone_number = params[:phone_number].try(:downcase)
-    phone_number = "+#{phone_number}" if phone_number.index('91') == 0
-    phone_number = "+91#{phone_number}" if phone_number.index("+91") != 0
-    phone_number
-  end
 end
