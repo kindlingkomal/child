@@ -37,7 +37,7 @@ ActiveAdmin.register User, as: 'NotifyingRagpicker' do
         NotifyingPickup.create(ragpicker_id: ragpicker.id, pick_up_id: pick_up.id)
       end
 
-      redirect_to collection_path(pickup_id: pickup_id), alert: "Notifications will be sent."
+      redirect_to collection_path(pickup_id: pickup_id), alert: "Partner notification sent"
     elsif ids.blank?
       redirect_to collection_path(pickup_id: pickup_id), alert: "Please select ragpickers"
     end

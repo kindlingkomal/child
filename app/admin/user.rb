@@ -1,5 +1,5 @@
 ActiveAdmin.register User, as: 'User' do
-  menu label: 'Consumers'
+  menu label: 'Customers'
   permit_params :email, :city, :pincode, :phone_number, :full_name,
     :password, :password_confirmation
 

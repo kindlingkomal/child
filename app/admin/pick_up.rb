@@ -56,7 +56,7 @@ ActiveAdmin.register PickUp do
 
       if pick_up.status == PickUp::STATUSES[:pending] && pick_up.start_time.utc > Time.now.utc
         if User.ragpicker.active.count > 0
-          process = link_to 'Process', admin_notifying_ragpickers_path(pickup_id: pick_up.id), class: 'member_link'
+          process = link_to 'Allocate', admin_notifying_ragpickers_path(pickup_id: pick_up.id), class: 'member_link'
         end
       end
       cancel = link_to 'Cancel', cancel_admin_pick_up_path(pick_up), method: :post,
