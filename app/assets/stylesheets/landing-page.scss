@@ -288,6 +288,12 @@ body, h1,h2,h3,h4,h5,h6 {
     word-spacing: 4px;
     margin-top: 15px;
 }
+.au-pad p b{
+    font-weight: 400;
+}
+.au-pad p i{
+    font-weight: 400;
+}
 
 /* List */
 .lstpad{
@@ -309,6 +315,18 @@ body, h1,h2,h3,h4,h5,h6 {
     border-radius: 0;
     font-size: 16px;
     box-shadow: 0px 0px 4px -1px black;
+}
+a.btncnt:hover{
+    box-shadow: 0px 0px 4px 0px black;
+    color: #fff;
+}
+a.btncnt:focus{
+    box-shadow: 0px 0px 4px 0px black;
+    color: #fff;
+}
+a.btncnt:active{
+    box-shadow: 0px 0px 4px 0px black;
+    color: #fff;
 }
 .table-list th, .table td {
     border-top: none !important;
@@ -700,7 +718,16 @@ color: #010101;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
-    width: 100%;
+    width: 96%;
+    height: 40px;
+    font-weight: 100;
+}
+.input-email{
+    background: asset_url('mail.png') no-repeat right;
+    margin-top: 25px;
+    border: none;
+    border-bottom: 1px solid #ABA9A9;
+    width: 96%;
     height: 40px;
     font-weight: 100;
 }
@@ -709,7 +736,7 @@ color: #010101;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
-    width: 100%;
+    width: 96%;
     height: 40px;
     font-weight: 100;
 }
@@ -718,7 +745,7 @@ color: #010101;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
-    width: 100%;
+    width: 96%;
     height: 40px;
     font-weight: 100;
 }
@@ -727,7 +754,7 @@ color: #010101;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
-    width: 100%;
+    width: 96%;
     height: 60px;
     font-weight: 100;
 }
@@ -735,9 +762,13 @@ color: #010101;
     margin-top: 25px;
     border: none;
     border-bottom: 1px solid #ABA9A9;
-    width: 100%;
+    width: 96%;
     height: 40px;
     font-weight: 100;
+}
+.mandatory-span{
+    font-size: 24px;
+    color: #ABA9A9;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -970,3 +1001,33 @@ button:hover
     -webkit-appearance:none;
 }
 */
+input[type="text"]:focus,input[type="password"]:focus{
+    outline: none;
+}
+.form-group{
+    input:after{
+        content:"*";
+    }
+}
+/* contact us */
+.contactus{
+    margin-top : 40px;
+    min-height : 650px;
+}
+.contactus h3{
+    font-weight : 400;
+    color       : #888888;
+}
+.contactus h3 span{
+    padding-left  : 30px;
+    padding-top   : 10px;
+    display       : inline-block;
+    }
+.contactus img{
+    margin-top    : 40px;
+    margin-bottom : 40px;
+}
+.remove-row-margin{
+    margin-left: 0;
+    margin-right: 0;
+}

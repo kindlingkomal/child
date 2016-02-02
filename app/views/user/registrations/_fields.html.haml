@@ -4,7 +4,12 @@
       = render 'shared/alert_errors', resource: resource
 
   = f.text_field :full_name, class: "infln", placeholder: "FULL NAME", required: true
+  %span.mandatory-span *
+  = f.text_field :email, class: "input-email", placeholder: "EMAIL-ID", required: true
+  %span.mandatory-span *
   = f.text_field :phone_number, class: "inph phone_number", placeholder: "PHONE NUMBER", required: true, size: 10
+  %span.mandatory-span *
   = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true, 'data-parsley-minlength' => "6"
   .hide= f.file_field :avatar
+  %span.mandatory-span *
   = f.submit 'SIGN UP', class: "btn popbtn"
