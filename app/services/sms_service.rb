@@ -2,6 +2,7 @@ class SmsService
 
   def self.send(to, message)
     raw = RestClient.post ENV['SMS_API_URL'], to: to, message: message
+    puts "sms::debug::message = #{message}"
     puts "sms::debug::"
     puts(raw.inspect)
     JSON.parse raw
@@ -33,9 +34,9 @@ class SmsService
     return rt
   end
 
-  def self.send_invitation(invitation)
+  def self.send_invitation(invitation, play_app_url)
     phone = invitation.phone_number
-    message = "Hey #{invitation.name}, I just used ScrapJoe app. It is awesome, Try it. It is on Google Play Store. #{invitation.invited_by.full_name}"
+    message = "Hey #{invitation.name}, I just used ScrapJoe app. It is awesome, Try it. It is on Google Play Store - #{play_app_url}. #{invitation.invited_by.full_name}"
     send_message(phone, message)
   end
 

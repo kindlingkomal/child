@@ -48,7 +48,11 @@ class Api::UsersController < Api::ApiController
     if User.where(phone_number: phone_number).count == 0
       @invitation = @current_user.invitations.
         create(phone_number: phone_number, name: name)
-      SmsService.send_invitation(@invitation) rescue nil if @invitation.errors.blank?
+      if @invitation.errors.blank?
+        package = @current_user.user? ? "com.relia.stv.user" : "com.relia.stv.ragpicker"
+        play_app_url = "https://play.google.com/store/apps/details?id=#{package}"
+        SmsService.send_invitation(@invitation, play_app_url) rescue nil
+      end
       render json: {success: true}
     else
       render json: {error: {code: 20011, msg: 'Phone number had already registered'}}, status: 405
