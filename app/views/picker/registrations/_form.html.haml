@@ -19,6 +19,7 @@
     .form-group.iual
       = f.text_field :phone_number, class: "inph", placeholder: "PHONE NUMBER", required: true
       = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true
+      = f.password_field :password_confirmation, class: "inpw", placeholder: "PASSWORD CONFIRMATION", required: true
     .form-group.yard
       = f.text_field :address, class: "inad1", placeholder: "ADDRESS LINE 1"
       = f.text_field :address2, class: "inad1", placeholder: "ADDRESS LINE 2"

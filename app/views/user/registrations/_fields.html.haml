@@ -3,13 +3,20 @@
     #error_explanation
       = render 'shared/alert_errors', resource: resource
 
-  = f.text_field :full_name, class: "infln", placeholder: "FULL NAME", required: true
+  = f.text_field :full_name, class: "infln", placeholder: "FULL NAME", required: true, 'data-parsley-errors-container' => '#full_name_errors'
   %span.mandatory-span *
-  = f.text_field :email, class: "input-email", placeholder: "EMAIL-ID", required: true
+  #full_name_errors
+  = f.text_field :email, class: "input-email", placeholder: "EMAIL-ID", required: true, 'data-parsley-errors-container' => '#email_errors'
   %span.mandatory-span *
-  = f.text_field :phone_number, class: "inph phone_number", placeholder: "PHONE NUMBER", required: true, size: 10
+  #email_errors
+  = f.text_field :phone_number, class: "inph phone_number", placeholder: "PHONE NUMBER", required: true, size: 10, 'data-parsley-errors-container' => '#phone_number_errors'
   %span.mandatory-span *
-  = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true, 'data-parsley-minlength' => "6"
+  #phone_number_errors
+  = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true, 'data-parsley-minlength' => "6", 'data-parsley-errors-container' => '#password_errors'
+  %span.mandatory-span *
+  #password_errors
+  = f.password_field :password_confirmation, class: "inpw", placeholder: "PASSWORD CONFIRMATION", required: true, 'data-parsley-minlength' => "6", 'data-parsley-errors-container' => '#password_confirmation_errors'
+  %span.mandatory-span *
+  #password_confirmation_errors
   .hide= f.file_field :avatar
-  %span.mandatory-span *
   = f.submit 'SIGN UP', class: "btn popbtn"
