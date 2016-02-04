@@ -5,8 +5,9 @@
       #error_explanation
         = render 'shared/alert_errors', resource: resource
 
-    = f.text_field :full_name, class: "infln", placeholder: "FULL NAME", required: true
+    = f.text_field :full_name, class: "infln", placeholder: "FULL NAME", required: true, 'data-parsley-errors-container' => '#full_name_errors'
     %span.mandatory-span *
+    #full_name_errors
 
     %ul.list-inline.list-radio
       %li.pull-left
@@ -18,12 +19,15 @@
           = f.radio_button :is_yard, true, class: "yrd"
           %label{for: "user_is_yard_true"} YARD
     .form-group.iual
-      = f.text_field :phone_number, class: "inph", placeholder: "PHONE NUMBER", required: true
+      = f.text_field :phone_number, class: "inph phone_number", placeholder: "PHONE NUMBER", required: true, maxlength: 10, 'data-parsley-errors-container' => '#phone_number_errors'
       %span.mandatory-span *
-      = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true
-      = f.password_field :password_confirmation, class: "inpw", placeholder: "PASSWORD CONFIRMATION", required: true
+      #phone_number_errors
+      = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true, 'data-parsley-errors-container' => '#password_errors'
       %span.mandatory-span *
-
+      #password_errors
+      = f.password_field :password_confirmation, class: "inpw", placeholder: "PASSWORD CONFIRMATION", required: true, 'data-parsley-errors-container' => '#password_confirmation_errors'
+      %span.mandatory-span *
+      #password_confirmation_errors
     .form-group.yard
       = f.text_field :address, class: "inad1", placeholder: "ADDRESS LINE 1"
       %span.mandatory-span *

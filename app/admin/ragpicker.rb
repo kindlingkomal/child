@@ -39,7 +39,7 @@ ActiveAdmin.register User, as: 'Ragpicker' do
   form do |f|
     f.inputs "Ragpicker Details" do
       f.input :email
-      f.input :phone_number
+      f.input :phone_number, input_html: {maxlength: 10}
       f.input :full_name
       f.input :city
       f.input :pincode

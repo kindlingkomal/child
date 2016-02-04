@@ -9,7 +9,7 @@
   = f.text_field :email, class: "input-email", placeholder: "EMAIL-ID", required: true, 'data-parsley-errors-container' => '#email_errors'
   %span.mandatory-span *
   #email_errors
-  = f.text_field :phone_number, class: "inph phone_number", placeholder: "PHONE NUMBER", required: true, size: 10, 'data-parsley-errors-container' => '#phone_number_errors'
+  = f.text_field :phone_number, class: "inph phone_number", placeholder: "PHONE NUMBER", required: true, maxlength: 10, 'data-parsley-errors-container' => '#phone_number_errors'
   %span.mandatory-span *
   #phone_number_errors
   = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true, 'data-parsley-minlength' => "6", 'data-parsley-errors-container' => '#password_errors'

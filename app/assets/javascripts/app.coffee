@@ -30,6 +30,7 @@ global.toggle_sign_up_in_form_for_user_js = ->
     $('.modal-footer .signup2').show 'slow'
 
 global.sign_up_ragpicker_js = ->
+  $('input.phone_number').mask('0000000000')
   $('.radio input').change ->
     if $('.radio .yrd').is(':checked')
       $('.form-group.yard').show 'slow'
