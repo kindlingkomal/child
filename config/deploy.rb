@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'stv'
-set :repo_url, 'git@bitbucket.org:ducle/ragpickers.git'
+set :repo_url, 'git@lab.digifutura.com:rails/scrap-to-value.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
