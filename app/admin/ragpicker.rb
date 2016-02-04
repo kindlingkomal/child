@@ -1,5 +1,4 @@
-ActiveAdmin.register User, as: 'Ragpicker' do
-  menu label: 'Partners'
+ActiveAdmin.register User, as: 'Partner' do
   permit_params :email, :city, :pincode, :phone_number, :full_name,
     :password, :password_confirmation
 
@@ -37,7 +36,7 @@ ActiveAdmin.register User, as: 'Ragpicker' do
   filter :pincode
 
   form do |f|
-    f.inputs "Ragpicker Details" do
+    f.inputs "Partner Details" do
       f.input :email
       f.input :phone_number, input_html: {maxlength: 10}
       f.input :full_name
@@ -47,14 +46,14 @@ ActiveAdmin.register User, as: 'Ragpicker' do
       f.input :password_confirmation, required: true unless f.object.id?
     end
     f.actions do
-      f.action(:submit, label: "#{f.object.id? ? 'Update' : 'Create'} Ragpicker")
+      f.action(:submit, label: "#{f.object.id? ? 'Update' : 'Create'} Partner")
       f.cancel_link
     end
   end
 
   show do
     attributes_table :email, :full_name, :phone_number, :city, :pincode
-    ragpicker.ragpicker_rates.order(:created_at).each do |rate|
+    resource.ragpicker_rates.order(:created_at).each do |rate|
       panel 'Rating' do
         attributes_table_for rate do
           row 'DATE' do |o|
