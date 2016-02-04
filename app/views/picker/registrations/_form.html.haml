@@ -6,8 +6,9 @@
         = render 'shared/alert_errors', resource: resource
 
     = f.text_field :full_name, class: "infln", placeholder: "FULL NAME", required: true
+    %span.mandatory-span *
 
-    %ul.list-inline
+    %ul.list-inline.list-radio
       %li.pull-left
         .radio
           = f.radio_button :is_yard, false, class: "ind"
@@ -18,10 +19,15 @@
           %label{for: "user_is_yard_true"} YARD
     .form-group.iual
       = f.text_field :phone_number, class: "inph", placeholder: "PHONE NUMBER", required: true
+      %span.mandatory-span *
       = f.password_field :password, class: "inpw", placeholder: "PASSWORD", required: true
+      %span.mandatory-span *
     .form-group.yard
       = f.text_field :address, class: "inad1", placeholder: "ADDRESS LINE 1"
+      %span.mandatory-span *
       = f.text_field :address2, class: "inad1", placeholder: "ADDRESS LINE 2"
+      %span.mandatory-span *
       = f.text_field :pincode, class: "inad1", placeholder: "PIN CODE"
+      %span.mandatory-span *
 
     = f.submit 'SIGN UP', class: "btn popbtn"
