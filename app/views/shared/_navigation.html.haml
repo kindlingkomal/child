@@ -7,7 +7,7 @@
       %span.icon-bar
       %span.icon-bar
     = link_to root_path, class: 'navbar-brand topnav' do 
-      = image_tag 'logo-stv.png'
+      = image_tag 'sj-logo-beta.png'
   / Collect the nav links, forms, and other content for toggling
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     %ul.nav.navbar-nav.navbar-right
@@ -15,8 +15,6 @@
         = link_to 'Home', root_path
       %li
         = link_to 'About Us', about_us_path
-      %li
-        %a.scrollto{:name => "pad2"} How it works
       %li
         %a{:href => "#"} Contact Us
       - unless local_assigns[:picker]

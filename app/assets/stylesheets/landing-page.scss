@@ -257,7 +257,7 @@ body, h1,h2,h3,h4,h5,h6 {
     margin-right: 20px;
     padding-top: 23px;
 }
-.navbar-default .navbar-nav > li:nth-child(5) > a{
+.navbar-default .navbar-nav > li:nth-child(4) > a{
     border: 1px solid #010101;
     border-radius: 0;
     padding-top: 10px;
@@ -398,7 +398,7 @@ a.btncnt:active{
     padding-top: 6px;
     color: #010101;
     font-weight: 400;
-    &.col2{ width: 49.8%; }
+    &.col2{ width: 47.8%; }
     &.col3{ width: 32.9%; }
 }
 .list-nav > ul > li:nth-child(2)> a{
@@ -767,7 +767,7 @@ color: #010101;
     font-weight: 100;
 }
 .mandatory-span{
-    font-size: 24px;
+    font-size: 16px;
     color: #ABA9A9;
 }
 
@@ -1006,6 +1006,7 @@ button:hover
         content:"*";
     }
 }
+
 */
 input[type="text"]:focus,input[type="password"]:focus{
     outline: none;
@@ -1032,4 +1033,16 @@ input[type="text"]:focus,input[type="password"]:focus{
 .remove-row-margin{
     margin-left: 0;
     margin-right: 0;
+}
+
+.list-radio{
+    width : 96%;
+    li:first-child{
+        margin-left: 25px;
+    }
+    li{
+        label{
+            padding-left: 0;
+        }
+    }
 }
