@@ -32,3 +32,9 @@
               %li
                 %span.col-one= cat.name
                 %span Rs. #{cat.price}/kg
+            - if pickup.status == PickUp::STATUSES[:done]
+              %li.no-ord
+                %span.col-one
+                  %b Total
+                %span
+                  Rs. #{pickup.total}
