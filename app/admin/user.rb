@@ -1,6 +1,6 @@
 ActiveAdmin.register User, as: 'User' do
   menu label: 'Customers'
-  permit_params :email, :city, :pincode, :phone_number, :full_name,
+  permit_params :email, :city, :pincode, :address, :phone_number, :full_name,
     :password, :password_confirmation
 
   before_create do |user|
@@ -21,6 +21,7 @@ ActiveAdmin.register User, as: 'User' do
     column :full_name
     column :city
     column :pincode
+    column :address
     actions
   end
 
@@ -37,6 +38,7 @@ ActiveAdmin.register User, as: 'User' do
       f.input :full_name
       f.input :city
       f.input :pincode
+      f.input :address
       f.input :password unless f.object.id?
       f.input :password_confirmation, required: true unless f.object.id?
     end
@@ -44,6 +46,6 @@ ActiveAdmin.register User, as: 'User' do
   end
 
   show do
-    attributes_table :email, :full_name, :phone_number, :city, :pincode
+    attributes_table :email, :full_name, :phone_number, :city, :pincode, :address
   end
 end

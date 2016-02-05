@@ -1,5 +1,5 @@
 ActiveAdmin.register User, as: 'Partner' do
-  permit_params :email, :city, :pincode, :phone_number, :full_name,
+  permit_params :email, :city, :pincode, :address, :phone_number, :full_name,
     :password, :password_confirmation
 
   before_create do |user|
@@ -20,6 +20,7 @@ ActiveAdmin.register User, as: 'Partner' do
     column :full_name
     column :city
     column :pincode
+    column :address
     column 'Accepted Count' do |obj|
       obj.pickup_users.where(status: PickupUser::STATUSES[:accepted]).count
     end
@@ -42,6 +43,7 @@ ActiveAdmin.register User, as: 'Partner' do
       f.input :full_name
       f.input :city
       f.input :pincode
+      f.input :address
       f.input :password unless f.object.id?
       f.input :password_confirmation, required: true unless f.object.id?
     end
@@ -52,7 +54,7 @@ ActiveAdmin.register User, as: 'Partner' do
   end
 
   show do
-    attributes_table :email, :full_name, :phone_number, :city, :pincode
+    attributes_table :email, :full_name, :phone_number, :city, :pincode, :address
     resource.ragpicker_rates.order(:created_at).each do |rate|
       panel 'Rating' do
         attributes_table_for rate do
