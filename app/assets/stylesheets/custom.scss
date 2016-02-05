@@ -25,3 +25,10 @@ img.choose_user_avatar.small { width: 66px; }
   font-style: italic;
   font-weight: bold;
 }
+
+.mobile {
+  &.au-pad {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

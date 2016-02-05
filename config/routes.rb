@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   root to: "homepage#index"
 
   get 'terms-conditions', to: 'homepage#terms'
+  namespace :m do
+    get 'terms-conditions', to: 'homepage#terms'
+  end
 
   namespace :user do
     resources :pick_ups, only: [:new, :create] do
