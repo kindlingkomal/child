@@ -35,12 +35,11 @@
         .row
           = image_tag "money.png"
           %h4 Get Money in exchange!
-
 .col-md-12.bg-offer
   .container
     %h2.radh List of all products we carter
     .row
-      = link_to "View Service", "javascript:;", class: "btn rtbtn"
+      = link_to "View Service", user_categories_path, class: "btn rtbtn"
 
 #radhi-sign.modal.fade{role: "dialog", tabindex: "-1", "aria-labelledby" => "myModallabel"}
   .modal-dialog.popbox{role: "document"}
