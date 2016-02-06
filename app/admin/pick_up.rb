@@ -123,13 +123,24 @@ ActiveAdmin.register PickUp do
       end
     end
     panel 'Category and price details' do
-      table_for resource.line_items do
-        column :category
-        column :quantity
-        column 'Price' do |o|
-          o.cost_price
+      if resource.line_items.blank?
+        table_for resource.categories do
+          column 'Category' do |o|
+            link_to o.name, [:admin, o]
+          end
+          column :price
+          column :quantity
+          column 'TOTAL', :item_total
         end
-        column 'TOTAL', :item_total
+      else
+        table_for resource.line_items do
+          column :category
+          column 'Price' do |o|
+            o.cost_price
+          end
+          column :quantity
+          column 'TOTAL', :item_total
+        end
       end
     end
   end
