@@ -28,9 +28,6 @@ ActiveAdmin.register PickUp do
     column "Time" do |obj|
       obj.pick_time
     end
-    column :accepted_at do |obj|
-      obj.start_time.accepted_at('%d/%m/%Y %H:%M') rescue nil
-    end
     column 'Cancelled By' do |obj|
       if (pickup_users = obj.pickup_users.where(status: 'canceled')).count > 0
         pickup_users.joins(:user).distinct.
@@ -123,6 +120,16 @@ ActiveAdmin.register PickUp do
       #row :total
       row "Categories" do |obj|
         obj.categories.pluck('name').join(', ')
+      end
+    end
+    panel 'Category and price details' do
+      table_for resource.line_items do
+        column :category
+        column :quantity
+        column 'Price' do |o|
+          o.cost_price
+        end
+        column 'TOTAL', :item_total
       end
     end
   end
