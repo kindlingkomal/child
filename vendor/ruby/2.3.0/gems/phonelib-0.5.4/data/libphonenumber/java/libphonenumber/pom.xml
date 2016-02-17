@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.googlecode.libphonenumber</groupId>
+  <artifactId>libphonenumber</artifactId>
+  <version>7.1.2-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <url>https://github.com/googlei18n/libphonenumber/</url>
+
+  <parent>
+    <groupId>com.googlecode.libphonenumber</groupId>
+    <artifactId>libphonenumber-parent</artifactId>
+    <version>7.1.2-SNAPSHOT</version>
+  </parent>
+
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>test</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>src/com/google/i18n/phonenumbers/data</directory>
+        <targetPath>com/google/i18n/phonenumbers/data</targetPath>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>test/com/google/i18n/phonenumbers/data</directory>
+        <targetPath>com/google/i18n/phonenumbers/data</targetPath>
+      </testResource>
+    </testResources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>**/SingleFileMetadataSourceImpl.class</exclude>
+            <exclude>**/SingleFileMetadataSourceImpl.java</exclude>
+            <exclude>**/SingleFileMetadataSourceImplTest.class</exclude>
+            <exclude>**/SingleFileMetadataSourceImplTest.java</exclude>
+            <exclude>**/SingleFilePhoneNumberMetadataProto</exclude>
+            <exclude>**/SingleFilePhoneNumberMetadataProtoForTesting</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

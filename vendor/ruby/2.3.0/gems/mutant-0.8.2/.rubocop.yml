@@ -1,0 +1,10 @@
+AllCops:
+  Include:
+    - 'Gemfile'
+  Exclude:
+    - 'Gemfile.devtools'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'test_app/**/*'
+    - 'benchmarks/**/*'
+    - 'bin/mutant'

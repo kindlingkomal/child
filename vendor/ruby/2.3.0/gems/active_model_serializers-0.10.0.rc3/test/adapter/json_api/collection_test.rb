@@ -1,0 +1,95 @@
+require 'test_helper'
+
+module ActiveModel
+  class Serializer
+    class Adapter
+      class JsonApi
+        class CollectionTest < Minitest::Test
+          def setup
+            @author = Author.new(id: 1, name: 'Steve K.')
+            @author.bio = nil
+            @blog = Blog.new(id: 23, name: 'AMS Blog')
+            @first_post = Post.new(id: 1, title: 'Hello!!', body: 'Hello, world!!')
+            @second_post = Post.new(id: 2, title: 'New Post', body: 'Body')
+            @first_post.comments = []
+            @second_post.comments = []
+            @first_post.blog = @blog
+            @second_post.blog = nil
+            @first_post.author = @author
+            @second_post.author = @author
+            @author.posts = [@first_post, @second_post]
+
+            @serializer = ArraySerializer.new([@first_post, @second_post])
+            @adapter = ActiveModel::Serializer::Adapter::JsonApi.new(@serializer)
+            ActionController::Base.cache_store.clear
+          end
+
+          def test_include_multiple_posts
+            expected = [
+              {
+                id: '1',
+                type: 'posts',
+                attributes: {
+                  title: 'Hello!!',
+                  body: 'Hello, world!!'
+                },
+                relationships: {
+                  comments: { data: [] },
+                  blog: { data: { type: 'blogs', id: '999' } },
+                  author: { data: { type: 'authors', id: '1' } }
+                }
+              },
+              {
+                id: '2',
+                type: 'posts',
+                attributes: {
+                  title: 'New Post',
+                  body: 'Body'
+                },
+                relationships: {
+                  comments: { data: [] },
+                  blog: { data: { type: 'blogs', id: '999' } },
+                  author: { data: { type: 'authors', id: '1' } }
+                }
+              }
+            ]
+
+            assert_equal(expected, @adapter.serializable_hash[:data])
+          end
+
+          def test_limiting_fields
+            @adapter = ActiveModel::Serializer::Adapter::JsonApi.new(@serializer, fields: ['title'])
+
+            expected = [
+              {
+                id: '1',
+                type: 'posts',
+                attributes: {
+                  title: 'Hello!!'
+                },
+                relationships: {
+                  comments: { data: [] },
+                  blog: { data: { type: 'blogs', id: '999' } },
+                  author: { data: { type: 'authors', id: '1' } }
+                }
+              },
+              {
+                id: '2',
+                type: 'posts',
+                attributes: {
+                  title: 'New Post'
+                },
+                relationships: {
+                  comments: { data: [] },
+                  blog: { data: { type: 'blogs', id: '999' } },
+                  author: { data: { type: 'authors', id: '1' } }
+                }
+              }
+            ]
+            assert_equal(expected, @adapter.serializable_hash[:data])
+          end
+        end
+      end
+    end
+  end
+end

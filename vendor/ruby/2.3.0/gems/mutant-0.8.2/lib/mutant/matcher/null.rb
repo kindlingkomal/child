@@ -1,0 +1,23 @@
+module Mutant
+  class Matcher
+    # A null matcher, that does not match any subjects
+    class Null < self
+      include Concord.new
+
+      # Enumerate subjects
+      #
+      # @return [Enumerator<Subject]
+      #   if no block given
+      #
+      # @return [self]
+      #   otherwise
+      #
+      # @api private
+      def each
+        return to_enum unless block_given?
+        self
+      end
+
+    end # Null
+  end # Matcher
+end # Mutant

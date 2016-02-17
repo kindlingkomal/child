@@ -1,0 +1,5 @@
+Gemfile.lock
+*.gem
+/tmp/*
+/test_app/tmp/*
+/test_app/spec/tmp/*

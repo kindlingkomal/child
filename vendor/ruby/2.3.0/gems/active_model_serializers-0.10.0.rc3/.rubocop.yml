@@ -1,0 +1,82 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - config/initializers/forbidden_yaml.rb
+    - !ruby/regexp /(vendor|bundle|bin|db|tmp)\/.*/
+  RunRailsCops: true
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+
+Style/IndentationConsistency:
+  Exclude:
+    - lib/active_model/serializer/adapter/flatten_json.rb
+    - lib/active_model/serializer/adapter/fragment_cache.rb
+    - lib/active_model/serializer/adapter/json.rb
+    - lib/active_model/serializer/adapter/json/fragment_cache.rb
+    - lib/active_model/serializer/adapter/json_api.rb
+    - lib/active_model/serializer/adapter/json_api/fragment_cache.rb
+    - lib/active_model/serializer/adapter/json_api/pagination_links.rb
+    - lib/active_model/serializer/adapter/null.rb
+
+Style/IndentationWidth:
+  Exclude:
+    - lib/active_model/serializer/adapter/flatten_json.rb
+    - lib/active_model/serializer/adapter/fragment_cache.rb
+    - lib/active_model/serializer/adapter/json.rb
+    - lib/active_model/serializer/adapter/json/fragment_cache.rb
+    - lib/active_model/serializer/adapter/json_api.rb
+    - lib/active_model/serializer/adapter/json_api/fragment_cache.rb
+    - lib/active_model/serializer/adapter/json_api/pagination_links.rb
+    - lib/active_model/serializer/adapter/null.rb
+
+Style/AccessModifierIndentation:
+  Exclude:
+    - lib/active_model/serializer/adapter/flatten_json.rb
+    - lib/active_model/serializer/adapter/fragment_cache.rb
+    - lib/active_model/serializer/adapter/json.rb
+    - lib/active_model/serializer/adapter/json/fragment_cache.rb
+    - lib/active_model/serializer/adapter/json_api.rb
+    - lib/active_model/serializer/adapter/json_api/fragment_cache.rb
+    - lib/active_model/serializer/adapter/json_api/pagination_links.rb
+    - lib/active_model/serializer/adapter/null.rb
+
+Lint/NestedMethodDefinition:
+  Enabled: false
+  Exclude:
+    - test/action_controller/serialization_test.rb
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Metrics/AbcSize:
+  Max: 35 # TODO: Lower to 15
+
+Metrics/ClassLength:
+  Max: 261 # TODO: Lower to 100
+  Exclude:
+    - test/**/*.rb
+
+Metrics/CyclomaticComplexity:
+  Max: 7 # TODO: Lower to 6
+
+Metrics/LineLength:
+  Max: 251 # TODO: Lower to 80
+
+Metrics/MethodLength:
+  Max: 106 # TODO: Lower to 10
+
+Metrics/PerceivedComplexity:
+  Max: 9 # TODO: Lower to 7
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/Documentation:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
